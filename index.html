@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SortableList</title>
+  <style>
+    li.placeholder { background: rgb(255,240,120);}
+    li.placeholder:before {content: "Drop here"; color: rgb(225,210,90);}
+    ul { list-style: none; margin:0; padding:0}
+    li {padding: 5px; background:#eee}
+  </style>
+</head>
+<body>
+
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react/JSXTransformer.js"></script>
+<script src="src/SortableList.js" type="text/jsx"></script>
+
+<script type="text/jsx">
+/** @jsx React.DOM */
+
+var colors = ["Red","Green","Blue","Yellow","Black","White","Orange"];
+console.log(colors);
+
+React.renderComponent(
+  <SortableList data={colors} />,
+  document.body
+);
+</script>
+
+</body>
+</html>
