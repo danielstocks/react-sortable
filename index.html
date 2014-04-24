@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <title>SortableList</title>
   <style>
-    li.placeholder { background: rgb(255,240,120);}
-    li.placeholder:before {content: "Drop here"; color: rgb(225,210,90);}
-    ul { list-style: none; margin:0; padding:0}
+    body { width: 600px; margin: 0 auto; padding: 50px 0}
+    ul { list-style: none; margin:0; padding:0; float:left; width:200px;}
     li {padding: 5px; background:#eee}
+    #grid { float: left; width: 400px;}
+    #grid div { height: 112px; width: 100px; float: left}
+    .dragging { background: yellow; }
   </style>
 </head>
 <body>
@@ -18,7 +20,7 @@
 
 <script type="text/jsx">
 /** @jsx React.DOM */
-var colors = ["Red","Green","Blue","Yellow","Black","White","Orange"];
+var colors = ["Red","Green","Blue","Yellow","Black","Grey","Orange","Purple"];
 React.renderComponent(
   <SortableList data={colors} />,
   document.body
