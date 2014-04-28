@@ -3,26 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>SortableList</title>
-  <style>
-    body { width: 600px; margin: 0 auto; padding: 50px 0}
-    ul { list-style: none; margin:0; padding:0; float:left; width:200px;}
-    li {padding: 5px; background:#eee}
-    #grid { float: left; width: 400px;}
-    #grid div { height: 112px; width: 100px; float: left}
-    .dragging { background: yellow; }
-  </style>
+  <link href="src/stylez.css" rel="stylesheet"/>
 </head>
 <body>
 
 <script src="bower_components/react/react.js"></script>
 <script src="bower_components/react/JSXTransformer.js"></script>
+<script src="src/util.js"></script>
+
+<script src="src/App.js" type="text/jsx"></script>
 <script src="src/SortableList.js" type="text/jsx"></script>
+<script src="src/SortableGrid.js" type="text/jsx"></script>
 
 <script type="text/jsx">
 /** @jsx React.DOM */
-var colors = ["Red","Green","Blue","Yellow","Black","Grey","Orange","Purple"];
+var colors = [
+  { name: "Gold"},
+  { name: "Crimson"},
+  { name: "Hotpink"},
+  { name: "Blueviolet"},
+  { name: "Cornflowerblue"},
+  { name: "Skyblue"},
+  { name: "Lightblue"},
+  { name: "Aquamarine"},
+  { name: "Burlywood"},
+];
 React.renderComponent(
-  <SortableList data={colors} />,
+  <App data={colors} />,
   document.body
 );
 </script>
