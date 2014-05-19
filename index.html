@@ -7,6 +7,11 @@
 </head>
 <body>
 
+<h1>React Sortable</h1>
+<p>View source and documentation on <a href="https://github.com/danielstocks/react-sortable/">Github</a></p>
+
+<div id="app"></div>
+
 <script src="bower_components/react/react.js"></script>
 <script src="bower_components/react/JSXTransformer.js"></script>
 
@@ -35,9 +40,10 @@ var data = {
 };
 React.renderComponent(
   <App data={data} />,
-  document.body
+  document.getElementById("app")
 );
 </script>
+
 
 </body>
 </html>
