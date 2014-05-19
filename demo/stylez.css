@@ -38,3 +38,6 @@ li.dragging {
   box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
   z-index: 1;
 }
+
+
+pre { clear:both; display: block; padding: 20px 0;}
