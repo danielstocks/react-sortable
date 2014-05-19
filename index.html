@@ -2,34 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SortableList</title>
-  <link href="src/stylez.css" rel="stylesheet"/>
+  <title>React Sortable</title>
+  <link href="demo/stylez.css" rel="stylesheet"/>
 </head>
 <body>
 
 <script src="bower_components/react/react.js"></script>
 <script src="bower_components/react/JSXTransformer.js"></script>
-<script src="src/util.js"></script>
 
-<script src="src/App.js" type="text/jsx"></script>
-<script src="src/SortableList.js" type="text/jsx"></script>
-<script src="src/SortableGrid.js" type="text/jsx"></script>
+<script src="src/Sortable.js" type="text/jsx"></script>
+<script src="src/SortableItem.js" type="text/jsx"></script>
+
+<script src="demo/App.js" type="text/jsx"></script>
+<script src="demo/SortableList.js" type="text/jsx"></script>
+<script src="demo/SortableGrid.js" type="text/jsx"></script>
 
 <script type="text/jsx">
 /** @jsx React.DOM */
-var colors = [
-  { name: "Gold"},
-  { name: "Crimson"},
-  { name: "Hotpink"},
-  { name: "Blueviolet"},
-  { name: "Cornflowerblue"},
-  { name: "Skyblue"},
-  { name: "Lightblue"},
-  { name: "Aquamarine"},
-  { name: "Burlywood"},
-];
+var data = {
+  colors: [
+    "Gold",
+    "Crimson",
+    "Hotpink",
+    "Blueviolet",
+    "Cornflowerblue",
+    "Skyblue",
+    "Lightblue",
+    "Aquamarine",
+    "Burlywood"
+  ]
+};
 React.renderComponent(
-  <App data={colors} />,
+  <App data={data} />,
   document.body
 );
 </script>
