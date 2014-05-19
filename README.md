@@ -1,4 +1,4 @@
-# React-Sortable
+# React Sortable
 
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
@@ -7,7 +7,7 @@ Check out http://webcloud.se/react-sortable or the index.html fie of this reposi
 for an example implementation.
 
 
-# Basic Usage
+## Basic Usage
 
 Here's a basic example of sortable list implementation using the **SortableItem** component.
 
@@ -56,24 +56,24 @@ React.renderComponent(
 ```
 
 
-## Sort Method
+### Sort Method
 It's your job to supply the SortableItem component with a sort method so you can control how you want to update the overall state of the application.
 
 The sort method recieves two arguments, an array that explains the current order in a group of SortableItems, and the key/id of the node currently being dragged.
 
-## SortableItem properties
+## SortableItem Properties
 
-Besires the sort method, there are a few other properties that can be passed to a SortableItem component:
+Apart from the sort method, there are a few other properties that can be passed to a SortableItem component:
 
 ### Required properties
 
-key (integer) | Used internally be react but also by react-sortable to maintain sorting order
-data (object) | The overall state of the app (usually this.state)
-item (object) | The value/label inside the component
+- key (integer) | Used internally be react but also by react-sortable to maintain sorting order
+- data (object) | The overall state of the app (usually this.state)
+- item (object) | The value/label inside the component
 
 ### Optional properties
 
-tagName (string) | Default: LI, the HTML element the component will output
-className (string) | A string of one or multiple CSS classes
-style (object) | Inline styles
+- tagName (string) | Default: LI, the HTML element the component will output
+- className (string) | A string of one or multiple CSS classes
+- style (object) | Inline styles
 

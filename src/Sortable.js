@@ -7,7 +7,7 @@ var Sortable = {
     this.props.sort(data, to);
   },
   sortEnd: function() {
-    this.props.sort(this.props.data.colors, null);
+    this.props.sort(this.props.data.colors, undefined);
   },
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset.id;
