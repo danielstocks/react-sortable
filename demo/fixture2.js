@@ -1,0 +1,49 @@
+var fixture = {
+  module: "root",
+  children: [
+    {
+      "module":"section",
+      "children":
+        [
+          {
+             "module":"header",
+          },
+          {
+             "module":"paragraph",
+          },
+          {
+             "module":"image",
+          },
+          {
+            "module":"section",
+            "children":
+              [
+                {
+                   "module":"header",
+                },
+                {
+                   "module":"paragraph",
+                },
+                {
+                   "module":"image",
+                }
+              ]
+          },
+        ]
+    },
+    {
+      "module":"section",
+      "children":[
+        {
+           "module":"column",
+        },
+        {
+           "module":"video",
+        }
+      ]
+    },
+    {
+      "module":"image"
+    },
+  ]
+}

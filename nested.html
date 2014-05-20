@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React Nested Sortable</title>
+  <link href="demo/nested.css" rel="stylesheet"/>
+</head>
+<body>
+
+<h1>React Nested Sortable</h1>
+
+<p>View source and documentation on <a href="https://github.com/danielstocks/react-sortable/">Github</a>. Check out the <a href="./">list/grid</a> demo </p>
+
+<div id="app"></div>
+
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react/JSXTransformer.js"></script>
+
+<script src="demo/tree.js"></script>
+<script src="src/SortableNested.js" type="text/jsx"></script>
+<script src="demo/SortableNestedItem.js" type="text/jsx"></script>
+
+<script src="demo/fixture2.js" type="text/jsx"></script>
+<script src="demo/App2.js" type="text/jsx"></script>
+<script src="demo/SortableNestedList.js" type="text/jsx"></script>
+<script src="demo/StateView.js" type="text/jsx"></script>
+
+<script type="text/jsx">
+/** @jsx React.DOM */
+var app = React.renderComponent(
+  <App data={fixture} />,
+  document.getElementById("app")
+);
+</script>
+
+
+</body>
+</html>
