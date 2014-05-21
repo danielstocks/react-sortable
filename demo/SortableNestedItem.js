@@ -27,6 +27,7 @@ var SortableNestedItem = React.createClass({
         onDragOver={this.dragOver}
         onDragStart={this.sortStart}
         onDrop={this.handleDrop}
+        onDragEnd={this.dragEnd}
       >
         {this.props.data.module}
         <ul>{ listItems } </ul>

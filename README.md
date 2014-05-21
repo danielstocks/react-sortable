@@ -12,8 +12,9 @@ for an example implementation.
 
 For nested sortable data structures: Take a look at http://webcloud.se/react-sortable/nested.html or the nested.html file.
 
-
 ## Basic Usage
+
+After cloning the directory run bower install to get the react dependencies
 
 Here's a basic example of sortable list implementation using the **SortableItem** component.
 

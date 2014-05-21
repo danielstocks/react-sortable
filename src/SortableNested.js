@@ -2,27 +2,47 @@
 
 var SortableNested = {
   sortStart: function(e) {
-    e.stopPropagation();
     this.dragged = e.currentTarget.dataset.id;
     e.dataTransfer.effectAllowed = 'move';
   },
   handleDrop: function(e) {
     e.preventDefault();
-    e.stopPropagation();
     this.props.sort(undefined, undefined);
   },
-  move: function(over,append) {
-    var to = Number(over.dataset.id);
-    var from = dragging || Number(this.dragged);
-    this.props.sort(to, from, append);
-  },
-  dragOver: function(e) {
+  dragEnd: function(e) {
     e.stopPropagation();
     e.preventDefault();
+    this.props.sort(undefined, undefined);
+  },
+  move: function(over, placement) {
+    var to = Number(over.dataset.id);
+    var from = dragging || Number(this.dragged);
+    this.props.sort(to, from, placement);
+  },
+  dragOver: function(e) {
+
+    e.stopPropagation();
+    e.preventDefault();
+    console.log(e.target);
     var over = e.currentTarget
     var relY = e.clientY - over.offsetTop;
     var height = over.offsetHeight / 2;
-    this.move(over, relY > height);
+
+    var relX = e.clientX - over.offsetLeft;
+    var width = over.offsetWidth / 2;
+
+    var placement;
+    if(relX > width) {
+      placement = "append"
+    }
+    else if(relY > height) {
+      placement = "after";
+    }
+    else if(relY < height) {
+      placement = "before"
+    }
+
+    this.move(over, placement);
   },
   getClassName: function() {
     return this.props.data.id == dragging ? "dragging" : "";
