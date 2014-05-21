@@ -5,29 +5,29 @@ body {
 }
 ul#top {
   float: left;
+  width: 250px;
 }
 ul {
-  list-style: none;
+  list-style:none;
   margin:0;
   padding:0;
-  background:#ddd;
-  overflow: hidden;
 }
-li {
-  width: 120px;
-  padding: 10px;
-  color: #666;
-}
-li li { background: #ccc; }
-li li li { background: #bbb; }
-li li li li { background: #aaa; }
 
-li.dragging {
-  background: yellow;
+li {
+  color: #666;
+  margin-left: 10px;
+  border-left: 1px solid gold;
+}
+
+li > span { padding: 10px 10px 10px 10px; display: block; background: ghostwhite}
+
+
+li.dragging span {
+  background: gainsboro;
 }
 
 pre {
-  background: #ccc;
+  background: mistyrose;
   font-size: 10px;
   line-height: 0.9;
   width: 400px;

@@ -13,17 +13,22 @@ var App = React.createClass({
     data.dragging = dragging;
     this.setState({data: data})
   },
-  sort: function(to, from, append) {
+  sort: function(to, from, placement) {
 
     dragging = from;
 
     if(from != to) {
-      var node = from = _remove(from);
-      append ? _insertAfter(node, to) : _insertBefore(node,to);
+      var node = _remove(from);
+      if(placement == "before") {
+        _insertBefore(node,to);
+      } else if(placement == "after") {
+        _insertAfter(node, to);
+      } else if(placement == "append") {
+        _prepend(node,to);
+      }
     }
 
     this.update();
-
   },
   render: function() {
     return (
@@ -80,6 +85,11 @@ function _insert(node, to, index) {
   node.parent_id = to;
   // Insert at new location
   collection[to].children.splice(index,0,node);
+}
+
+// Prepend node as first child
+function _prepend(node, dest) {
+  _insert(node, dest, 0);
 }
 
 

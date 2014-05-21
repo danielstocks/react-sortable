@@ -15,6 +15,7 @@
 
 <script src="bower_components/react/react.js"></script>
 <script src="bower_components/react/JSXTransformer.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
 
 <script src="demo/tree.js"></script>
 <script src="src/SortableNested.js" type="text/jsx"></script>
@@ -25,6 +26,7 @@
 <script src="demo/SortableNestedList.js" type="text/jsx"></script>
 <script src="demo/StateView.js" type="text/jsx"></script>
 
+
 <script type="text/jsx">
 /** @jsx React.DOM */
 var app = React.renderComponent(
@@ -33,6 +35,20 @@ var app = React.renderComponent(
 );
 </script>
 
+<script>
+/*
+document.body.ondrop = function(e) {
+  e.preventDefault();
+  console.log("oh rly?");
+  app.sort(undefined, undefined);
+  return false;
+}
+document.body.ondragout = function(e) {
+  console.log(e.target);
+  e.preventDefault();
+}
+*/
+</script>
 
 </body>
 </html>

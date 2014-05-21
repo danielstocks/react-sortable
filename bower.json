@@ -1,0 +1,20 @@
+{
+  "name": "react-sortable",
+  "version": "0.0.0",
+  "homepage": "https://github.com/danielstocks/react-sortable",
+  "authors": [
+    "Daniel Stocks <daniel@webcloud.se>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.10.0",
+    "underscore": "~1.6.0"
+  }
+}
