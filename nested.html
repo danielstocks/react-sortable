@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>React Nested Sortable</title>
-  <link href="demo/nested.css" rel="stylesheet"/>
+  <link href="demo/nested/nested.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -17,13 +17,13 @@
 <script src="bower_components/react/JSXTransformer.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
 
-<script src="demo/tree.js"></script>
 <script src="src/SortableNested.js" type="text/jsx"></script>
-<script src="demo/SortableNestedItem.js" type="text/jsx"></script>
 
-<script src="demo/fixture2.js" type="text/jsx"></script>
-<script src="demo/App2.js" type="text/jsx"></script>
-<script src="demo/SortableNestedList.js" type="text/jsx"></script>
+<script src="demo/nested/tree.js"></script>
+<script src="demo/nested/SortableNestedItem.js" type="text/jsx"></script>
+<script src="demo/nested/fixture2.js" type="text/jsx"></script>
+<script src="demo/nested/App2.js" type="text/jsx"></script>
+<script src="demo/nested/SortableNestedList.js" type="text/jsx"></script>
 <script src="demo/StateView.js" type="text/jsx"></script>
 
 
@@ -33,21 +33,6 @@ var app = React.renderComponent(
   <App data={fixture} />,
   document.getElementById("app")
 );
-</script>
-
-<script>
-/*
-document.body.ondrop = function(e) {
-  e.preventDefault();
-  console.log("oh rly?");
-  app.sort(undefined, undefined);
-  return false;
-}
-document.body.ondragout = function(e) {
-  console.log(e.target);
-  e.preventDefault();
-}
-*/
 </script>
 
 </body>

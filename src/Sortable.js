@@ -12,6 +12,7 @@ var Sortable = {
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset.id;
     e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData("text/html", null);
   },
   move: function(over,append) {
     var to = Number(over.dataset.id);
