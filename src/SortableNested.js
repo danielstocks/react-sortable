@@ -24,7 +24,6 @@ var SortableNested = {
 
     e.stopPropagation();
     e.preventDefault();
-    console.log(e.target);
     var over = e.currentTarget
     var relY = e.clientY - over.offsetTop;
     var height = over.offsetHeight / 2;

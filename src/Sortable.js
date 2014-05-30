@@ -1,6 +1,15 @@
 /** @jsx React.DOM */
 
 var Sortable = {
+  getDefaultProps: function() {
+    return {
+      "data-id" : this.props.key,
+      draggable : true,
+      onDragEnd: this.sortEnd.bind(this),
+      onDragOver: this.dragOver.bind(this),
+      onDragStart: this.sortStart.bind(this)
+    }
+  },
   update: function(to, from) {
     var data = this.props.data.colors;
     data.splice(to, 0, data.splice(from,1)[0]);
@@ -26,9 +35,10 @@ var Sortable = {
     var over = e.currentTarget
     var relY = e.clientY - over.offsetTop;
     var height = over.offsetHeight / 2;
-    this.move(over, relY > height);
+    var placement = this.placement ? this.placement(e.clientX, e.clientY, over) : relY > height
+    this.move(over, placement);
   },
-  getClassName: function() {
-    return this.props.key == this.props.data.dragging ? "dragging" : "";
+  isDragging: function() {
+    return this.props.data.dragging == this.props.key
   }
 }
