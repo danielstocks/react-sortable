@@ -19,7 +19,7 @@ After cloning the directory run **bower install** to get the react dependencies.
 (python -m SimpleHttpServer for instance) and open it in your browser.
 
 
-## Example Implmentation
+## Example implementation
 
 Here's a sample implementation using the react-sortable mixin.
 
@@ -41,16 +41,16 @@ var App = React.createClass({
     return {data: this.props.data};
   },
 
-  sort: function(colors, dragging) {
+  sort: function(items, dragging) {
     var data = this.state.data;
-    data.colors = colors;
+    data.items = items;
     data.dragging = dragging;
     this.setState({data: data});
   },
 
   render: function() {
 
-    var listItems = this.props.data.colors.map(function(item, i) {
+    var listItems = this.state.data.items.map(function(item, i) {
       return (
         <SortableListItem
           sort={this.sort}
@@ -60,11 +60,7 @@ var App = React.createClass({
       );
     }, this);
 
-    return (
-      <div id="app">
-        <ul>{listItems}</ul>
-      </div>
-    )
+    return <ul>{listItems}</ul>
   }
 });
 

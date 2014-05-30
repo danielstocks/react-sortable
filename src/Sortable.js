@@ -11,12 +11,12 @@ var Sortable = {
     }
   },
   update: function(to, from) {
-    var data = this.props.data.colors;
+    var data = this.props.data.items;
     data.splice(to, 0, data.splice(from,1)[0]);
     this.props.sort(data, to);
   },
   sortEnd: function() {
-    this.props.sort(this.props.data.colors, undefined);
+    this.props.sort(this.props.data.items, undefined);
   },
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset.id;
