@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>React Sortable</title>
-  <link href="demo/gridlist/stylez.css" rel="stylesheet"/>
+  <link href="demo/gridlist/gridlist.css" rel="stylesheet"/>
 </head>
 <body>
 
+<a href="../">webcloud</a> / React Sortable
 <h1>React Sortable</h1>
-<p>View source and documentation on <a href="https://github.com/danielstocks/react-sortable/">Github</a>. Check out the <a href="nested.html">nested data structure</a> demo</p>
+<p>View source and documentation on <a href="https://github.com/danielstocks/react-sortable/">Github</a>.
+<br>Check out the <a href="nested.html">nested data structure</a> demo</p>
 
+<p>You can also try dragging items between the grid and the list</p>
 
 <div id="app"></div>
 
@@ -17,17 +20,16 @@
 <script src="bower_components/react/JSXTransformer.js"></script>
 
 <script src="src/Sortable.js" type="text/jsx"></script>
-<script src="src/SortableItem.js" type="text/jsx"></script>
 
 <script src="demo/gridlist/App.js" type="text/jsx"></script>
-<script src="demo/gridlist/SortableList.js" type="text/jsx"></script>
-<script src="demo/gridlist/SortableGrid.js" type="text/jsx"></script>
+<script src="demo/gridlist/SortableListItem.js" type="text/jsx"></script>
+<script src="demo/gridlist/SortableGridItem.js" type="text/jsx"></script>
 <script src="demo/StateView.js" type="text/jsx"></script>
 
 <script type="text/jsx">
 /** @jsx React.DOM */
 var data = {
-  colors: [
+  items: [
     "Gold",
     "Crimson",
     "Hotpink",

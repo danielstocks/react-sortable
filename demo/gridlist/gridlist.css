@@ -7,7 +7,11 @@ body {
 ul {
   list-style: none;
   margin:0;
-  padding:0; float:left; width:200px; background:#ddd;}
+  padding:0;
+  float:left;
+  width:200px;
+  background:#ddd;
+}
 li {
   padding: 10px;
   color: #666;
