@@ -6,16 +6,16 @@ var App = React.createClass({
     return {data: this.props.data};
   },
 
-  sort: function(colors, dragging) {
+  sort: function(items, dragging) {
     var data = this.state.data;
-    data.colors = colors;
+    data.items = items;
     data.dragging = dragging;
     this.setState({data: data});
   },
 
   render: function() {
 
-    var listItems = this.props.data.colors.map(function(item, i) {
+    var listItems = this.state.data.items.map(function(item, i) {
       return (
         <SortableListItem
           sort={this.sort}
@@ -25,7 +25,7 @@ var App = React.createClass({
       );
     }, this);
 
-    var gridItems = this.props.data.colors.map(function(item, i) {
+    var gridItems = this.state.data.items.map(function(item, i) {
       return (
         <SortableGridItem style={{background: item}}
            sort={this.sort}
