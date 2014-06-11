@@ -1,6 +1,13 @@
-/** @jsx React.DOM */
-
 var SortableNested = {
+  getDefaultProps: function() {
+    return {
+      "data-id" : this.props.key,
+      draggable : true,
+      onDragEnd: this.dragEnd.bind(this),
+      onDragOver: this.dragOver.bind(this),
+      onDragStart: this.sortStart.bind(this)
+    }
+  },
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset.id;
     e.dataTransfer.effectAllowed = 'move';

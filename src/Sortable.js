@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var Sortable = {
   getDefaultProps: function() {
     return {
