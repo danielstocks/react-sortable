@@ -23,7 +23,7 @@ var Sortable = {
     e.dataTransfer.effectAllowed = 'move';
     try {
       e.dataTransfer.setData('text/html', null);
-    } catch (e) {
+    } catch (ex) {
       e.dataTransfer.setData('text', '');
     }
   },
