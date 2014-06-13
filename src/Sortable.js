@@ -17,9 +17,15 @@ var Sortable = {
     this.props.sort(this.props.data.items, undefined);
   },
   sortStart: function(e) {
-    this.dragged = e.currentTarget.dataset.id;
+    this.dragged = e.currentTarget.dataset ?
+      e.currentTarget.dataset.id :
+      e.currentTarget.getAttribute('data-id');
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData("text/html", null);
+    try {
+      e.dataTransfer.setData('text/html', null);
+    } catch (ex) {
+      e.dataTransfer.setData('text', '');
+    }
   },
   move: function(over,append) {
     var to = Number(over.dataset.id);
