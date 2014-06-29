@@ -37,9 +37,10 @@ var Sortable = {
   dragOver: function(e) {
     e.preventDefault();
     var over = e.currentTarget
-    var relY = e.clientY - over.offsetTop;
+    var relY = e.clientY - over.getBoundingClientRect().top;
     var height = over.offsetHeight / 2;
-    var placement = this.placement ? this.placement(e.clientX, e.clientY, over) : relY > height
+    var relX = e.clientY - over.getBoundingClientRect().left;
+    var placement = this.placement ? this.placement(relX, relY, over) : relY > height
     this.move(over, placement);
   },
   isDragging: function() {
