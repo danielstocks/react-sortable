@@ -15,21 +15,23 @@ var App = React.createClass({
 
   render: function() {
 
-    var listItems = this.state.data.items.map(function(item, i) {
+    var listItems = this.state.data.colors.map(function(item, i) {
       return (
         <SortableListItem
           sort={this.sort}
-          data={this.state.data}
+          sortBy={'colors'}
+          sortable={this.state.data}
           key={i}
           item={item} />
       );
     }, this);
 
-    var gridItems = this.state.data.items.map(function(item, i) {
+    var gridItems = this.state.data.colors.map(function(item, i) {
       return (
         <SortableGridItem style={{background: item}}
            sort={this.sort}
-           data={this.state.data}
+           sortBy={'colors'}
+           sortable={this.state.data}
            key={i}
            item={item} />
       );

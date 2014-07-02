@@ -4,9 +4,9 @@ var SortableNestedList = React.createClass({
 
   render: function() {
 
-    var listItems = this.props.data.children.map(function(item, i) {
+    var listItems = this.props.sortable.children.map(function(item, i) {
       return (
-        <SortableNestedItem sort={this.props.sort} data={item} key={item.id}/>
+        <SortableNestedItem sort={this.props.sort} sortBy={item} sortable={item} key={item.id}/>
       );
     }, this);
 

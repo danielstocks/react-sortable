@@ -5,13 +5,13 @@ var SortableNestedItem = React.createClass({
   mixins: [SortableNested],
 
   render: function() {
-
-    if(this.props.data.children) {
-      var listItems = this.props.data.children.map(function(item) {
+    if(this.props.sortable.children) {
+      var listItems = this.props.sortable.children.map(function(item) {
         return (
           <SortableNestedItem
             sort={this.props.sort}
-            data={item}
+            sortBy={item}
+            sortable={item}
             key={item.id}
           />
         );
@@ -20,7 +20,7 @@ var SortableNestedItem = React.createClass({
 
     return (
       <li
-        data-id={this.props.data.id}
+        data-id={this.props.sortBy.id}
         style={this.props.style}
         className={this.getClassName()}
         draggable="true"
@@ -29,7 +29,7 @@ var SortableNestedItem = React.createClass({
         onDrop={this.handleDrop}
         onDragEnd={this.dragEnd}
       >
-        {this.props.data.module}
+        {this.props.sortBy.module}
         <ul>{ listItems } </ul>
       </li>
     )

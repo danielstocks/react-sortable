@@ -45,6 +45,6 @@ var SortableNested = {
     this.move(over, placement);
   },
   getClassName: function() {
-    return this.props.data.id == dragging ? "dragging" : "";
+    return this.props.sortable.id == dragging ? "dragging" : "";
   }
 }

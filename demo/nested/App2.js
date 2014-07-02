@@ -11,7 +11,7 @@ var App = React.createClass({
   update: function(to) {
     var data = this.props.data;
     data.dragging = dragging;
-    this.setState({data: data})
+    this.setState({data: data});
   },
   sort: function(to, from, placement) {
 
@@ -33,7 +33,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <SortableNestedList data={this.state.data} sort={this.sort}/>
+        <SortableNestedList sortable={this.state.data} sort={this.sort}/>
         <StateView data={this.state.data}/>
       </div>
     )
@@ -91,6 +91,3 @@ function _insert(node, to, index) {
 function _prepend(node, dest) {
   _insert(node, dest, 0);
 }
-
-
-
