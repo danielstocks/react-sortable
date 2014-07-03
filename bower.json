@@ -6,6 +6,7 @@
     "Daniel Stocks <daniel@webcloud.se>"
   ],
   "license": "MIT",
+  "main":"src/Sortable.js"
   "ignore": [
     "**/.*",
     "node_modules",

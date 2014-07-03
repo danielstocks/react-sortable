@@ -45,3 +45,4 @@ var Sortable = {
     return this.props.sortable.dragging == this.props.key;
   }
 };
+module.exports = Sortable;

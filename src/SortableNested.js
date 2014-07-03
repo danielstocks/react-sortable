@@ -24,7 +24,7 @@ var SortableNested = {
 
     e.stopPropagation();
     e.preventDefault();
-    var over = e.currentTarget
+    var over = e.currentTarget;
     var relY = e.clientY - over.offsetTop;
     var height = over.offsetHeight / 2;
 
@@ -33,13 +33,13 @@ var SortableNested = {
 
     var placement;
     if(relX > width) {
-      placement = "append"
+      placement = "append";
     }
     else if(relY > height) {
       placement = "after";
     }
     else if(relY < height) {
-      placement = "before"
+      placement = "before";
     }
 
     this.move(over, placement);
@@ -47,4 +47,6 @@ var SortableNested = {
   getClassName: function() {
     return this.props.sortable.id == dragging ? "dragging" : "";
   }
-}
+};
+
+module.exports = SortableNested;
