@@ -1,25 +1,24 @@
 {
   "name": "react-sortable",
-  "version": "0.0.2",
-  "description": "A sortable list component for React",
-  "main": "src/Sortable.js",
+  "version": "0.0.0",
+  "description": "Make your React components sortable.",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielstocks/react-sortable.git"
+    "url": "https://github.com/danielstocks/react-sortable/"
   },
   "keywords": [
-    "react",
-    "ui",
+    "React",
     "sortable",
-    "react-component"
+    "sorting",
+    "drag",
+    "drop",
+    "dragndrop",
+    "draganddrop"
   ],
-  "author": "Daniel Stocks",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/danielstocks/react-sortable/issues"
-  },
-  "homepage": "https://github.com/danielstocks/react-sortable"
+  "author": "Daniel Stocks <daniel@webcloud.se>",
+  "license": "MIT"
 }
