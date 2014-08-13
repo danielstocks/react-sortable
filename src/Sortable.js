@@ -29,7 +29,7 @@ var Sortable = {
   },
   move: function(over,append) {
     var to = Number(over.dataset.id);
-    var from = this.props.data.dragging || Number(this.dragged);
+    var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
     if(append) to++;
     if(from < to) to--;
     this.update(to,from);
