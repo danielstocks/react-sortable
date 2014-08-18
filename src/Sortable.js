@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var Sortable = {
   getDefaultProps: function() {
     return {
@@ -19,13 +17,19 @@ var Sortable = {
     this.props.sort(this.props.data.items, undefined);
   },
   sortStart: function(e) {
-    this.dragged = e.currentTarget.dataset.id;
+    this.dragged = e.currentTarget.dataset ?
+      e.currentTarget.dataset.id :
+      e.currentTarget.getAttribute('data-id');
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData("text/html", null);
+    try {
+      e.dataTransfer.setData('text/html', null);
+    } catch (ex) {
+      e.dataTransfer.setData('text', '');
+    }
   },
   move: function(over,append) {
     var to = Number(over.dataset.id);
-    var from = this.props.data.dragging || Number(this.dragged);
+    var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
     if(append) to++;
     if(from < to) to--;
     this.update(to,from);
@@ -33,9 +37,10 @@ var Sortable = {
   dragOver: function(e) {
     e.preventDefault();
     var over = e.currentTarget
-    var relY = e.clientY - over.offsetTop;
+    var relY = e.clientY - over.getBoundingClientRect().top;
     var height = over.offsetHeight / 2;
-    var placement = this.placement ? this.placement(e.clientX, e.clientY, over) : relY > height
+    var relX = e.clientY - over.getBoundingClientRect().left;
+    var placement = this.placement ? this.placement(relX, relY, over) : relY > height
     this.move(over, placement);
   },
   isDragging: function() {

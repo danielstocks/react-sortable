@@ -1,6 +1,6 @@
 # React Sortable
 
-** VERY MUCH WORK IN PROGRES **
+** VERY MUCH WORK IN PROGRESS **
 
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
@@ -16,7 +16,8 @@ implementation is still highly experimental.
 ## Get started
 
 After cloning the directory run **bower install** to get the react dependencies. Spin up a local webserver serving the project directory
-(python -m SimpleHttpServer for instance) and open it in your browser.
+(for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHTTPServer` with Python 2.X)
+and open it in your browser.
 
 
 ## Example implementation
@@ -91,7 +92,7 @@ React.renderComponent(
 
 ### How it works
 
-The Sortable mixin will automatically attach the neccesary drag event handlers providing you render your item with the react helper method: transferPropsTo.
+The Sortable mixin will automatically attach the necessary drag event handlers providing you render your item with the react helper method: transferPropsTo.
 
 The Sortable mixin expects the following properties to be defined on your Sortable Item components:
 

@@ -18,17 +18,8 @@ var SortableNestedItem = React.createClass({
       }, this);
     }
 
-    return (
-      <li
-        data-id={this.props.data.id}
-        style={this.props.style}
-        className={this.getClassName()}
-        draggable="true"
-        onDragOver={this.dragOver}
-        onDragStart={this.sortStart}
-        onDrop={this.handleDrop}
-        onDragEnd={this.dragEnd}
-      >
+    return this.transferPropsTo(
+      <li style={this.props.style} className={this.getClassName()} >
         {this.props.data.module}
         <ul>{ listItems } </ul>
       </li>
