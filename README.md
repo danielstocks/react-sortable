@@ -16,7 +16,7 @@ implementation is still highly experimental.
 ## Get started
 
 After cloning the directory run **bower install** to get the react dependencies. Spin up a local webserver serving the project directory
-(for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHttpServer` with Python 2.X)
+(for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHTTPServer` with Python 2.X)
 and open it in your browser.
 
 
