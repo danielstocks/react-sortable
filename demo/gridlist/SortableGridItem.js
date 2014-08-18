@@ -9,8 +9,7 @@ var SortableGridItem = React.createClass({
     );
   },
   placement: function(x,y,over) {
-    var relX = x - over.getBoundingClientRect().left;
     var width = over.offsetWidth / 2;
-    return relX > width;
+    return x > width;
   }
 })
