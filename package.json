@@ -1,6 +1,6 @@
 {
   "name": "react-sortable",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A sortable list component for React",
   "main": "src/Sortable.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "react",
     "ui",
-    "sortable"
+    "sortable",
+    "react-component"
   ],
   "author": "Daniel Stocks",
   "license": "MIT",
