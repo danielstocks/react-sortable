@@ -2,12 +2,22 @@
   var Sortable = {
     getDefaultProps: function() {
       return {
-        "data-id" : this.props.key,
-        draggable : true,
-        onDragEnd: this.sortEnd.bind(this),
-        onDragOver: this.dragOver.bind(this),
-        onDragStart: this.sortStart.bind(this)
+        draggable : true
       }
+    },
+    componentDidMount: function() {
+      var el = this.getDOMNode();
+      el.setAttribute('data-id', this.props.key);
+      el.ondragend = this.sortEnd;
+      el.ondragover = this.dragOver;
+      el.ondragstart = this.sortStart;
+    },
+    componentWillUnmount: function() {
+      var el = this.getDOMNode();
+      el.removeAttribute('data-id');
+      el.ondragend = null;
+      el.ondragover = null;
+      el.ondragstart = null;
     },
     update: function(to, from) {
       var data = this.props.data.items;
