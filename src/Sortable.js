@@ -4,6 +4,9 @@ var Sortable = {
       "data-id" : this.props.key,
       draggable : true,
       onDragEnd: this.sortEnd.bind(this),
+      onDragEnter: function(event) {
+        event.preventDefault();
+      },
       onDragOver: this.dragOver.bind(this),
       onDragStart: this.sortStart.bind(this)
     }
