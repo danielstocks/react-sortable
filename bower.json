@@ -1,7 +1,8 @@
 {
   "name": "react-sortable",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "homepage": "https://github.com/danielstocks/react-sortable",
+  "main": "src/index.js",
   "authors": [
     "Daniel Stocks <daniel@webcloud.se>"
   ],
@@ -14,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.10.0",
+    "react": "http://registry.npmjs.org/react/-/react-0.12.2.tgz#*",
     "underscore": "~1.6.0"
   }
 }
