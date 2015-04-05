@@ -26,6 +26,7 @@ Here's a sample implementation using the react-sortable mixin.
 
 ```js
 /** @jsx React.DOM */
+var Sortable = require('react-sortable');
 
 var SortableListItem = React.createClass({
   mixins: [Sortable],
