@@ -36,7 +36,7 @@ var SortableListItem = React.createClass({
   }
 })
 
-var App = React.createClass({
+var SortableList = React.createClass({
 
   getInitialState: function() {
     return {data: this.props.data};
