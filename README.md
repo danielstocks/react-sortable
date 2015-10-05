@@ -26,6 +26,7 @@ Here's a sample implementation using the react-sortable mixin.
 
 ```js
 /** @jsx React.DOM */
+var Sortable = require('react-sortable');
 
 var SortableListItem = React.createClass({
   mixins: [Sortable],
@@ -36,7 +37,7 @@ var SortableListItem = React.createClass({
   }
 })
 
-var App = React.createClass({
+var SortableList = React.createClass({
 
   getInitialState: function() {
     return {data: this.props.data};
