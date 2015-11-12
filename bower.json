@@ -14,7 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.10.0",
-    "underscore": "~1.6.0"
+    "underscore": "~1.6.0",
+    "react": "~0.14.2"
   }
 }

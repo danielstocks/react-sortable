@@ -1,13 +1,16 @@
 var Sortable = {
   getDefaultProps: function() {
     return {
-      draggable : true
+      draggable : true,
+      onDragEnd: this.dragEnd.bind(this),
+      onDragOver: this.dragOver.bind(this),
+      onDragStart: this.sortStart.bind(this)
     }
   },
   componentDidMount: function() {
     var el = ReactDOM.findDOMNode(this);
     el.dataset.id = this.props.sortId;
-    el.setAttribute('draggable', true);
+    el.setAttribute('draggable', 'true');
     el.setAttribute('data-id', this.props.sortId);
     el.ondragend = this.sortEnd;
     el.ondragover = this.dragOver;
@@ -26,7 +29,7 @@ var Sortable = {
     this.props.sort(data, to);
   },
   sortEnd: function() {
-    this.props.sort(this.props.data.items, undefined);
+    this.props.sortEnd(this.props.data.items, undefined);
   },
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset ?
