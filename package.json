@@ -1,6 +1,6 @@
 {
   "name": "react-sortable",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Make your React components sortable.",
   "main": "index.js",
   "scripts": {
@@ -20,5 +20,9 @@
     "draganddrop"
   ],
   "author": "Daniel Stocks <daniel@webcloud.se>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies":{
+    "react": "0.14.x",
+    "underscore": "1.8.3"
+  }
 }
