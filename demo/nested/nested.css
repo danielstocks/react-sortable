@@ -14,6 +14,14 @@ ul {
 }
 
 li {
+  /*
+   * IE doesn't seem to fire `dragover` event on block-level items.
+   * developers should take care to ensure that draggables are not
+   * `display: block`:
+   */
+  display: inline-block;
+  width: 100%;
+
   color: #666;
   margin-left: 10px;
   border-left: 1px solid gold;
