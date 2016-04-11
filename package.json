@@ -34,9 +34,5 @@
     "babel-preset-stage-0": "6.5.x",
     "express": "4.13.x",
     "rimraf": "2.5.x",
-    "style-loader": "0.13.x",
-    "webpack": "1.12.x",
-    "webpack-dev-middleware": "1.6.x",
-    "webpack-dev-server": "1.14.x"
   }
 }
