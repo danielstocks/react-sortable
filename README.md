@@ -19,6 +19,11 @@ After cloning the directory run **npm install** to get the react dependencies. S
 (for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHTTPServer` with Python 2.X)
 and open it in your browser.
 
+## Development
+
+If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
+Then you can run `webpack` command in the root directory of repo to generate new builds.
+
 
 ## Example implementation
 
