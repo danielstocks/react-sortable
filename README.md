@@ -106,3 +106,6 @@ The Sortable mixin expects the following properties to be defined on your Sortab
 - **data** (the complete list being sorted)
 - **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))
 - **item** (The item itself)
+
+### Notes
+- code is formatted with WebStorm default "Reformat Code" command

@@ -1,4 +1,3 @@
-
 var SortableNested = {
   sortStart: function(e) {
     this.dragged = e.currentTarget.dataset.id;
@@ -31,13 +30,13 @@ var SortableNested = {
     var width = over.offsetWidth / 2;
 
     var placement;
-    if(relX > width) {
+    if (relX > width) {
       placement = "append";
     }
-    else if(relY > height) {
+    else if (relY > height) {
       placement = "after";
     }
-    else if(relY < height) {
+    else if (relY < height) {
       placement = "before";
     }
 
