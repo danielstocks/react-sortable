@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+import React from 'react';
 
 var StateView = React.createClass({
   render: function() {
@@ -7,3 +7,5 @@ var StateView = React.createClass({
     )
   }
 })
+
+export default StateView;

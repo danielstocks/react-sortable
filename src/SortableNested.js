@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 var SortableNested = {
   sortStart: function(e) {

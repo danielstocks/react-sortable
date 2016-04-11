@@ -1,9 +1,8 @@
-/** @jsx React.DOM */
 
 var Sortable = {
   getDefaultProps: function() {
     return {
-      "data-id" : this.props.key,
+      "data-id" : this.props.reactKey,
       draggable : true,
       sortBy: 'items',
       onDragEnd: this.sortEnd.bind(this),
@@ -42,7 +41,8 @@ var Sortable = {
     this.move(over, placement);
   },
   isDragging: function() {
-    return this.props.sortable.dragging == this.props.key;
+    return this.props.sortable.dragging == this.props.reactKey;
   }
 };
+
 module.exports = Sortable;

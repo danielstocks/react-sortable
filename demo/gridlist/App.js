@@ -1,4 +1,7 @@
-/** @jsx React.DOM */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SortableListItem from './SortableListItem';
+import StateView from '../StateView';
 
 var App = React.createClass({
 
@@ -20,7 +23,7 @@ var App = React.createClass({
         <SortableListItem
           sort={this.sort}
           data={this.state.data}
-          key={i}
+          reactKey={i}
           item={item} />
       );
     }, this);
@@ -30,7 +33,7 @@ var App = React.createClass({
         <SortableGridItem style={{background: item}}
            sort={this.sort}
            data={this.state.data}
-           key={i}
+           reactKey={i}
            item={item} />
       );
     }, this);
@@ -44,3 +47,9 @@ var App = React.createClass({
     )
   }
 });
+
+
+ReactDOM.render(
+    <App/>,
+    document.getElementById('app')
+);
