@@ -33,6 +33,6 @@
     "babel-preset-react": "6.5.x",
     "babel-preset-stage-0": "6.5.x",
     "express": "4.13.x",
-    "rimraf": "2.5.x",
+    "rimraf": "2.5.x"
   }
 }
