@@ -22,7 +22,7 @@ and open it in your browser.
 ## Development
 
 If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
-Then you can run `webpack` command in the root directory of repo to generate new builds.
+Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
 
 
 ## Example implementation
