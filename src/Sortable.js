@@ -1,19 +1,29 @@
-
 var Sortable = {
   getDefaultProps: function() {
     return {
-      "data-id" : this.props.reactKey,
-      draggable : true,
-      sortBy: 'items',
-      onDragEnd: this.sortEnd.bind(this),
-      onDragOver: this.dragOver.bind(this),
-      onDragStart: this.sortStart.bind(this)
+      draggable: true
     };
+  },
+  componentDidMount: function() {
+    var el = ReactDOM.findDOMNode(this);
+    el.dataset.id = this.props.sortId;
+    el.setAttribute('draggable', true);
+    el.setAttribute('data-id', this.props.sortId);
+    el.ondragend = this.sortEnd;
+    el.ondragover = this.dragOver;
+    el.ondragstart = this.sortStart;
+  },
+  componentWillUnmount: function() {
+    var el = ReactDOM.findDOMNode(this);
+    el.removeAttribute('data-id');
+    el.ondragend = null;
+    el.ondragover = null;
+    el.ondragstart = null;
   },
   update: function(to, from) {
     var sortBy = this.props.sortBy;
     var data = this.props.sortable[sortBy];
-    data.splice(to, 0, data.splice(from,1)[0]);
+    data.splice(to, 0, data.splice(from, 1)[0]);
     this.props.sort(data, to);
   },
   sortEnd: function() {
@@ -25,12 +35,16 @@ var Sortable = {
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData("text/html", null);
   },
-  move: function(over,append) {
+  move: function(over, append) {
     var to = Number(over.dataset.id);
     var from = this.props.sortable.dragging || Number(this.dragged);
-    if(append) to++;
-    if(from < to) to--;
-    this.update(to,from);
+    if (append) {
+      to++;
+    }
+    if (from < to) {
+      to--;
+    }
+    this.update(to, from);
   },
   dragOver: function(e) {
     e.preventDefault();
@@ -41,7 +55,7 @@ var Sortable = {
     this.move(over, placement);
   },
   isDragging: function() {
-    return this.props.sortable.dragging == this.props.reactKey;
+    return this.props.sortable.dragging == this.props.sortId;
   }
 };
 
