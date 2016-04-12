@@ -19837,7 +19837,7 @@
 	    this.move(over, placement);
 	  },
 	  isDragging: function isDragging() {
-	    return this.props.data.dragging == this.props.key;
+	    return this.props.data.dragging == this.props.sortId;
 	  }
 	};
 	
