@@ -19771,9 +19771,15 @@
 
 /***/ },
 /* 160 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	var _reactDom = __webpack_require__(158);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Sortable = {
 	  getDefaultProps: function getDefaultProps() {
@@ -19782,7 +19788,7 @@
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    var el = ReactDOM.findDOMNode(this);
+	    var el = _reactDom2.default.findDOMNode(this);
 	    el.dataset.id = this.props.sortId;
 	    el.setAttribute('draggable', true);
 	    el.setAttribute('data-id', this.props.sortId);
@@ -19791,30 +19797,28 @@
 	    el.ondragstart = this.sortStart;
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
-	    var el = ReactDOM.findDOMNode(this);
+	    var el = _reactDom2.default.findDOMNode(this);
 	    el.removeAttribute('data-id');
 	    el.ondragend = null;
 	    el.ondragover = null;
 	    el.ondragstart = null;
 	  },
 	  update: function update(to, from) {
-	    var sortBy = this.props.sortBy;
-	    var data = this.props.sortable[sortBy];
+	    var data = this.props.data.items;
 	    data.splice(to, 0, data.splice(from, 1)[0]);
 	    this.props.sort(data, to);
 	  },
 	  sortEnd: function sortEnd() {
-	    var sortBy = this.props.sortBy;
-	    this.props.sort(this.props.sortable[sortBy], undefined);
+	    this.props.sort(this.props.data.items, undefined);
 	  },
 	  sortStart: function sortStart(e) {
-	    this.dragged = e.currentTarget.dataset.id;
+	    this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
 	    e.dataTransfer.effectAllowed = 'move';
 	    e.dataTransfer.setData("text/html", null);
 	  },
 	  move: function move(over, append) {
 	    var to = Number(over.dataset.id);
-	    var from = this.props.sortable.dragging || Number(this.dragged);
+	    var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
 	    if (append) {
 	      to++;
 	    }
@@ -19826,13 +19830,14 @@
 	  dragOver: function dragOver(e) {
 	    e.preventDefault();
 	    var over = e.currentTarget;
-	    var relY = e.clientY - over.offsetTop;
+	    var relY = e.clientY - over.getBoundingClientRect().top;
+	    var relX = e.clientX - over.getBoundingClientRect().left;
 	    var height = over.offsetHeight / 2;
-	    var placement = this.placement ? this.placement(e.clientX, e.clientY, over) : relY > height;
+	    var placement = this.placement ? this.placement(relX, relY, over) : relY > height;
 	    this.move(over, placement);
 	  },
 	  isDragging: function isDragging() {
-	    return this.props.sortable.dragging == this.props.sortId;
+	    return this.props.data.dragging == this.props.key;
 	  }
 	};
 	

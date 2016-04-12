@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom';
+
 var Sortable = {
   getDefaultProps: function() {
     return {
@@ -21,23 +23,21 @@ var Sortable = {
     el.ondragstart = null;
   },
   update: function(to, from) {
-    var sortBy = this.props.sortBy;
-    var data = this.props.sortable[sortBy];
+    var data = this.props.data.items;
     data.splice(to, 0, data.splice(from, 1)[0]);
     this.props.sort(data, to);
   },
   sortEnd: function() {
-    var sortBy = this.props.sortBy;
-    this.props.sort(this.props.sortable[sortBy], undefined);
+    this.props.sort(this.props.data.items, undefined);
   },
   sortStart: function(e) {
-    this.dragged = e.currentTarget.dataset.id;
+    this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData("text/html", null);
   },
   move: function(over, append) {
     var to = Number(over.dataset.id);
-    var from = this.props.sortable.dragging || Number(this.dragged);
+    var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
     if (append) {
       to++;
     }
@@ -49,13 +49,14 @@ var Sortable = {
   dragOver: function(e) {
     e.preventDefault();
     var over = e.currentTarget;
-    var relY = e.clientY - over.offsetTop;
+    var relY = e.clientY - over.getBoundingClientRect().top;
+    var relX = e.clientX - over.getBoundingClientRect().left;
     var height = over.offsetHeight / 2;
-    var placement = this.placement ? this.placement(e.clientX, e.clientY, over) : relY > height;
+    var placement = this.placement ? this.placement(relX, relY, over) : relY > height;
     this.move(over, placement);
   },
   isDragging: function() {
-    return this.props.sortable.dragging == this.props.sortId;
+    return this.props.data.dragging == this.props.key;
   }
 };
 
