@@ -3,7 +3,10 @@ import React from 'react';
 var StateView = React.createClass({
   render: function() {
     return (
-      <pre>{JSON.stringify(this.props.data, 0, 2)}</pre>
+        <div>
+          <pre>{JSON.stringify(this.props.items, 0, 2)}</pre>
+          <pre>{JSON.stringify(this.props.dragging, 0, 2)}</pre>
+        </div>
     )
   }
 })

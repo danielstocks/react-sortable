@@ -3,6 +3,9 @@ import SortableComposition from '../../src/SortableComposition';
 
 var GridItem = React.createClass({
   displayName: 'SortableGridItem',
+  proptypes:{
+    item: React.PropTypes.string.isRequired,
+  },
   render: function() {
     return (
           <div {...this.props} className="grid-item">

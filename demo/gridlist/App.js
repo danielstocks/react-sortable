@@ -8,49 +8,51 @@ var App = React.createClass({
 
   getInitialState: function() {
     return {
-      data: {
-        items: [
-          "Gold",
-          "Crimson",
-          "Hotpink",
-          "Blueviolet",
-          "Cornflowerblue",
-          "Skyblue",
-          "Lightblue",
-          "Aquamarine",
-          "Burlywood"
-        ]
-      }
+      items: [
+        "Gold",
+        "Crimson",
+        "Hotpink",
+        "Blueviolet",
+        "Cornflowerblue",
+        "Skyblue",
+        "Lightblue",
+        "Aquamarine",
+        "Burlywood"
+      ],
+      dragging: null
     };
   },
 
   sort: function(items, dragging) {
-    var data = this.state.data;
-    data.items = items;
-    data.dragging = dragging;
-    this.setState({data: data});
+    this.setState({
+      items: items,
+      dragging: dragging
+    });
   },
 
   render: function() {
 
-    var listItems = this.state.data.items.map(function(item, i) {
+    var listItems = this.state.items.map(function(item, i) {
       return (
           <SortableListItem
               key={i}
               sort={this.sort}
-              data={this.state.data}
+              items={this.state.items}
+              dragging={this.state.dragging}
               sortId={i}
               item={item}/>
       );
     }, this);
 
-    var gridItems = this.state.data.items.map(function(item, i) {
+    var gridItems = this.state.items.map(function(item, i) {
       return (
-          <SortableGridItem style={{background: item}} key={i}
+          <SortableGridItem key={i}
                             sort={this.sort}
-                            data={this.state.data}
+                            items={this.state.items}
+                            dragging={this.state.dragging}
                             sortId={i}
-                            item={item}/>
+                            item={item}
+                            style={{background: item}}/>
       );
     }, this);
 
@@ -58,7 +60,7 @@ var App = React.createClass({
         <div id="app">
           <div className="list">{listItems}</div>
           <div className="grid">{gridItems}</div>
-          <StateView data={this.state.data}/>
+          <StateView items={this.state.items} dragging={this.state.dragging}/>
         </div>
     )
   }

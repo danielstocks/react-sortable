@@ -3,14 +3,22 @@ import React from 'react';
 var SortableComposition = function(Component) {
 
   return React.createClass({
+
+    proptypes:{
+      items: React.PropTypes.array.isRequired,
+      sort: React.PropTypes.func.isRequired,
+      sortId: React.PropTypes.number
+      //TODO add 'dragging', but it shouldn't be undefined
+    },
+
     //move field in array
     update: function(to, from) { //TODO: try to use lodash
-      var data = this.props.data.items;
+      var data = this.props.items;
       data.splice(to, 0, data.splice(from, 1)[0]);
       this.props.sort(data, to);
     },
     sortEnd: function() {
-      this.props.sort(this.props.data.items, undefined);
+      this.props.sort(this.props.items, undefined);
     },
     //move field in array
     sortStart: function(e) {
@@ -22,7 +30,7 @@ var SortableComposition = function(Component) {
     //move field in array
     move: function(over, append) { //TODO: try to use lodash
       var to = Number(over.dataset.id);
-      var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
+      var from = this.props.dragging != undefined ? this.props.dragging : Number(this.dragged);
       if (append) {
         to++;
       }
@@ -46,9 +54,10 @@ var SortableComposition = function(Component) {
       this.move(overEl, placement);
     },
     isDragging: function() {
-      return this.props.data.dragging == this.props.sortId;
+      return this.props.dragging == this.props.sortId;
     },
     render: function() {
+      console.log('SortableComposition this.props', this.props)
       //unused events: onDragLeave onDragExit onDragEnter
       var draggingClassName = Component.displayName + "-dragging"
       return (
