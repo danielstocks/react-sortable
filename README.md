@@ -5,7 +5,7 @@
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
-Mainly tested in latest stable Webkit and Firefox releases.
+Mainly tested in latest stable Webkit, Firefox and IE releases.
 
 Check out http://webcloud.se/react-sortable or the index.html file of this repository
 for an example implementation.
@@ -27,20 +27,22 @@ Then you can run `webpack --watch` command in the root directory of repo to gene
 
 ## Example implementation
 
-Here's a sample implementation using the react-sortable mixin.
+Here's a sample implementation using the react-sortable higher order component.
 
 ```js
 /** @jsx React.DOM */
 var Sortable = require('react-sortable');
 
-var SortableListItem = React.createClass({
-  mixins: [Sortable],
+
+var ListItem = React.createClass({
   render: function() {
-    return this.transferPropsTo(
-      <li className={this.isDragging() ? "dragging" : ""}>{this.props.item}</li>
-    );
+    return <li {...this.props}
+        className={this.props.isDragging() ? "dragging" : ""}>{this.props.item}</li>
   }
 })
+
+var SortableListItem = Sortable(ListItem);
+
 
 var SortableList = React.createClass({
 
@@ -90,17 +92,18 @@ var data = {
     "Burlywood"
   ]
 };
-React.renderComponent(
-  <SortableList data={data} />,
-  document.body
+
+ReactDOM.render(
+    <SortableList data={data} />,
+      document.body
 );
 ```
 
 ### How it works
 
-The Sortable mixin will automatically attach the necessary drag event handlers providing you render your item with the react helper method: transferPropsTo.
+The Sortable higher order component will automatically attach the necessary drag event handlers.
 
-The Sortable mixin expects the following properties to be defined on your Sortable Item components:
+The Sortable component expects the following properties to be defined on your Sortable Item components:
 
 - **sort** (the method that will be called when an item is moved)
 - **data** (the complete list being sorted)
