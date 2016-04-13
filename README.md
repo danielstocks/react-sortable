@@ -112,3 +112,4 @@ The Sortable component expects the following properties to be defined on your So
 
 ### Notes
 - code is formatted with WebStorm default "Reformat Code" command
+- compiled bundle.js used in demo is being updated in repository only during releases
