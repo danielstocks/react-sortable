@@ -1,12 +1,14 @@
 import React from 'react';
 import SortableComposition from '../../src/SortableComposition';
 
-var SortableGridItem = React.createClass({
+var GridItem = React.createClass({
+  displayName: 'SortableGridItem',
   render: function() {
     return (
-        <div {...this.props} className={this.props.isDragging() ? "dragging" : ""}>
-          <span>{this.props.item}</span>
-        </div>)
+          <div {...this.props} className="grid-item">
+            <span>{this.props.item}</span>
+          </div>
+        )
 
   },
   placement: function(x, y, over) {
@@ -15,4 +17,4 @@ var SortableGridItem = React.createClass({
   }
 })
 
-export default SortableComposition(SortableGridItem);
+export default SortableComposition(GridItem);

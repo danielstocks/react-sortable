@@ -4,7 +4,11 @@ body {
   font-family: arial;
   font-size: 15px;
 }
-ul {
+
+
+/* list demo */
+
+.list {
   list-style: none;
   margin:0;
   padding:0;
@@ -12,25 +16,29 @@ ul {
   width:200px;
   background:#ddd;
 }
-li {
+.list-item {
   padding: 10px;
   color: #666;
   line-height: 17px;
 }
-li.dragging {
+.SortableListItem-dragging {
   background: #eee;
 }
-#app > ul {
-  float: left;
-}
-#grid div {
+
+
+
+/* grid demo */
+
+
+.grid-item {
   height: 111px;
   width: 130px;
   float: left;
   color: #fff;
   position: relative;
 }
-#grid div span {
+
+.grid-item span {
   font-size: 10px;
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
@@ -40,13 +48,13 @@ li.dragging {
   top: 50%;
   text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
 }
-#grid div.dragging {
+
+.SortableGridItem-dragging .grid-item {
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   transform: scale(1.2);
   box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
   z-index: 1;
 }
-
 
 pre { clear:both; display: block; padding: 20px 0;}

@@ -44,8 +44,10 @@ var SortableComposition = function(Component) {
       // mouse horizontal coordinate
       var relX = e.clientX - overEl.getBoundingClientRect().left;
       //console.log('dragOver relX', relX)
+      //TODO: height is not used in grid demo, can be refactored
       var height = overEl.offsetHeight / 2;
-      var placement = relY > height;
+      //TODO: this.placement is always undefined in list demo, create more readable condition
+      var placement = this.placement ? this.placement(relX, relY, over) : relY > height
       this.move(overEl, placement);
     },
     isDragging: function() {
@@ -53,13 +55,18 @@ var SortableComposition = function(Component) {
     },
     render: function() {
       //unused events: onDragLeave onDragExit onDragEnter
-      return <Component {...this.props}
-          draggable={true}
-          onDragOver={this.dragOver}
-          onDragStart={this.sortStart}
-          onDragEnd={this.sortEnd}
-          isDragging={this.isDragging}
-          data-id={this.props.sortId}/>
+      var draggingClassName = Component.displayName + "-dragging"
+      return (
+          <div className={this.isDragging() ? draggingClassName : ""}>
+            <Component {...this.props}
+                draggable={true}
+                onDragOver={this.dragOver}
+                onDragStart={this.sortStart}
+                onDragEnd={this.sortEnd}
+                isDragging={this.isDragging}
+                data-id={this.props.sortId}/>
+          </div>
+      )
 
     }
   })

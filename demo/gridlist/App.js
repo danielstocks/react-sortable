@@ -56,8 +56,8 @@ var App = React.createClass({
 
     return (
         <div id="app">
-          <ul>{listItems}</ul>
-          <div id="grid">{gridItems}</div>
+          <div className="list">{listItems}</div>
+          <div className="grid">{gridItems}</div>
           <StateView data={this.state.data}/>
         </div>
     )
