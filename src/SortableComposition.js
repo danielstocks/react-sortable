@@ -4,7 +4,7 @@ var SortableComposition = function(Component) {
 
   return React.createClass({
     //move field in array
-    update: function(to, from) {
+    update: function(to, from) { //TODO: try to use lodash
       var data = this.props.data.items;
       data.splice(to, 0, data.splice(from, 1)[0]);
       this.props.sort(data, to);
@@ -15,21 +15,17 @@ var SortableComposition = function(Component) {
     //move field in array
     sortStart: function(e) {
       this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
-      //console.log('this.dragged', this.dragged)
-      //console.log('e.type', e.type);
       //TODO: add support for touch, use condition for e.type
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData("text/html", null);
     },
     //move field in array
-    move: function(over, append) {
+    move: function(over, append) { //TODO: try to use lodash
       var to = Number(over.dataset.id);
-      //console.log(this.props.data.dragging);
       var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
       if (append) {
         to++;
       }
-
       if (from < to) {
         to--;
       }
@@ -43,7 +39,6 @@ var SortableComposition = function(Component) {
       var relY = e.clientY - overEl.getBoundingClientRect().top;
       // mouse horizontal coordinate
       var relX = e.clientX - overEl.getBoundingClientRect().left;
-      //console.log('dragOver relX', relX)
       //TODO: height is not used in grid demo, can be refactored
       var height = overEl.offsetHeight / 2;
       //TODO: this.placement is always undefined in list demo, create more readable condition
