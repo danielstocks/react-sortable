@@ -19747,7 +19747,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SortableComposition = __webpack_require__(165);
+	var _SortableComposition = __webpack_require__(160);
 	
 	var _SortableComposition2 = _interopRequireDefault(_SortableComposition);
 	
@@ -19769,7 +19769,90 @@
 	exports.default = (0, _SortableComposition2.default)(ListItem);
 
 /***/ },
-/* 160 */,
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SortableComposition = function SortableComposition(Component) {
+	
+	  return _react2.default.createClass({
+	    //move field in array
+	    update: function update(to, from) {
+	      var data = this.props.data.items;
+	      data.splice(to, 0, data.splice(from, 1)[0]);
+	      this.props.sort(data, to);
+	    },
+	    sortEnd: function sortEnd() {
+	      this.props.sort(this.props.data.items, undefined);
+	    },
+	    //move field in array
+	    sortStart: function sortStart(e) {
+	      this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
+	      //console.log('this.dragged', this.dragged)
+	      //console.log('e.type', e.type);
+	      //TODO: add support for touch, use condition for e.type
+	      e.dataTransfer.effectAllowed = 'move';
+	      e.dataTransfer.setData("text/html", null);
+	    },
+	    //move field in array
+	    move: function move(over, append) {
+	      var to = Number(over.dataset.id);
+	      //console.log(this.props.data.dragging);
+	      var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
+	      if (append) {
+	        to++;
+	      }
+	
+	      if (from < to) {
+	        to--;
+	      }
+	      this.update(to, from);
+	    },
+	    //move field in array
+	    dragOver: function dragOver(e) {
+	      e.preventDefault();
+	      var overEl = e.currentTarget;
+	      // mouse vertical coordinate
+	      var relY = e.clientY - overEl.getBoundingClientRect().top;
+	      // mouse horizontal coordinate
+	      var relX = e.clientX - overEl.getBoundingClientRect().left;
+	      //console.log('dragOver relX', relX)
+	      var height = overEl.offsetHeight / 2;
+	      var placement = relY > height;
+	      this.move(overEl, placement);
+	    },
+	    isDragging: function isDragging() {
+	      return this.props.data.dragging == this.props.sortId;
+	    },
+	    render: function render() {
+	      //unused events: onDragLeave onDragExit onDragEnter
+	      return _react2.default.createElement(Component, _extends({}, this.props, {
+	        draggable: true,
+	        onDragOver: this.dragOver,
+	        onDragStart: this.sortStart,
+	        onDragEnd: this.sortEnd,
+	        isDragging: this.isDragging,
+	        'data-id': this.props.sortId }));
+	    }
+	  });
+	};
+	
+	exports.default = SortableComposition;
+
+/***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -19785,7 +19868,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _SortableComposition = __webpack_require__(165);
+	var _SortableComposition = __webpack_require__(160);
 	
 	var _SortableComposition2 = _interopRequireDefault(_SortableComposition);
 	
@@ -19842,87 +19925,6 @@
 	});
 	
 	exports.default = StateView;
-
-/***/ },
-/* 163 */,
-/* 164 */,
-/* 165 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var SortableComposition = function SortableComposition(Component) {
-	
-	  return _react2.default.createClass({
-	    getDefaultProps: function getDefaultProps() {
-	      return {
-	        draggable: true
-	      };
-	    },
-	    update: function update(to, from) {
-	      var data = this.props.data.items;
-	      data.splice(to, 0, data.splice(from, 1)[0]);
-	      this.props.sort(data, to);
-	    },
-	    sortEnd: function sortEnd() {
-	      this.props.sort(this.props.data.items, undefined);
-	    },
-	    sortStart: function sortStart(e) {
-	      this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
-	      //console.log('e.type', e.type);
-	      //TODO: add support for touch, use condition for e.type
-	      e.dataTransfer.effectAllowed = 'move';
-	      e.dataTransfer.setData("text/html", null);
-	    },
-	    move: function move(over, append) {
-	      var to = Number(over.dataset.id);
-	      var from = this.props.data.dragging != undefined ? this.props.data.dragging : Number(this.dragged);
-	      if (append) {
-	        to++;
-	      }
-	      if (from < to) {
-	        to--;
-	      }
-	      this.update(to, from);
-	    },
-	    dragOver: function dragOver(e) {
-	      e.preventDefault();
-	      var over = e.currentTarget;
-	      var relY = e.clientY - over.getBoundingClientRect().top;
-	      var relX = e.clientX - over.getBoundingClientRect().left;
-	      var height = over.offsetHeight / 2;
-	      var placement = this.placement ? this.placement(relX, relY, over) : relY > height;
-	      this.move(over, placement);
-	    },
-	    isDragging: function isDragging() {
-	      return this.props.data.dragging == this.props.sortId;
-	    },
-	    render: function render() {
-	      //unused events: onDragLeave onDragExit onDragEnter
-	      return _react2.default.createElement(Component, _extends({}, this.props, {
-	        draggable: true,
-	        onDragOver: this.dragOver,
-	        onDragStart: this.sortStart,
-	        onDragEnd: this.sortEnd,
-	        isDragging: this.isDragging,
-	        'data-id': this.props.sortId }));
-	    }
-	  });
-	};
-	
-	exports.default = SortableComposition;
 
 /***/ }
 /******/ ]);
