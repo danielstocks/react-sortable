@@ -1,11 +1,10 @@
 import React from 'react';
-import Sortable from '../../src/Sortable';
+import SortableComposition from '../../src/SortableComposition';
 
 var SortableGridItem = React.createClass({
-  mixins: [Sortable],
   render: function() {
     return (
-        <div {...this.props} className={this.isDragging() ? "dragging" : ""}>
+        <div {...this.props} className={this.props.isDragging() ? "dragging" : ""}>
           <span>{this.props.item}</span>
         </div>)
 
@@ -16,4 +15,4 @@ var SortableGridItem = React.createClass({
   }
 })
 
-export default SortableGridItem;
+export default SortableComposition(SortableGridItem);
