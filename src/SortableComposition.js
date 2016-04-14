@@ -4,11 +4,12 @@ var SortableComposition = function(Component) {
 
   return React.createClass({
 
-    proptypes:{
+    proptypes: {
       items: React.PropTypes.array.isRequired,
       sort: React.PropTypes.func.isRequired,
-      sortId: React.PropTypes.number
-      //TODO add 'dragging', but it shouldn't be undefined
+      sortId: React.PropTypes.number,
+      outline: React.PropTypes.string.isRequired, // row | column
+      draggingIndex: React.PropTypes.number
     },
 
     //move field in array
@@ -16,13 +17,17 @@ var SortableComposition = function(Component) {
       var data = this.props.items;
       data.splice(to, 0, data.splice(from, 1)[0]);
       this.props.sort(data, to);
+
     },
     sortEnd: function() {
-      this.props.sort(this.props.items, undefined);
+      this.props.setDraggingIndex(null);
     },
-    //move field in array
+
     sortStart: function(e) {
-      this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id');
+      //this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id'); TODO: drop this line after compatibility check
+      this.dragged = e.currentTarget.dataset.id;
+      this.props.setDraggingIndex(this.dragged)
+      //console.log('sortStart e.currentTarget.dataset', e.currentTarget.dataset)
       //TODO: add support for touch, use condition for e.type
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData("text/html", null);
@@ -42,22 +47,31 @@ var SortableComposition = function(Component) {
     //move field in array
     dragOver: function(e) {
       e.preventDefault();
-      var overEl = e.currentTarget;
-      // mouse vertical coordinate
-      var relY = e.clientY - overEl.getBoundingClientRect().top;
-      // mouse horizontal coordinate
-      var relX = e.clientX - overEl.getBoundingClientRect().left;
-      //TODO: height is not used in grid demo, can be refactored
-      var height = overEl.offsetHeight / 2;
-      //TODO: this.placement is always undefined in list demo, create more readable condition
-      var placement = this.placement ? this.placement(relX, relY, over) : relY > height
+      var placement;
+      var overEl = e.currentTarget; // fixed element over which is the moving element being dragged
+
+      if (this.props.outline === "list") {
+        // mouse vertical coordinate
+        var relY = e.clientY - overEl.getBoundingClientRect().top;
+        var height = overEl.offsetHeight / 2;
+        placement = relY > height;
+      }
+
+      if (this.props.outline === "column") {
+        // mouse horizontal coordinate
+        var relX = e.clientX - overEl.getBoundingClientRect().left;
+        var width = overEl.offsetWidth / 2;
+        placement = relX > width;
+      }
+      console.log('placement', placement)
+
       this.move(overEl, placement);
     },
     isDragging: function() {
-      return this.props.dragging == this.props.sortId;
+      return this.props.draggingIndex == this.props.sortId;
     },
     render: function() {
-      console.log('SortableComposition this.props', this.props)
+      //console.log('SortableComposition this.props', this.props)
       //unused events: onDragLeave onDragExit onDragEnter
       var draggingClassName = Component.displayName + "-dragging"
       return (

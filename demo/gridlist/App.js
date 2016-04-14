@@ -19,16 +19,22 @@ var App = React.createClass({
         "Aquamarine",
         "Burlywood"
       ],
-      dragging: null
+      draggingIndex: null
     };
   },
 
-  sort: function(items, dragging) {
+  setItems: function(items) {
     this.setState({
-      items: items,
-      dragging: dragging
+      items: items
     });
   },
+
+  setDraggingIndex: function(index) {
+    this.setState({
+      draggingIndex: index
+    });
+  },
+
 
   render: function() {
 
@@ -36,10 +42,12 @@ var App = React.createClass({
       return (
           <SortableListItem
               key={i}
-              sort={this.sort}
+              setItems={this.setItems}
+              setDraggingIndex={this.setDraggingIndex}
               items={this.state.items}
-              dragging={this.state.dragging}
+              draggingIndex={this.state.draggingIndex}
               sortId={i}
+              outline="list"
               item={item}/>
       );
     }, this);
@@ -47,11 +55,13 @@ var App = React.createClass({
     var gridItems = this.state.items.map(function(item, i) {
       return (
           <SortableGridItem key={i}
-                            sort={this.sort}
+                            setItems={this.setItems}
+                            setDraggingIndex={this.setDraggingIndex}
                             items={this.state.items}
-                            dragging={this.state.dragging}
+                            draggingIndex={this.state.draggingIndex}
                             sortId={i}
                             item={item}
+                            outline="column"
                             style={{background: item}}/>
       );
     }, this);
@@ -60,7 +70,7 @@ var App = React.createClass({
         <div id="app">
           <div className="list">{listItems}</div>
           <div className="grid">{gridItems}</div>
-          <StateView items={this.state.items} dragging={this.state.dragging}/>
+          <StateView items={this.state.items} dragging={this.state.draggingIndex}/>
         </div>
     )
   }

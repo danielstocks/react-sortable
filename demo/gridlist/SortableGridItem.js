@@ -12,11 +12,6 @@ var GridItem = React.createClass({
             <span>{this.props.item}</span>
           </div>
         )
-
-  },
-  placement: function(x, y, over) {
-    var width = over.offsetWidth / 2;
-    return x > width;
   }
 })
 
