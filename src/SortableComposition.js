@@ -6,19 +6,20 @@ var SortableComposition = function(Component) {
 
     proptypes: {
       items: React.PropTypes.array.isRequired,
-      sort: React.PropTypes.func.isRequired,
+      setItems: React.PropTypes.func.isRequired,
+      setDraggingIndex: React.PropTypes.func.isRequired,
       sortId: React.PropTypes.number,
       outline: React.PropTypes.string.isRequired, // row | column
       draggingIndex: React.PropTypes.number
     },
 
-    //move field in array
-    update: function(to, from) { //TODO: try to use lodash
+    update: function(to, from) {
       var data = this.props.items;
       data.splice(to, 0, data.splice(from, 1)[0]);
-      this.props.sort(data, to);
-
+      this.props.setItems(data);
+      this.props.setDraggingIndex(to);
     },
+
     sortEnd: function() {
       this.props.setDraggingIndex(null);
     },
@@ -32,10 +33,10 @@ var SortableComposition = function(Component) {
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData("text/html", null);
     },
-    //move field in array
+
     move: function(over, append) { //TODO: try to use lodash
       var to = Number(over.dataset.id);
-      var from = this.props.dragging != undefined ? this.props.dragging : Number(this.dragged);
+      var from = this.props.draggingIndex != null ? this.props.draggingIndex : Number(this.dragged);
       if (append) {
         to++;
       }
@@ -44,7 +45,7 @@ var SortableComposition = function(Component) {
       }
       this.update(to, from);
     },
-    //move field in array
+
     dragOver: function(e) {
       e.preventDefault();
       var placement;
@@ -63,15 +64,15 @@ var SortableComposition = function(Component) {
         var width = overEl.offsetWidth / 2;
         placement = relX > width;
       }
-      console.log('placement', placement)
 
       this.move(overEl, placement);
     },
+
     isDragging: function() {
       return this.props.draggingIndex == this.props.sortId;
     },
+
     render: function() {
-      //console.log('SortableComposition this.props', this.props)
       //unused events: onDragLeave onDragExit onDragEnter
       var draggingClassName = Component.displayName + "-dragging"
       return (
@@ -85,8 +86,8 @@ var SortableComposition = function(Component) {
                 data-id={this.props.sortId}/>
           </div>
       )
-
     }
+
   })
 }
 
