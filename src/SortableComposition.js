@@ -25,9 +25,9 @@ var SortableComposition = function(Component) {
     },
 
     sortStart: function(e) {
-      //this.dragged = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id'); TODO: drop this line after compatibility check
-      this.dragged = e.currentTarget.dataset.id;
-      this.props.setDraggingIndex(this.dragged)
+      //this.draggingIndex = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id'); TODO: drop this line after compatibility check
+      this.draggingIndex = e.currentTarget.dataset.id;
+      this.props.setDraggingIndex(this.draggingIndex)
       //console.log('sortStart e.currentTarget.dataset', e.currentTarget.dataset)
       //TODO: add support for touch, use condition for e.type
       e.dataTransfer.effectAllowed = 'move';
@@ -36,7 +36,7 @@ var SortableComposition = function(Component) {
 
     move: function(over, append) { //TODO: try to use lodash
       var to = Number(over.dataset.id);
-      var from = this.props.draggingIndex != null ? this.props.draggingIndex : Number(this.dragged);
+      var from = this.props.draggingIndex != null ? this.props.draggingIndex : Number(this.draggingIndex);
       if (append) {
         to++;
       }
