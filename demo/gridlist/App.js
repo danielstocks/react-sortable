@@ -23,18 +23,9 @@ var App = React.createClass({
     };
   },
 
-  setItems: function(items) {
-    this.setState({
-      items: items
-    });
+  updateState: function(obj) {
+    this.setState(obj);
   },
-
-  setDraggingIndex: function(index) {
-    this.setState({
-      draggingIndex: index
-    });
-  },
-
 
   render: function() {
 
@@ -42,8 +33,7 @@ var App = React.createClass({
       return (
           <SortableListItem
               key={i}
-              setItems={this.setItems}
-              setDraggingIndex={this.setDraggingIndex}
+              updateState={this.updateState}
               items={this.state.items}
               draggingIndex={this.state.draggingIndex}
               sortId={i}
@@ -55,8 +45,7 @@ var App = React.createClass({
     var gridItems = this.state.items.map(function(item, i) {
       return (
           <SortableGridItem key={i}
-                            setItems={this.setItems}
-                            setDraggingIndex={this.setDraggingIndex}
+                            updateState={this.updateState}
                             items={this.state.items}
                             draggingIndex={this.state.draggingIndex}
                             sortId={i}
@@ -65,7 +54,7 @@ var App = React.createClass({
                             style={{background: item}}/>
       );
     }, this);
-
+    
     return (
         <div id="app">
           <div className="list">{listItems}</div>

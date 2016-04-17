@@ -1,71 +1,78 @@
 import React from 'react';
 
-var SortableComposition = function(Component) {
+
+//helper functions are decoupled from component for testability
+
+export function swapArrayElements(items, indexFrom, indexTo) {
+  var item = items[indexTo];
+  items[indexTo] = items[indexFrom];
+  items[indexFrom] = item;
+  return items;
+}
+
+export function isMouseBeyond(mousePos, elementPos, elementSize) {
+  var breakPoint = elementSize / 2; //break point is set to the middle line of element
+  var mouseOverlap = mousePos - elementPos;
+  return mouseOverlap > breakPoint;
+}
+
+
+export function SortableComposition(Component) {
 
   return React.createClass({
 
     proptypes: {
       items: React.PropTypes.array.isRequired,
-      setItems: React.PropTypes.func.isRequired,
-      setDraggingIndex: React.PropTypes.func.isRequired,
+      updateState: React.PropTypes.func.isRequired,
       sortId: React.PropTypes.number,
       outline: React.PropTypes.string.isRequired, // row | column
       draggingIndex: React.PropTypes.number
     },
 
-    update: function(to, from) {
-      var data = this.props.items;
-      data.splice(to, 0, data.splice(from, 1)[0]);
-      this.props.setItems(data);
-      this.props.setDraggingIndex(to);
+    componentWillReceiveProps: function(nextProps) {
+      this.setState({
+        draggingIndex: nextProps.draggingIndex
+      });
     },
 
     sortEnd: function() {
-      this.props.setDraggingIndex(null);
+      this.props.updateState({
+        draggingIndex: null
+      });
     },
 
     sortStart: function(e) {
-      //this.draggingIndex = e.currentTarget.dataset ? e.currentTarget.dataset.id : e.currentTarget.getAttribute('data-id'); TODO: drop this line after compatibility check
-      this.draggingIndex = e.currentTarget.dataset.id;
-      this.props.setDraggingIndex(this.draggingIndex)
-      //console.log('sortStart e.currentTarget.dataset', e.currentTarget.dataset)
+      const draggingIndex = e.currentTarget.dataset.id;
+      this.props.updateState({
+        draggingIndex: draggingIndex
+      });
+      this.setState({
+        draggingIndex: draggingIndex
+      });
       //TODO: add support for touch, use condition for e.type
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData("text/html", null);
     },
 
-    move: function(over, append) { //TODO: try to use lodash
-      var to = Number(over.dataset.id);
-      var from = this.props.draggingIndex != null ? this.props.draggingIndex : Number(this.draggingIndex);
-      if (append) {
-        to++;
-      }
-      if (from < to) {
-        to--;
-      }
-      this.update(to, from);
-    },
-
     dragOver: function(e) {
       e.preventDefault();
-      var placement;
-      var overEl = e.currentTarget; // fixed element over which is the moving element being dragged
-
+      var mouseBeyond;
+      var items = this.props.items;
+      const overEl = e.currentTarget; //underlying element
+      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
+      const indexFrom = Number(this.state.draggingIndex);
       if (this.props.outline === "list") {
-        // mouse vertical coordinate
-        var relY = e.clientY - overEl.getBoundingClientRect().top;
-        var height = overEl.offsetHeight / 2;
-        placement = relY > height;
+          mouseBeyond = isMouseBeyond(e.clientY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
       }
-
       if (this.props.outline === "column") {
-        // mouse horizontal coordinate
-        var relX = e.clientX - overEl.getBoundingClientRect().left;
-        var width = overEl.offsetWidth / 2;
-        placement = relX > width;
+          mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
-
-      this.move(overEl, placement);
+      if(indexDragged > indexFrom && mouseBeyond){
+        items = swapArrayElements(items, indexFrom, indexDragged);
+        this.props.updateState({
+          items: items, draggingIndex: indexDragged
+        });
+      }
     },
 
     isDragging: function() {
@@ -73,7 +80,6 @@ var SortableComposition = function(Component) {
     },
 
     render: function() {
-      //unused events: onDragLeave onDragExit onDragEnter
       var draggingClassName = Component.displayName + "-dragging"
       return (
           <div className={this.isDragging() ? draggingClassName : ""}>
@@ -91,4 +97,3 @@ var SortableComposition = function(Component) {
   })
 }
 
-export default SortableComposition;
