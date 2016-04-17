@@ -1,8 +1,15 @@
 import React from 'react';
 
 
-//helper functions are decoupled from component for testability
+/*** Helper functions - they are decoupled from component itself for testability */
 
+
+/**
+ * @param {array} items
+ * @param {number} indexFrom
+ * @param {number} indexTo
+ * @returns {array}
+ */
 export function swapArrayElements(items, indexFrom, indexTo) {
   var item = items[indexTo];
   items[indexTo] = items[indexFrom];
@@ -10,12 +17,20 @@ export function swapArrayElements(items, indexFrom, indexTo) {
   return items;
 }
 
+/**
+ * @param {number} mousePos
+ * @param {number} elementPos
+ * @param {number} elementSize
+ * @returns {boolean}
+ */
 export function isMouseBeyond(mousePos, elementPos, elementSize) {
   var breakPoint = elementSize / 2; //break point is set to the middle line of element
   var mouseOverlap = mousePos - elementPos;
   return mouseOverlap > breakPoint;
 }
 
+
+/*** Higher-order component - this component work like a factory for draggable items */
 
 export function SortableComposition(Component) {
 
