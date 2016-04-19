@@ -5,7 +5,6 @@ v1.0
 
 - use es6/es7 classes
 - update the nested demo
-- move to React v15.0
 - make sure it all works as npm package
 
 v1.1
