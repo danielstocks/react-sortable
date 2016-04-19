@@ -44,19 +44,19 @@ export function SortableComposition(Component) {
       draggingIndex: React.PropTypes.number
     },
 
-    componentWillReceiveProps: function(nextProps) {
+    componentWillReceiveProps(nextProps) {
       this.setState({
         draggingIndex: nextProps.draggingIndex
       });
     },
 
-    sortEnd: function() {
+    sortEnd() {
       this.props.updateState({
         draggingIndex: null
       });
     },
 
-    sortStart: function(e) {
+    sortStart(e) {
       const draggingIndex = e.currentTarget.dataset.id;
       this.props.updateState({
         draggingIndex: draggingIndex
@@ -69,7 +69,7 @@ export function SortableComposition(Component) {
       e.dataTransfer.setData("text/html", null);
     },
 
-    dragOver: function(e) {
+    dragOver(e) {
       e.preventDefault();
       var mouseBeyond;
       var items = this.props.items;
@@ -90,11 +90,15 @@ export function SortableComposition(Component) {
       }
     },
 
-    isDragging: function() {
+    touchStart(e) {
+      console.log(e.type);
+    },
+
+    isDragging() {
       return this.props.draggingIndex == this.props.sortId;
     },
 
-    render: function() {
+    render() {
       var draggingClassName = Component.displayName + "-dragging"
       return (
           <div className={this.isDragging() ? draggingClassName : ""}>
@@ -104,6 +108,7 @@ export function SortableComposition(Component) {
                 onDragStart={this.sortStart}
                 onDragEnd={this.sortEnd}
                 isDragging={this.isDragging}
+                onTouchStart={this.touchStart}
                 data-id={this.props.sortId}/>
           </div>
       )
