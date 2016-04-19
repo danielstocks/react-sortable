@@ -1,6 +1,6 @@
 # React Sortable
 
-** VERY MUCH WORK IN PROGRESS **
+** VERY MUCH WORK IN PROGRESS, CHECKOUT TODO.md **
 
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
@@ -19,18 +19,12 @@ After cloning the directory run **npm install** to get the react dependencies. S
 (for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHTTPServer` with Python 2.X)
 and open it in your browser.
 
-## Development
-
-If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
-Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
-
 
 ## Example implementation
 
 Here's a sample implementation using the react-sortable higher order component.
 
 ```js
-/** @jsx React.DOM */
 var Sortable = require('react-sortable');
 
 
@@ -99,6 +93,7 @@ ReactDOM.render(
 );
 ```
 
+
 ### How it works
 
 The Sortable higher order component will automatically attach the necessary drag event handlers.
@@ -110,6 +105,19 @@ The Sortable component expects the following properties to be defined on your So
 - **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))
 - **item** (The item itself)
 
+## Development
+
+If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
+Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
+
+
+## How is it different from [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) feature in [react-dnd](http://gaearon.github.io/react-dnd)
+- react-sortable has fewer lines of code = easier to implement and modify
+- react-sortable is ready for handeling both horizontal and vertical dragging
+- there is a plan for touch support
+- we are trying to the keep the code documented testable with unit tests
+- BUT, if you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definately check out [react-dnd](http://gaearon.github.io/react-dnd)
+
 ### Notes
-- code is formatted with WebStorm default "Reformat Code" command
+- source code is formatted with WebStorm "Reformat Code" option
 - compiled bundle.js used in demo is being updated in repository only during releases
