@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var dragging;
 
 var App = React.createClass({

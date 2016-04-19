@@ -1,8 +1,12 @@
+var path = require("path");
 module.exports = {
-  entry: "./demo/gridlist/App.js",
+  entry: {
+    gridlist: "./demo/gridlist/App.js",
+    nested: "./demo/nested/App.js"
+  },
   output: {
-    path: __dirname,
-    filename: "build/bundle.js"
+    path: path.join(__dirname, "build"),
+    filename: "[name]_bundle.js"
   },
   devtool: 'source-map',
   module: {
