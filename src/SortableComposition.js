@@ -30,7 +30,7 @@ export function isMouseBeyond(mousePos, elementPos, elementSize) {
 }
 
 
-/*** Higher-order component - this component work like a factory for draggable items */
+/*** Higher-order component - this component works like a factory for draggable items */
 
 export function SortableComposition(Component) {
 
@@ -82,7 +82,7 @@ export function SortableComposition(Component) {
       if (this.props.outline === "column") {
           mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
-      if(indexDragged > indexFrom && mouseBeyond){
+      if(indexDragged !== indexFrom && mouseBeyond){
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
