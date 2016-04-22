@@ -20216,6 +20216,7 @@
 	      if (this.props.outline === "column") {
 	        mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
 	      }
+	      console.log(indexDragged, indexFrom, mouseBeyond);
 	      if (indexDragged !== indexFrom && mouseBeyond) {
 	        items = swapArrayElements(items, indexFrom, indexDragged);
 	        this.props.updateState({
@@ -20328,4 +20329,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=gridlist_bundle.js.map
+//# sourceMappingURL=gridlist_demo_bundle.js.map

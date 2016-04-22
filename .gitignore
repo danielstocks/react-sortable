@@ -1,5 +1,6 @@
 bower_components
 node_modules
 .idea
-gridlist_bundle.js.map
-nested_bundle.js.map
+gridlist_demo_bundle.js.map
+nested_demo_bundle.js.map
+index_bundle.js.map
