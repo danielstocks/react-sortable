@@ -2,7 +2,7 @@
   "name": "react-sortable",
   "version": "1.0.0",
   "description": "Make your React components sortable.",
-  "main": "build/index_bundle.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest --verbose",
     "reinstall": "rm -rf node_modules && npm i"
