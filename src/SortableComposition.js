@@ -23,7 +23,7 @@ export function swapArrayElements(items, indexFrom, indexTo) {
  * @param {number} elementSize
  * @returns {boolean}
  */
-export function isMouseBeyond(mousePos, elementPos, elementSize) {
+export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refactor for UP
   var breakPoint = elementSize / 2; //break point is set to the middle line of element
   var mouseOverlap = mousePos - elementPos;
   return mouseOverlap > breakPoint;
@@ -82,6 +82,7 @@ export function SortableComposition(Component) {
       if (this.props.outline === "column") {
           mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
+      console.log(indexDragged, indexFrom, mouseBeyond)
       if(indexDragged !== indexFrom && mouseBeyond){
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
