@@ -3,8 +3,8 @@
 
 v1.0
 
-- use es6/es7 classes
 - update the nested demo
+- use es6/es7 classes
 - make sure it all works as npm package
 
 v1.1
@@ -13,5 +13,6 @@ v1.1
 
 v1.2
 - support for array of objects, not only for plain arrays
-- redux compatibility
+- redux compatibility (performant way)
 - improve iOS touch latency
+- animaitons (https://github.com/gaearon/react-dnd/issues/384)
