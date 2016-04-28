@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var SortableNestedItem = React.createClass({
 
   mixins: [SortableNested],

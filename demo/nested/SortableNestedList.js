@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 var SortableNestedList = React.createClass({
 
   render: function() {
