@@ -20162,6 +20162,7 @@
 	 * @returns {boolean}
 	 */
 	function isMouseBeyond(mousePos, elementPos, elementSize) {
+	  //TODO refactor for UP
 	  var breakPoint = elementSize / 2; //break point is set to the middle line of element
 	  var mouseOverlap = mousePos - elementPos;
 	  return mouseOverlap > breakPoint;
@@ -20216,6 +20217,7 @@
 	      if (this.props.outline === "column") {
 	        mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
 	      }
+	      console.log(indexDragged, indexFrom, mouseBeyond);
 	      if (indexDragged !== indexFrom && mouseBeyond) {
 	        items = swapArrayElements(items, indexFrom, indexDragged);
 	        this.props.updateState({
@@ -20328,4 +20330,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=gridlist_bundle.js.map
+//# sourceMappingURL=gridlist_demo_bundle.js.map
