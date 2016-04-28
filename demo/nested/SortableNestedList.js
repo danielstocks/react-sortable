@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SortableNestedItem from './SortableNestedItem';
+
 var SortableNestedList = React.createClass({
 
   render: function() {

@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import SortableNestedList from './SortableNestedList';
+import StateView from '../StateView';
+
 var dragging;
 
 var App = React.createClass({
@@ -92,3 +97,7 @@ function _prepend(node, dest) {
 
 
 
+ReactDOM.render(
+    <App/>,
+    document.getElementById('app')
+);

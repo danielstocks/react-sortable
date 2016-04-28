@@ -1,6 +1,7 @@
-var SortableNestedItem = React.createClass({
+import React from 'react';
+import { SortableNestedComposition } from '../../src/SortableNestedComposition';
 
-  mixins: [SortableNested],
+var NestedItem = React.createClass({
 
   render: function() {
 
@@ -24,3 +25,5 @@ var SortableNestedItem = React.createClass({
     )
   }
 })
+
+export default SortableNestedComposition(NestedItem);
