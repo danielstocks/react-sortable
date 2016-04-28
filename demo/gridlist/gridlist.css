@@ -21,6 +21,7 @@ body {
   color: #666;
   line-height: 17px;
 }
+
 .SortableListItem-dragging {
   background: #eee;
 }
