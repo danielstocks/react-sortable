@@ -4,6 +4,7 @@
   "description": "Make your React components sortable.",
   "main": "index.js",
   "scripts": {
+    "start": "webpack --watch",
     "test": "jest --verbose",
     "reinstall": "rm -rf node_modules && npm i"
   },
