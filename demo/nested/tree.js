@@ -1,4 +1,4 @@
-function populateTreeIds(tree) {
+export function populateTreeIds(tree) {
 
   collection[0] = tree;
 

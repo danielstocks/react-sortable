@@ -1,7 +1,7 @@
 import React from 'react';
 import { SortableNestedComposition } from '../../src/SortableNestedComposition';
 
-var NestedItem = React.createClass({
+var SortableNestedItem = SortableNestedComposition(React.createClass({
 
   render: function() {
 
@@ -17,13 +17,14 @@ var NestedItem = React.createClass({
       }, this);
     }
 
-    return this.transferPropsTo(
-      <li style={this.props.style} className={this.getClassName()} >
+    return (
+      <li {...this.props} className={this.getClassName()} >
         {this.props.data.module}
         <ul>{ listItems } </ul>
       </li>
     )
   }
 })
+)
 
-export default SortableNestedComposition(NestedItem);
+export default SortableNestedItem;
