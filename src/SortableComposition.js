@@ -90,7 +90,7 @@ export function SortableComposition(Component) {
          overEl.style.top = positionY - 25 + 'px';
       }
       
-      console.log('args', positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
+      //console.log('args', positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
       if (this.props.outline === "list") {
           mouseBeyond = isMouseBeyond(positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
           //console.log('mouseBeyond', mouseBeyond); 
