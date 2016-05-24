@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SortableListItem from './SortableListItem';
 import SortableGridItem from './SortableGridItem';
-import StateView from '../StateView';
+import StateView from './StateView';
 
 var App = React.createClass({
 
