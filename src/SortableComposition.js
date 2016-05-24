@@ -64,20 +64,12 @@ export function SortableComposition(Component) {
       this.setState({
         draggingIndex: draggingIndex
       });
-      //TODO: add support for touch, use condition for e.type
-      //e.dataTransfer.effectAllowed = 'move';
-      //e.dataTransfer.setData("text/html", null);
       if (e.dataTransfer !== undefined) {
       e.dataTransfer.setData('text', e.target);
     }
     },
 
     dragOver(e) {
-      console.log('dragOver e.type', e.type)
-      //console.log('dragOver e.touches', e.touches)
-      //console.log('dragOver e.targetTouches', e.touches)
-      //console.log('dragOver e.pageX', e.pageX)
-      //console.log('dragOver e.clientX', e.clientX)
       e.preventDefault();
       var mouseBeyond;
       var items = this.props.items;
@@ -86,7 +78,6 @@ export function SortableComposition(Component) {
       const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
       const indexFrom = Number(this.state.draggingIndex);
       
-     
       if(e.type === "dragover"){
         positionX = e.clientX;
         positionY = e.clientY;
@@ -95,17 +86,14 @@ export function SortableComposition(Component) {
       if(e.type === "touchmove"){
          positionX = e.touches[0].pageX;
          positionY = e.touches[0].pageY;
+         overEl.style.left = positionX - 25 + 'px';
+         overEl.style.top = positionY - 25 + 'px';
       }
       
-      //console.log('positionX', positionX)
-      //console.log('positionY', positionY)
-      //console.log('boundingTopY', overEl.getBoundingClientRect().top)
-      //console.log('boundingHeightY', overEl.getBoundingClientRect().height)
-      
-      
+      console.log('args', positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
       if (this.props.outline === "list") {
           mouseBeyond = isMouseBeyond(positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
-          console.log('mouseBeyond', mouseBeyond); 
+          //console.log('mouseBeyond', mouseBeyond); 
       }
       if (this.props.outline === "column") {
           mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
