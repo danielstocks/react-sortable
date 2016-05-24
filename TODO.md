@@ -2,14 +2,11 @@
 
 
 v1.0
-
+- add support for touch
 - use es6/es7 classes -> https://github.com/rubaxa/Sortable#support-react-es2015--typescript-syntax
-- demo should could be using NPM package, so the developers will see how to use it
-- make sure it all works as npm package
-- minify bundles
 
 v1.1
-- add support for touch
+
 - cancel on drop outside
 - migrate from webpack to rollup
 
