@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortableComposition } from 'react-sortable';
+import SortableComposition from 'react-sortable';
 
 var GridItem = React.createClass({
   displayName: 'SortableGridItem',

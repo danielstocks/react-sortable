@@ -1,3 +1,3 @@
-//import { SortableComposition } from './src/SortableComposition';
-//export default SortableComposition;
-module.exports.Sortable = require('./src/SortableComposition.js');
+import { SortableComposition } from './src/SortableComposition';
+export default SortableComposition;
+//module.exports.SortableComposition = require('./src/SortableComposition.js');

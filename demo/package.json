@@ -1,5 +1,5 @@
 {
-  "name": "react-sortable",
+  "name": "react-sortable-demo",
   "version": "1.0.0",
   "description": "Make your React components sortable.",
   "main": "index.js",
@@ -25,7 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "react": "15.x.x",
-    "react-dom": "15.x.x"
+    "react-dom": "15.x.x",
+    "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist"
   },
   "devDependencies": {
     "babel-core": "6.7.x",
