@@ -55,9 +55,6 @@
 	
 	exports.default = _SortableComposition.SortableComposition;
 
-	//module.exports = require('./src/SortableComposition.js');
-	//module.exports.SortableNested = require('./src/SortableNested.js');
-
 /***/ },
 
 /***/ 1:
@@ -3726,33 +3723,45 @@
 	      this.setState({
 	        draggingIndex: draggingIndex
 	      });
-	      //TODO: add support for touch, use condition for e.type
-	      e.dataTransfer.effectAllowed = 'move';
-	      e.dataTransfer.setData("text/html", null);
+	      if (e.dataTransfer !== undefined) {
+	        e.dataTransfer.setData('text', e.target);
+	      }
 	    },
 	    dragOver: function dragOver(e) {
 	      e.preventDefault();
 	      var mouseBeyond;
 	      var items = this.props.items;
+	      var positionX, positionY;
 	      var overEl = e.currentTarget; //underlying element
 	      var indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
 	      var indexFrom = Number(this.state.draggingIndex);
+	
+	      if (e.type === "dragover") {
+	        positionX = e.clientX;
+	        positionY = e.clientY;
+	      }
+	
+	      if (e.type === "touchmove") {
+	        positionX = e.touches[0].pageX;
+	        positionY = e.touches[0].pageY;
+	        overEl.style.left = positionX - 25 + 'px';
+	        overEl.style.top = positionY - 25 + 'px';
+	      }
+	
+	      console.log('args', positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height);
 	      if (this.props.outline === "list") {
-	        mouseBeyond = isMouseBeyond(e.clientY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height);
+	        mouseBeyond = isMouseBeyond(positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height);
+	        //console.log('mouseBeyond', mouseBeyond);
 	      }
 	      if (this.props.outline === "column") {
-	        mouseBeyond = isMouseBeyond(e.clientX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
+	        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width);
 	      }
-	      console.log(indexDragged, indexFrom, mouseBeyond);
 	      if (indexDragged !== indexFrom && mouseBeyond) {
 	        items = swapArrayElements(items, indexFrom, indexDragged);
 	        this.props.updateState({
 	          items: items, draggingIndex: indexDragged
 	        });
 	      }
-	    },
-	    touchStart: function touchStart(e) {
-	      console.log(e.type);
 	    },
 	    isDragging: function isDragging() {
 	      return this.props.draggingIndex == this.props.sortId;
@@ -3768,7 +3777,9 @@
 	          onDragStart: this.sortStart,
 	          onDragEnd: this.sortEnd,
 	          isDragging: this.isDragging,
-	          onTouchStart: this.touchStart,
+	          onTouchStart: this.sortStart,
+	          onTouchMove: this.dragOver,
+	          onTouchEnd: this.sortEnd,
 	          'data-id': this.props.sortId }))
 	      );
 	    }
