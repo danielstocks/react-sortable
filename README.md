@@ -15,18 +15,11 @@ Modify your package.json:
 
 ```js
 "dependencies": {
-    "react-dom": "0.14.x",
-    "react": "0.14.x",
+    "react-dom": "15.x.x",
+    "react": "15.x.x",
     "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist"
   }
 ```
-
-## Get started
-
-After cloning the directory run **npm install** to get the react dependencies. Spin up a local webserver serving the project directory
-(for instance, `python -m http.server` if you have Python 3.X installed, or `python -m SimpleHTTPServer` with Python 2.X)
-and open it in your browser.
-
 
 ## Example implementation
 
