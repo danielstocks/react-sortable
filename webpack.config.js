@@ -2,8 +2,7 @@ var path = require("path");
 module.exports = {
   entry: {
     index: "./index.js",
-    gridlist_demo: "./demo/gridlist/App.js",
-    nested_demo: "./demo/nested/App.js"
+    gridlist_demo: "./demo/App.js"
   },
   output: {
     path: path.join(__dirname, "build"),

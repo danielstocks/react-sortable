@@ -1,7 +1,5 @@
 # React Sortable
 
-** VERY MUCH WORK IN PROGRESS, CHECKOUT TODO.md **
-
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
@@ -10,8 +8,18 @@ Mainly tested in latest stable Webkit, Firefox and IE releases.
 Check out http://webcloud.se/react-sortable or the index.html file of this repository
 for an example implementation.
 
-For nested sortable data structures: Take a look at http://webcloud.se/react-sortable/nested.html or the nested.html file. This
-implementation is still highly experimental.
+##Installation
+
+You can install stable version from https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist.
+Modify your package.json:
+
+```js
+"dependencies": {
+    "react-dom": "0.14.x",
+    "react": "0.14.x",
+    "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist"
+  }
+```
 
 ## Get started
 
@@ -25,45 +33,50 @@ and open it in your browser.
 Here's a sample implementation using the react-sortable higher order component.
 
 ```js
-var Sortable = require('react-sortable');
-
+import React from 'react';
+import Sortable from 'react-sortable';
 
 var ListItem = React.createClass({
+  displayName: 'SortableListItem',
   render: function() {
-    return <li {...this.props}
-        className={this.props.isDragging() ? "dragging" : ""}>{this.props.item}</li>
+    return (
+        <div {...this.props} className="list-item">{this.props.item}</div>
+    )
   }
 })
 
 var SortableListItem = Sortable(ListItem);
 
-
 var SortableList = React.createClass({
 
   getInitialState: function() {
-    return {data: this.props.data};
+    return {
+      draggingIndex: null,
+      data: this.props.data
+    };
   },
 
-  sort: function(items, dragging) {
-    var data = this.state.data;
-    data.items = items;
-    data.dragging = dragging;
-    this.setState({data: data});
+  updateState: function(obj) {
+    this.setState(obj);
   },
 
   render: function() {
-
     var listItems = this.state.data.items.map(function(item, i) {
       return (
-        <SortableListItem
-          sort={this.sort}
-          data={this.state.data}
-          key={i}
-          item={item} />
+          <SortableListItem
+              key={i}
+              updateState={this.updateState}
+              items={this.state.data.items}
+              draggingIndex={this.state.draggingIndex}
+              sortId={i}
+              outline="list"
+              item={item}/>
       );
     }, this);
-
-    return <ul>{listItems}</ul>
+    
+    return (
+          <div className="list">{listItems}</div>
+    )
   }
 });
 
@@ -72,24 +85,21 @@ var SortableList = React.createClass({
 Here's some example data and a render call to the above component
 
 ```js
-/** @jsx React.DOM */
+import ReactDOM from 'react-dom';
+
 var data = {
   items: [
     "Gold",
     "Crimson",
     "Hotpink",
     "Blueviolet",
-    "Cornflowerblue",
-    "Skyblue",
-    "Lightblue",
-    "Aquamarine",
-    "Burlywood"
+    "Cornflowerblue"
   ]
 };
 
 ReactDOM.render(
     <SortableList data={data} />,
-      document.body
+    document.body
 );
 ```
 
@@ -99,11 +109,14 @@ ReactDOM.render(
 The Sortable higher order component will automatically attach the necessary drag event handlers.
 
 The Sortable component expects the following properties to be defined on your Sortable Item components:
-
-- **sort** (the method that will be called when an item is moved)
-- **data** (the complete list being sorted)
-- **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))
-- **item** (The item itself)
+              
+- **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))             
+- **updateState** (the method that will be called when an item is moved)
+- **draggingIndex** (index of item being dragged)
+- **items** (data being sorted)
+- **outline** (list or grid)
+- **sortId** (index of item)
+- **item** (the item itself)
 
 ## Development
 
@@ -111,7 +124,7 @@ If you want to make changes to the component you will need to install webpack fi
 Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
 
 
-## How is it different from [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) feature in [react-dnd](http://gaearon.github.io/react-dnd)
+## How is it different from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - react-sortable has fewer lines of code = easier to implement and modify
 - react-sortable is ready for handeling both horizontal and vertical dragging
 - there is a plan for touch support
