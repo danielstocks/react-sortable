@@ -129,7 +129,7 @@ If you want to make changes to the component you will need to install webpack fi
 Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
 
 
-## How is it different from [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html) feature in [react-dnd](http://gaearon.github.io/react-dnd)
+## How is it different from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - react-sortable has fewer lines of code = easier to implement and modify
 - react-sortable is ready for handeling both horizontal and vertical dragging
 - there is a plan for touch support
