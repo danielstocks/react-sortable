@@ -1,7 +1,5 @@
 # React Sortable
 
-** VERY MUCH WORK IN PROGRESS, CHECKOUT TODO.md **
-
 A React component and mixin for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
@@ -9,9 +7,6 @@ Mainly tested in latest stable Webkit, Firefox and IE releases.
 
 Check out http://webcloud.se/react-sortable or the index.html file of this repository
 for an example implementation.
-
-For nested sortable data structures: Take a look at http://webcloud.se/react-sortable/nested.html or the nested.html file. This
-implementation is still highly experimental.
 
 ##Installation
 
