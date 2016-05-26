@@ -101,7 +101,7 @@ ReactDOM.render(
 
 The Sortable higher order component will automatically attach the necessary drag event handlers.
 
-The Sortable component expects the following properties to be defined on your Sortable Item components:
+It will expects the following properties to be defined on your Item components:
               
 - **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))             
 - **updateState** (the method that will be called when an item is moved)
@@ -111,19 +111,17 @@ The Sortable component expects the following properties to be defined on your So
 - **sortId** (index of item)
 - **item** (the item itself)
 
+
+
+
+## Differentces from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
+- fewer lines of code = easier to implement and modify
+- can habdle both horizontal and vertical dragging
+- there is a plan for touch support
+- code is well documented and covered with unit tests
+- but, if you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definately check out [react-dnd](http://gaearon.github.io/react-dnd)
+
 ## Development
 
 If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
 Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
-
-
-## How is it different from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
-- react-sortable has fewer lines of code = easier to implement and modify
-- react-sortable is ready for handeling both horizontal and vertical dragging
-- there is a plan for touch support
-- we are trying to the keep the code documented testable with unit tests
-- BUT, if you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definately check out [react-dnd](http://gaearon.github.io/react-dnd)
-
-### Notes
-- source code is formatted with WebStorm "Reformat Code" option
-- compiled bundle.js used in demo is being updated in repository only during releases
