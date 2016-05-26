@@ -84,16 +84,13 @@ export function SortableComposition(Component) {
       }
       
       if(e.type === "touchmove"){
+        // TODO: polish touch support
          positionX = e.touches[0].pageX;
          positionY = e.touches[0].pageY;
-         overEl.style.left = positionX - 25 + 'px';
-         overEl.style.top = positionY - 25 + 'px';
       }
       
-      //console.log('args', positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
       if (this.props.outline === "list") {
           mouseBeyond = isMouseBeyond(positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
-          //console.log('mouseBeyond', mouseBeyond); 
       }
       if (this.props.outline === "column") {
           mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
