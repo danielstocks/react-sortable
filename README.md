@@ -10,9 +10,6 @@ for an example implementation.
 
 ##Installation
 
-You can install stable version from https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist.
-Modify your package.json:
-
 `npm i react-sortable --save`
 
 ## Example implementation
