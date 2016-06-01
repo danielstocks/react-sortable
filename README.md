@@ -13,13 +13,7 @@ for an example implementation.
 You can install stable version from https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist.
 Modify your package.json:
 
-```js
-"dependencies": {
-    "react-dom": "15.x.x",
-    "react": "15.x.x",
-    "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/v1.0-gridlist"
-  }
-```
+`npm i react-sortable --save`
 
 ## Example implementation
 
