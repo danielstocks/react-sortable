@@ -36,5 +36,10 @@
     "babel-preset-stage-0": "6.5.x",
     "jest-cli": "11.0.x",
     "webpack": "^2.1.0-beta.7"
+  },
+  "browserify": {
+    "transform": [
+      [ "babelify", { "presets": [ "es2015", "react", "stage-0" ] } ]
+    ]
   }
 }
