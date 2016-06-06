@@ -2,8 +2,10 @@
   "name": "react-sortable",
   "version": "1.0.0",
   "description": "Make your React components sortable.",
-  "main": "index.js",
+  "main": "build/index_bundle.js",
+  "jsnext:main": "index.js",
   "scripts": {
+    "prepublish": "webpack",
     "start": "webpack --watch",
     "test": "jest --verbose",
     "reinstall": "rm -rf node_modules && npm i"
@@ -36,10 +38,5 @@
     "babel-preset-stage-0": "6.5.x",
     "jest-cli": "11.0.x",
     "webpack": "^2.1.0-beta.7"
-  },
-  "browserify": {
-    "transform": [
-      [ "babelify", { "presets": [ "es2015", "react", "stage-0" ] } ]
-    ]
   }
 }
