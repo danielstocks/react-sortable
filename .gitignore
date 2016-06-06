@@ -2,4 +2,5 @@ bower_components
 node_modules
 .idea
 bundle.js.map
-index_bundle.js.map
+npm-debug.log
+lib
