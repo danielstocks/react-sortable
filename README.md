@@ -114,5 +114,5 @@ It will expects the following properties to be defined on your Item components:
 
 ## Development
 
-If you want to make changes to the component you will need to install webpack first `npm i webapck -g`.
+If you want to make changes to the component you will need to install webpack first `npm i webpack -g`.
 Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
