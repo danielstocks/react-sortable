@@ -1,5 +1,5 @@
 import React from 'react';
-import SortableComposition from 'react-sortable';
+import { Sortable } from 'react-sortable';
 
 var ListItem = React.createClass({
   displayName: 'SortableListItem',
@@ -13,4 +13,4 @@ var ListItem = React.createClass({
   }
 })
 
-export default SortableComposition(ListItem);
+export default Sortable(ListItem);
