@@ -18,7 +18,7 @@ Here's a sample implementation using the react-sortable higher order component.
 
 ```js
 import React from 'react';
-import Sortable from 'react-sortable';
+import { Sortable } from 'react-sortable';
 
 var ListItem = React.createClass({
   displayName: 'SortableListItem',
@@ -57,7 +57,7 @@ var SortableList = React.createClass({
               item={item}/>
       );
     }, this);
-    
+
     return (
           <div className="list">{listItems}</div>
     )
@@ -93,7 +93,7 @@ ReactDOM.render(
 The Sortable higher order component will automatically attach the necessary drag event handlers.
 
 It will expects the following properties to be defined on your Item components:
-              
+
 - **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))             
 - **updateState** (the method that will be called when an item is moved)
 - **draggingIndex** (index of item being dragged)
@@ -114,5 +114,5 @@ It will expects the following properties to be defined on your Item components:
 
 ## Development
 
-If you want to make changes to the component you will need to install webpack first `npm i webpack -g`.
-Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
+If you want to make changes to the component, you can run `npm start` command in
+ the root directory of repo to generate new builds.
