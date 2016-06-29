@@ -34,6 +34,9 @@ export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refact
 
 export function SortableComposition(Component) {
 
+  var elementEdge = 0;
+  var updateEdge = true;
+
   return React.createClass({
 
     proptypes: {
@@ -83,10 +86,18 @@ export function SortableComposition(Component) {
         positionY = e.clientY;
       }
       
-      if(e.type === "touchmove"){
+      if (e.type === "touchmove") {
         // TODO: polish touch support
-         positionX = e.touches[0].pageX;
-         positionY = e.touches[0].pageY;
+        positionX = e.touches[0].pageX;
+        positionY = e.touches[0].pageY;
+        var top = positionY - overEl.getBoundingClientRect().top;
+        //console.log(top.toString())
+        overEl.style.top = top + "px";
+        if(updateEdge){
+          elementEdge = overEl.getBoundingClientRect().top;
+          //console.log('elementEdge', elementEdge)
+          updateEdge = false;
+        } 
       }
       
       if (this.props.outline === "list") {
