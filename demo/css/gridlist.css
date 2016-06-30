@@ -20,6 +20,7 @@ body {
   padding: 10px;
   color: #666;
   line-height: 17px;
+  position: relative;
 }
 
 .SortableListItem-dragging {
