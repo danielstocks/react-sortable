@@ -1,6 +1,6 @@
 # React Sortable
 
-A React component and mixin for creating sortable interfaces
+A React higher-order component for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
 Mainly tested in latest stable Webkit, Firefox and IE releases.
