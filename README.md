@@ -114,5 +114,4 @@ It will expects the following properties to be defined on your Item components:
 
 ## Development
 
-If you want to make changes to the component, you can run `npm start` command in
- the root directory of repo to generate new builds.
+Look at README.md in `demo` folder.

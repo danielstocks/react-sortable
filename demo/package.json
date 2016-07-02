@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack --watch",
-    "test": "jest --verbose",
-    "reinstall": "rm -rf node_modules && npm i"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",

@@ -14,7 +14,8 @@ Open index.html in your browser.
 
 ## Development
 
-If you want to make changes to the component you will need to install webpack first `npm i webpack -g`.
-Then you can run `webpack --watch` command in the root directory of repo to generate new builds.
+Before doing any changes please open `./demo/js/SortableGridItem.js` and `./demo/js/SortableListItem.js`.
+Replace line `import { Sortable } from 'react-sortable';` with `import { SortableComposition as Sortable }  from '../../src/SortableComposition';`.
 
-Then you can edit source in `/node_modules/react-sortable/lib/SortableComposition.js`.
+Then any change you will make in `./src/SortableComposition` wiil be saved by wenbpack into `./demo/bundle.js`.
+Run `npm start` command to generate new builds.
