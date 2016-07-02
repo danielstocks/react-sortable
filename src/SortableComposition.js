@@ -85,19 +85,17 @@ export function SortableComposition(Component) {
         positionX = e.clientX;
         positionY = e.clientY;
       }
-      
+
       if (e.type === "touchmove") {
         // TODO: polish touch support
         positionX = e.touches[0].pageX;
         positionY = e.touches[0].pageY;
-        var top = positionY - overEl.getBoundingClientRect().top;
-        //console.log(top.toString())
-        overEl.style.top = top + "px";
         if(updateEdge){
           elementEdge = overEl.getBoundingClientRect().top;
-          //console.log('elementEdge', elementEdge)
           updateEdge = false;
-        } 
+        }
+        var top = positionY - elementEdge;
+        overEl.style.top = top + "px";
       }
       
       if (this.props.outline === "list") {
