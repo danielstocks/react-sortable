@@ -47,6 +47,12 @@ export function SortableComposition(Component) {
       draggingIndex: React.PropTypes.number
     },
 
+    getInitialState() {
+        return{
+          draggingIndex : null
+        }
+    },
+
     componentWillReceiveProps(nextProps) {
       this.setState({
         draggingIndex: nextProps.draggingIndex
@@ -68,48 +74,55 @@ export function SortableComposition(Component) {
         draggingIndex: draggingIndex
       });
       if (e.dataTransfer !== undefined) {
-      e.dataTransfer.setData('text', e.target);
-    }
+        e.dataTransfer.setData('text', e.target);
+      }
+      updateEdge = true;
     },
 
     dragOver(e) {
       e.preventDefault();
       var mouseBeyond;
-      var items = this.props.items;
       var positionX, positionY;
-      const overEl = e.currentTarget; //underlying element
-      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
+      var height, topOffset;
+      var items = this.props.items;
+      const overEl = e.currentTarget; //underlying element //TODO: not working for touch
+      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements 
       const indexFrom = Number(this.state.draggingIndex);
       
+      height = overEl.getBoundingClientRect().height;
+
       if(e.type === "dragover"){
         positionX = e.clientX;
         positionY = e.clientY;
+        topOffset = overEl.offsetTop - overEl.scrollTop + overEl.clientTop
       }
-
-      if (e.type === "touchmove") {
-        // TODO: polish touch support
+    
+      if (e.type === "touchmove") { 
         positionX = e.touches[0].pageX;
         positionY = e.touches[0].pageY;
         if(updateEdge){
-          elementEdge = overEl.getBoundingClientRect().top;
+          elementEdge = e.currentTarget.getBoundingClientRect().top;
           updateEdge = false;
         }
-        var top = positionY - elementEdge;
-        overEl.style.top = top + "px";
+        e.currentTarget.style.top = (positionY - elementEdge) + "px";
+        topOffset = elementEdge;
       }
       
       if (this.props.outline === "list") {
-          mouseBeyond = isMouseBeyond(positionY, overEl.getBoundingClientRect().top, overEl.getBoundingClientRect().height)
+          mouseBeyond = isMouseBeyond(positionY, topOffset, height)
       }
+
       if (this.props.outline === "column") {
           mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
+
       if(indexDragged !== indexFrom && mouseBeyond){
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
         });
       }
+
     },
 
     isDragging() {
