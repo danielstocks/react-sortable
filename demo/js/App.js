@@ -37,8 +37,7 @@ var App = React.createClass({
               items={this.state.items}
               draggingIndex={this.state.draggingIndex}
               sortId={i}
-              outline="list"
-              item={item}/>
+              outline="list">{item}</SortableListItem>
       );
     }, this);
 
@@ -49,9 +48,8 @@ var App = React.createClass({
                             items={this.state.items}
                             draggingIndex={this.state.draggingIndex}
                             sortId={i}
-                            item={item}
                             outline="column"
-                            style={{background: item}}/>
+                            style={{background: item}}>{item}</SortableGridItem>
       );
     }, this);
     

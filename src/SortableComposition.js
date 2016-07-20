@@ -133,15 +133,15 @@ export function SortableComposition(Component) {
       var draggingClassName = Component.displayName + "-dragging"
       return (
           <div className={this.isDragging() ? draggingClassName : ""}>
-            <Component {...this.props}
+            <Component
                 draggable={true}
                 onDragOver={this.dragOver}
                 onDragStart={this.sortStart}
                 onDragEnd={this.sortEnd}
-                isDragging={this.isDragging}
                 onTouchStart={this.sortStart}
                 onTouchMove={this.dragOver}
                 onTouchEnd={this.sortEnd}
+                children={this.props.children}
                 data-id={this.props.sortId}/>
           </div>
       )

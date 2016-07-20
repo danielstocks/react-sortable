@@ -9,7 +9,7 @@ var GridItem = React.createClass({
   render: function() {
     return (
           <div {...this.props} className="grid-item">
-            <span>{this.props.item}</span>
+            <span>{this.props.children}</span>
           </div>
         )
   }

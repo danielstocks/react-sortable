@@ -31,7 +31,7 @@ var ListItem = React.createClass({
   displayName: 'SortableListItem',
   render: function() {
     return (
-        <div {...this.props} className="list-item">{this.props.item}</div>
+      <div {...this.props} className="list-item">{this.props.children}</div>
     )
   }
 })
@@ -54,14 +54,13 @@ var SortableList = React.createClass({
   render: function() {
     var listItems = this.state.data.items.map(function(item, i) {
       return (
-          <SortableListItem
-              key={i}
-              updateState={this.updateState}
-              items={this.state.data.items}
-              draggingIndex={this.state.draggingIndex}
-              sortId={i}
-              outline="list"
-              item={item}/>
+        <SortableListItem
+          key={i}
+          updateState={this.updateState}
+          items={this.state.data.items}
+          draggingIndex={this.state.draggingIndex}
+          sortId={i}
+          outline="list">{item}</SortableListItem>
       );
     }, this);
 
