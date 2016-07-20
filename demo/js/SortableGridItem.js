@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sortable } from 'react-sortable';
+//import { Sortable } from 'react-sortable';
+import { SortableComposition as Sortable }  from '../../src/SortableComposition';
 
 var GridItem = React.createClass({
   displayName: 'SortableGridItem',
@@ -8,7 +9,7 @@ var GridItem = React.createClass({
   },
   render: function() {
     return (
-          <div {...this.props} className="grid-item">
+          <div {...this.props} className="grid-item" style={{background: this.props.children}}>
             <span>{this.props.children}</span>
           </div>
         )
