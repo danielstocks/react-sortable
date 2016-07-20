@@ -48,8 +48,7 @@ var App = React.createClass({
                             items={this.state.items}
                             draggingIndex={this.state.draggingIndex}
                             sortId={i}
-                            outline="column"
-                            style={{background: item}}>{item}</SortableGridItem>
+                            outline="column">{item}</SortableGridItem>
       );
     }, this);
     
