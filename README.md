@@ -19,7 +19,7 @@ for an example implementation.
 
 `npm i react-sortable --save`
 
-## Example implementation
+## Example
 
 Here's a sample implementation using the react-sortable higher order component.
 
@@ -100,13 +100,17 @@ The Sortable higher order component will automatically attach the necessary drag
 
 It will expects the following properties to be defined on your Item components:
 
-- **key** (React recommends that you [use this](http://facebook.github.io/react/docs/reconciliation.html#keys))             
-- **updateState** (the method that will be called when an item is moved)
-- **draggingIndex** (index of item being dragged)
-- **items** (data being sorted)
-- **outline** (list or grid)
-- **sortId** (index of item)
-- **item** (the item itself)
+- **key** (number index, common [recommendation](http://facebook.github.io/react/docs/reconciliation.html#keys))             
+- **updateState** (functino called when an item is moved)
+- **draggingIndex** (number index of item being dragged)
+- **items** (array of data being sorted)
+- **outline** (string "list" or "grid")
+- **sortId** (number index of item)
+
+**Change wrapping tag**
+
+By default it will wrap the item component in &lt;div/&gt;&lt;div/&gt;, but you can change it by passing second argument to Sortable function.
+For example in HTML tables you can use `var SortableListItem = Sortable(ListItem, **'tr'**);`
 
 
 
