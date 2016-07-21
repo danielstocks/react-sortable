@@ -32,7 +32,7 @@ export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refact
 
 /*** Higher-order component - this component works like a factory for draggable items */
 
-export function SortableComposition(Component) {
+export function SortableComposition(Component, WrapperTagName = "div") {
 
   var elementEdge = 0;
   var updateEdge = true;
@@ -132,7 +132,7 @@ export function SortableComposition(Component) {
     render() {
       var draggingClassName = Component.displayName + "-dragging"
       return (
-          <div className={this.isDragging() ? draggingClassName : ""}>
+          <WrapperTagName className={this.isDragging() ? draggingClassName : ""}>
             <Component
                 draggable={true}
                 onDragOver={this.dragOver}
@@ -143,7 +143,7 @@ export function SortableComposition(Component) {
                 onTouchEnd={this.sortEnd}
                 children={this.props.children}
                 data-id={this.props.sortId}/>
-          </div>
+          </WrapperTagName>
       )
     }
 
