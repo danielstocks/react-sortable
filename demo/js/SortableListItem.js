@@ -9,7 +9,9 @@ var ListItem = React.createClass({
   },
   render: function() {
     return (
-        <div {...this.props} className="list-item" id={'list' + this.props.sortId}>{this.props.children}</div>
+        <div {...this.props} className="list-item" id={'list' + this.props.sortId}>
+          {this.props.children}
+        </div>
     )
   }
 })
