@@ -101,7 +101,7 @@ The Sortable higher order component will automatically attach the necessary drag
 It will expects the following properties to be defined on your Item components:
 
 - **key** (number index, common [recommendation](http://facebook.github.io/react/docs/reconciliation.html#keys))             
-- **updateState** (functino called when an item is moved)
+- **updateState** (function called when an item is moved)
 - **draggingIndex** (number index of item being dragged)
 - **items** (array of data being sorted)
 - **outline** (string "list" or "grid")
