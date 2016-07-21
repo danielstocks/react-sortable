@@ -107,10 +107,11 @@ It will expects the following properties to be defined on your Item components:
 - **outline** (string "list" or "grid")
 - **sortId** (number index of item)
 
-**Change wrapping tag**
+#### Changing the wrapping tag
 
 By default it will wrap the item component in &lt;div/&gt;&lt;div/&gt;, but you can change it by passing second argument to Sortable function.
-For example in HTML tables you can use `var SortableListItem = Sortable(ListItem, **'tr'**);`
+
+For example in HTML tables you can use `var SortableListItem = Sortable(ListItem, 'tr');`
 
 
 
