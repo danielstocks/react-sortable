@@ -1,6 +1,6 @@
 {
   "name": "react-sortable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Make your React components sortable.",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
