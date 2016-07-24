@@ -14,7 +14,7 @@ Open index.html in your browser.
 
 ## Development
 
-Before doing any changes please open `./demo/js/SortableGridItem.js` and `./demo/js/SortableListItem.js`.
+Before doing any changes please open `./example-real-world/js/SortableGridItem.js` and `./example-real-world/js/SortableListItem.js`.
 Replace line `import { Sortable } from 'react-sortable';` with `import { SortableComposition as Sortable }  from '../../src/SortableComposition';`.
 
 Then any change you will make in `./src/SortableComposition` wiil be saved by wenbpack into `./demo/bundle.js`.
