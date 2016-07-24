@@ -93,6 +93,7 @@ ReactDOM.render(
 );
 ```
 
+You can this simple working demo in `./exmaple` folder.
 
 ### How it works
 
@@ -127,4 +128,6 @@ For example in HTML tables you can use:
 
 ## Development
 
-Look at README.md in `demo` folder.
+
+Look at README.md in `example-real-world` folder.
+You can use this example to see how your does a changes in the source code affect the functionality of the component.
