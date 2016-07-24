@@ -1,7 +1,8 @@
 //block 1
 
 import React from 'react';
-import { Sortable } from 'react-sortable';
+//import { Sortable } from 'react-sortable';
+import { SortableComposition as Sortable }  from '../src/SortableComposition'
 
 var ListItem = React.createClass({
   displayName: 'SortableListItem',
