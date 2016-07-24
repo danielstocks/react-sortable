@@ -17,7 +17,13 @@ for an example implementation.
 
 ##Installation
 
+To install a stable release use:
+
 `npm i react-sortable --save`
+
+If you want to install most current master branch, open your package.json and change the line for react-sortable like this:
+
+ "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"
 
 ## Example
 
@@ -118,6 +124,5 @@ It will expects the following properties to be defined on your Item components:
 
 ## Development
 
-
-Look at README.md in `example-real-world` folder.
-You can use this example to see how your does a changes in the source code affect the functionality of the component.
+Except from `example-from-npm` at all the examples are loading the library code from ./src folder.
+That means you can use them to see how does a changes in the source code affect the functionality of the component.
