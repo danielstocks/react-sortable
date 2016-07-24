@@ -39,6 +39,8 @@
     "babel-preset-stage-0": "6.5.x",
     "http-server": "0.9.x",
     "jest-cli": "13.2.x",
+    "react": "15.x.x",
+    "react-dom": "15.x.x",
     "wdio-jasmine-framework": "0.2.x",
     "webdriverio": "4.2.x"
   }
