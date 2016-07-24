@@ -23,7 +23,7 @@ To install a stable release use:
 
 If you want to install most current master branch, open your package.json and change the line for react-sortable like this:
 
- "react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"
+ `"react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"`
 
 ## Example
 
