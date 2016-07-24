@@ -93,7 +93,7 @@ ReactDOM.render(
 );
 ```
 
-You can this simple working demo in `./exmaple` folder.
+You can this simple working demo in `./example` folder.
 
 ### How it works
 
@@ -107,16 +107,6 @@ It will expects the following properties to be defined on your Item components:
 - **items** (array of data being sorted)
 - **outline** (string "list" or "grid")
 - **sortId** (number index of item)
-
-#### Changing the wrapping tag
-
-By default it will wrap the item component in &lt;div/&gt;&lt;div/&gt;, but you can change it by passing second argument to Sortable function.
-
-For example in HTML tables you can use: 
-
-`var SortableListItem = Sortable(ListItem, 'tr');`
-
-
 
 
 ## Differentces from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
