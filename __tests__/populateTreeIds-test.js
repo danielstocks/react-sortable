@@ -1,6 +1,6 @@
 jest.autoMockOff();
 
-describe('swap elements in array', () => {
+xdescribe('swap elements in array', () => {
 
   it('swaps two elements based on indexFrom and indexTo', () => {
     var fixture = {
