@@ -44,7 +44,8 @@ export function SortableComposition(Component) {
       updateState: React.PropTypes.func.isRequired,
       sortId: React.PropTypes.number,
       outline: React.PropTypes.string.isRequired, // row | column
-      draggingIndex: React.PropTypes.number
+      draggingIndex: React.PropTypes.number,
+      childProps: React.PropTypes.object,
     },
 
     getInitialState() {
@@ -132,7 +133,8 @@ export function SortableComposition(Component) {
     render() {
       var draggingClassName = Component.displayName + "-dragging"
       return (
-            <Component className={this.isDragging() ? draggingClassName : ""}
+            <Component
+                className={this.isDragging() ? draggingClassName : ""}
                 draggable={true}
                 onDragOver={this.dragOver}
                 onDragStart={this.sortStart}
@@ -141,7 +143,9 @@ export function SortableComposition(Component) {
                 onTouchMove={this.dragOver}
                 onTouchEnd={this.sortEnd}
                 children={this.props.children}
-                data-id={this.props.sortId}/>
+                data-id={this.props.sortId}
+                {...(this.props.childProps || {})}
+            />
       )
     }
 
