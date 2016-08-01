@@ -15,19 +15,19 @@ Mainly tested in latest stable Webkit, Firefox and IE releases.
 Check out http://webcloud.se/react-sortable or the index.html file of this repository
 for an example implementation.
 
-##Installation
+## Installation
 
 To install a stable release use:
 
 `npm i react-sortable --save`
 
-If you want to install most current master branch, open your package.json and change the line for react-sortable like this:
+If you want to install the most current master branch, open your package.json and change the line for react-sortable like this:
 
  `"react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"`
 
 ## Example
 
-Here's a sample implementation using the react-sortable higher order component.
+Here's a sample implementation using the react-sortable higher order component:
 
 ```js
 import React from 'react';
@@ -78,7 +78,7 @@ var SortableList = React.createClass({
 
 ```
 
-Here's some example data and a render call to the above component
+Here's some example data and a render call to the above component:
 
 ```js
 import ReactDOM from 'react-dom';
@@ -99,13 +99,13 @@ ReactDOM.render(
 );
 ```
 
-You can this simple working demo in `./example` folder.
+You can see this simple working demo in the `./example` folder.
 
 ### How it works
 
 The Sortable higher order component will automatically attach the necessary drag event handlers.
 
-It will expects the following properties to be defined on your Item components:
+It expects the following properties to be defined on your Item components:
 
 - **key** (number index, common [recommendation](http://facebook.github.io/react/docs/reconciliation.html#keys))             
 - **updateState** (function called when an item is moved)
@@ -115,14 +115,15 @@ It will expects the following properties to be defined on your Item components:
 - **sortId** (number index of item)
 
 
-## Differentces from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
+## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - fewer lines of code = easier to implement and modify
 - can handle both horizontal and vertical dragging
 - there is a plan for touch support
 - code is well documented and covered with unit tests
-- but, if you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definately check out [react-dnd](http://gaearon.github.io/react-dnd)
+
+If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
 ## Development
 
-Except from `example-from-npm` at all the examples are loading the library code from ./src folder.
-That means you can use them to see how does a changes in the source code affect the functionality of the component.
+Except for `example-from-npm`, all of the examples are loading the library code from the `./src` folder.
+That means you can use them to see how a change in the source code affects the functionality of the component.
