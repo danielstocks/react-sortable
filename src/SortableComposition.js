@@ -94,10 +94,10 @@ export function SortableComposition(Component) {
       if(e.type === "dragover"){
         positionX = e.clientX;
         positionY = e.clientY;
-        topOffset = overEl.offsetTop - overEl.scrollTop + overEl.clientTop
+        topOffset = overEl.getBoundingClientRect().top;
       }
     
-      if (e.type === "touchmove") { 
+      /*if (e.type === "touchmove") { 
         positionX = e.touches[0].pageX;
         positionY = e.touches[0].pageY;
         if(updateEdge){
@@ -106,7 +106,7 @@ export function SortableComposition(Component) {
         }
         e.currentTarget.style.top = (positionY - elementEdge) + "px";
         topOffset = elementEdge;
-      }
+      }*/
       
       if (this.props.outline === "list") {
           mouseBeyond = isMouseBeyond(positionY, topOffset, height)
