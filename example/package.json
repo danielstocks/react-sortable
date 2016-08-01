@@ -4,8 +4,7 @@
   "description": "Make your React components sortable.",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --watch",
-    "test": "jest --verbose"
+    "start": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -27,12 +26,11 @@
     "react-dom": "15.x.x"
   },
   "devDependencies": {
-    "babel-core": "6.10.x",
-    "babel-jest": "13.x.x",
+    "babel-core": "6.11.x",
     "babel-loader": "6.2.x",
     "babel-preset-es2015": "6.9.x",
     "babel-preset-react": "6.11.x",
     "babel-preset-stage-0": "6.5.x",
-    "webpack": "2.1.0-beta.14"
+    "webpack": "2.1.0-beta.20"
   }
 }
