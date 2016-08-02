@@ -26,6 +26,12 @@ var SortableList = React.createClass({
   updateState: function (obj) {
     this.setState(obj);
   },
+  
+  removeItem: function (idx) {
+    var data = this.state.data;
+    data.items = data.items.splice(idx, 1),
+    this.setState({ data });
+  },
 
   render: function () {
     var listItems = this.state.data.items.map(function (item, i) {
@@ -36,7 +42,9 @@ var SortableList = React.createClass({
           items={this.state.data.items}
           draggingIndex={this.state.draggingIndex}
           sortId={i}
-          outline="list">{item}</SortableListItem>
+          outline="list"
+          childProps={{ onClick: this.removeItem.bind(this, i) }}
+          >{item}</SortableListItem>
       );
     }, this);
 
