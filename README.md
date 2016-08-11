@@ -58,6 +58,7 @@ var SortableList = React.createClass({
   },
 
   render: function() {
+    var childProps = { className: 'myClass1' };
     var listItems = this.state.data.items.map(function(item, i) {
       return (
         <SortableListItem
@@ -66,7 +67,9 @@ var SortableList = React.createClass({
           items={this.state.data.items}
           draggingIndex={this.state.draggingIndex}
           sortId={i}
-          outline="list">{item}</SortableListItem>
+          outline="list"
+          childProps={childProps}
+          >{item}</SortableListItem>
       );
     }, this);
 
@@ -113,6 +116,7 @@ It expects the following properties to be defined on your Item components:
 - **items** (array of data being sorted)
 - **outline** (string "list" or "grid")
 - **sortId** (number index of item)
+- **childProps** (props to transfer to child)
 
 
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
