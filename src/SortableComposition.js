@@ -98,18 +98,20 @@ export function SortableComposition(Component) {
         topOffset = overEl.getBoundingClientRect().top;
       }
     
-      /*if (e.type === "touchmove") { 
+      if (e.type === "touchmove") { 
         positionX = e.touches[0].pageX;
         positionY = e.touches[0].pageY;
         if(updateEdge){
           elementEdge = e.currentTarget.getBoundingClientRect().top;
           updateEdge = false;
         }
-        e.currentTarget.style.top = (positionY - elementEdge) + "px";
+        //bad, I need to copy and then move
+        //e.currentTarget.style.top = (positionY - elementEdge) + "px";
         topOffset = elementEdge;
-      }*/
+      }
       
       if (this.props.outline === "list") {
+         console.log('isMouseBeyond(positionY, topOffset, height)', positionY, topOffset, height, isMouseBeyond(positionY, topOffset, height))
           mouseBeyond = isMouseBeyond(positionY, topOffset, height)
       }
 
@@ -117,8 +119,11 @@ export function SortableComposition(Component) {
           mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
 
+      console.log('indexDragged, indexFrom, mouseBeyond', indexDragged, indexFrom, mouseBeyond)
+
       if(indexDragged !== indexFrom && mouseBeyond){
         items = swapArrayElements(items, indexFrom, indexDragged);
+        console.log(items);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
         });
