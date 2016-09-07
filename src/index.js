@@ -1,1 +1,1 @@
-export { SortableComposition as Sortable } from './SortableComposition';
+export { SortableComposition as sortable } from './SortableComposition';

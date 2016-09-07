@@ -31,7 +31,7 @@ Here's a sample implementation using the react-sortable higher order component:
 
 ```js
 import React from 'react';
-import { Sortable } from 'react-sortable';
+import { sortable } from 'react-sortable';
 
 var ListItem = React.createClass({
   displayName: 'SortableListItem',
@@ -42,7 +42,7 @@ var ListItem = React.createClass({
   }
 })
 
-var SortableListItem = Sortable(ListItem);
+var SortableListItem = sortable(ListItem);
 
 var SortableList = React.createClass({
 
@@ -58,7 +58,6 @@ var SortableList = React.createClass({
   },
 
   render: function() {
-    var childProps = { className: 'myClass1' };
     var listItems = this.state.data.items.map(function(item, i) {
       return (
         <SortableListItem
@@ -68,7 +67,6 @@ var SortableList = React.createClass({
           draggingIndex={this.state.draggingIndex}
           sortId={i}
           outline="list"
-          childProps={childProps}
           >{item}</SortableListItem>
       );
     }, this);
@@ -116,7 +114,6 @@ It expects the following properties to be defined on your Item components:
 - **items** (array of data being sorted)
 - **outline** (string "list" or "column")
 - **sortId** (number index of item)
-- **childProps** (props to transfer to child)
 
 
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
