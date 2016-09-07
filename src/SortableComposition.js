@@ -136,7 +136,6 @@ export function SortableComposition(Component) {
     render() {
       const draggingClassName = Component.displayName + "-dragging"
       const { sortId, ...props } = this.props
-      console.log(Component)
       return (
             <Component
                 className={this.isDragging() ? draggingClassName : ""}
