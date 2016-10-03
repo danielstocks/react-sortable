@@ -42,7 +42,9 @@ var SortableList = React.createClass({
     }, this);
 
     return (
-      <table className="list">{listItems}</table>
+      <table className="list">
+        <tbody>{listItems}</tbody>
+      </table>
     )
   }
 });
