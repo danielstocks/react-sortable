@@ -43,7 +43,7 @@ export function SortableComposition(Component) {
       items: React.PropTypes.array.isRequired,
       updateState: React.PropTypes.func.isRequired,
       sortId: React.PropTypes.number,
-      outline: React.PropTypes.string.isRequired, // row | column
+      outline: React.PropTypes.string.isRequired, // grid | column
       draggingIndex: React.PropTypes.number,
       childProps: React.PropTypes.object,
     },

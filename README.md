@@ -114,7 +114,7 @@ It expects the following properties to be defined on your Item components:
 - **updateState** (function called when an item is moved)
 - **draggingIndex** (number index of item being dragged)
 - **items** (array of data being sorted)
-- **outline** (string "list" or "grid")
+- **outline** (string "list" or "column")
 - **sortId** (number index of item)
 - **childProps** (props to transfer to child)
 
