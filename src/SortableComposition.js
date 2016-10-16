@@ -79,12 +79,9 @@ export function SortableComposition(Component) {
       let dt = e.dataTransfer;
       if (dt !== undefined) {
         e.dataTransfer.setData('text', e.target);
-        // In IE browsers, setDragImage does not exist. However, the issue we are 
-        // trying to fix does not happen in these broswers. So if setDragImage is not
-        // available, then just don't do anything.
-        
+
+        //fix http://stackoverflow.com/questions/27656183/preserve-appearance-of-dragged-a-element-when-using-html5-draggable-attribute
         if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
-          console.log('here')
           dt.setDragImage(e.target, 0, 0);
         }
       }
