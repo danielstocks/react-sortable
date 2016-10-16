@@ -10,7 +10,8 @@
     "start": "npm run build -- --watch",
     "test": "jest --verbose",
     "selenium": "./node_modules/.bin/wdio ./webdriver/wdio-local.conf.js",
-    "serve": "./node_modules/.bin/http-server"
+    "serve": "./node_modules/.bin/http-server",
+    "exapmles": "webpack --config ./example/webpack.config.js && webpack --config ./example-real-world/webpack.config.js && webpack --config ./example-table/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,8 @@
     "react": "15.x.x",
     "react-dom": "15.x.x",
     "wdio-jasmine-framework": "0.2.x",
-    "webdriverio": "4.2.x"
+    "webdriverio": "4.2.x",
+    "babel-loader": "6.2.x",
+    "webpack": "2.1.0-beta.25"
   }
 }

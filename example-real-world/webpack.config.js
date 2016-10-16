@@ -2,7 +2,7 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  entry: "./js/App.js",
+  entry: path.resolve(__dirname, "./js/App.js"),
   output: {
         path: __dirname,
         filename: "bundle.js"
@@ -16,7 +16,7 @@ module.exports = {
       }
     ]
   },
-  watch: true,
+  //watch: true,
   plugins: [
     new webpack.optimize.UglifyJsPlugin()
   ]
