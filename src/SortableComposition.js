@@ -49,9 +49,9 @@ export function SortableComposition(Component) {
     },
 
     getInitialState() {
-        return{
-          draggingIndex : null
-        }
+      return {
+        draggingIndex: null
+      }
     },
 
     componentWillReceiveProps(nextProps) {
@@ -76,9 +76,17 @@ export function SortableComposition(Component) {
         draggingIndex: draggingIndex
       });
 
-      if (e.dataTransfer !== undefined) {
-        e.dataTransfer.setDragImage(e.target, 0, 0);
+      let dt = e.dataTransfer;
+      if (dt !== undefined) {
         e.dataTransfer.setData('text', e.target);
+        // In IE browsers, setDragImage does not exist. However, the issue we are 
+        // trying to fix does not happen in these broswers. So if setDragImage is not
+        // available, then just don't do anything.
+        
+        if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
+          console.log('here')
+          dt.setDragImage(e.target, 0, 0);
+        }
       }
       updateEdge = true;
     },
@@ -95,36 +103,19 @@ export function SortableComposition(Component) {
 
       height = overEl.getBoundingClientRect().height;
 
-      if(e.type === "dragover"){
-        positionX = e.clientX;
-        positionY = e.clientY;
-        topOffset = overEl.getBoundingClientRect().top;
-      }
-
-      if (e.type === "touchmove") {
-        positionX = e.touches[0].pageX;
-        positionY = e.touches[0].pageY;
-        if(updateEdge){
-          elementEdge = e.currentTarget.getBoundingClientRect().top;
-          updateEdge = false;
-        }
-        //bad, I need to copy and then move
-        //e.currentTarget.style.top = (positionY - elementEdge) + "px";
-        topOffset = elementEdge;
-      }
+      positionX = e.clientX;
+      positionY = e.clientY;
+      topOffset = overEl.getBoundingClientRect().top;
 
       if (this.props.outline === "list") {
-         //console.log('isMouseBeyond(positionY, topOffset, height)', positionY, topOffset, height, isMouseBeyond(positionY, topOffset, height))
-          mouseBeyond = isMouseBeyond(positionY, topOffset, height)
+        mouseBeyond = isMouseBeyond(positionY, topOffset, height)
       }
 
       if (this.props.outline === "column") {
-          mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
+        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
 
-      //console.log('indexDragged, indexFrom, mouseBeyond', indexDragged, indexFrom, mouseBeyond)
-
-      if(indexDragged !== indexFrom && mouseBeyond){
+      if (indexDragged !== indexFrom && mouseBeyond) {
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
@@ -140,19 +131,19 @@ export function SortableComposition(Component) {
     render() {
       var draggingClassName = Component.displayName + "-dragging"
       return (
-            <Component
-                className={this.isDragging() ? draggingClassName : ""}
-                draggable={true}
-                onDragOver={this.dragOver}
-                onDragStart={this.sortStart}
-                onDragEnd={this.sortEnd}
-                onTouchStart={this.sortStart}
-                onTouchMove={this.dragOver}
-                onTouchEnd={this.sortEnd}
-                children={this.props.children}
-                data-id={this.props.sortId}
-                {...(this.props.childProps || {})}
-            />
+        <Component
+          className={this.isDragging() ? draggingClassName : ""}
+          draggable={true}
+          onDragOver={this.dragOver}
+          onDragStart={this.sortStart}
+          onDragEnd={this.sortEnd}
+          onTouchStart={this.sortStart}
+          onTouchMove={this.dragOver}
+          onTouchEnd={this.sortEnd}
+          children={this.props.children}
+          data-id={this.props.sortId}
+          {...(this.props.childProps || {}) }
+          />
       )
     }
 
