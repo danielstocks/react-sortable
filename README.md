@@ -122,12 +122,16 @@ It expects the following properties to be defined on your Item components:
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - fewer lines of code = easier to implement and modify
 - can handle both horizontal and vertical dragging
-- there is a plan for touch support
 - code is well documented and covered with unit tests
 
 If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
+##Touch support
+Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
+Unfortunately at the moment there is almost no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers.
+I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
+
 ## Development
 
-Except for `example-from-npm`, all of the examples are loading the library code from the `./src` folder.
+The examples (except for `example-from-npm`) are loading the library code from the `./src` folder.
 That means you can use them to see how a change in the source code affects the functionality of the component.
