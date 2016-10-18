@@ -6,6 +6,7 @@
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
+    "build:standalone": "webpack --config ./webpack.standalone.js",
     "preversion": "npm run build",
     "start": "npm run build -- --watch",
     "test": "jest --verbose",
