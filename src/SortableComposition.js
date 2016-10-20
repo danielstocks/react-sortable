@@ -60,7 +60,8 @@ export function SortableComposition(Component) {
       });
     },
 
-    sortEnd() {
+    sortEnd(e) {
+      e.preventDefault();
       this.props.updateState({
         draggingIndex: null
       });
@@ -134,6 +135,7 @@ export function SortableComposition(Component) {
           onDragOver={this.dragOver}
           onDragStart={this.sortStart}
           onDragEnd={this.sortEnd}
+          onDrop={function(e){e.preventDefault();}}
           onTouchStart={this.sortStart}
           onTouchMove={this.dragOver}
           onTouchEnd={this.sortEnd}
