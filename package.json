@@ -11,7 +11,7 @@
     "test": "jest --verbose",
     "selenium": "./node_modules/.bin/wdio ./webdriver/wdio-local.conf.js",
     "serve": "./node_modules/.bin/http-server",
-    "exapmles": "webpack --config ./example/webpack.config.js && webpack --config ./example-real-world/webpack.config.js && webpack --config ./example-table/webpack.config.js"
+    "examples": "webpack --config ./example/webpack.config.js && webpack --config ./example-real-world/webpack.config.js && webpack --config ./example-table/webpack.config.js"
   },
   "repository": {
     "type": "git",
