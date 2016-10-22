@@ -48,10 +48,10 @@ var App = React.createClass({
                             items={this.state.items}
                             draggingIndex={this.state.draggingIndex}
                             sortId={i}
-                            outline="column">{item}</SortableGridItem>
+                            outline="grid">{item}</SortableGridItem>
       );
     }, this);
-    
+
     return (
         <div id="app">
           <div className="list">{listItems}</div>

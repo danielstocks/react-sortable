@@ -43,7 +43,7 @@ export function SortableComposition(Component) {
       items: React.PropTypes.array.isRequired,
       updateState: React.PropTypes.func.isRequired,
       sortId: React.PropTypes.number,
-      outline: React.PropTypes.string.isRequired, // grid | column
+      outline: React.PropTypes.string.isRequired, // list | grid
       draggingIndex: React.PropTypes.number,
       childProps: React.PropTypes.object,
     },
@@ -109,7 +109,7 @@ export function SortableComposition(Component) {
         mouseBeyond = isMouseBeyond(positionY, topOffset, height)
       }
 
-      if (this.props.outline === "column") {
+      if (this.props.outline === "grid") {
         mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
       }
 
