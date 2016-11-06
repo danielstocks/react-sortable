@@ -1,34 +1,5 @@
 import React from 'react';
-
-
-/*** Helper functions - they are decoupled from component itself for testability */
-
-
-/**
- * @param {array} items
- * @param {number} indexFrom
- * @param {number} indexTo
- * @returns {array}
- */
-export function swapArrayElements(items, indexFrom, indexTo) {
-  var item = items[indexTo];
-  items[indexTo] = items[indexFrom];
-  items[indexFrom] = item;
-  return items;
-}
-
-/**
- * @param {number} mousePos
- * @param {number} elementPos
- * @param {number} elementSize
- * @returns {boolean}
- */
-export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refactor for UP
-  var breakPoint = elementSize / 2; //break point is set to the middle line of element
-  var mouseOverlap = mousePos - elementPos;
-  return mouseOverlap > breakPoint;
-}
-
+import { swapArrayElements, isMouseBeyond } from './helpers.js';
 
 /*** Higher-order component - this component works like a factory for draggable items */
 
@@ -95,7 +66,7 @@ export function SortableComposition(Component) {
       var positionX, positionY;
       var height, topOffset;
       var items = this.props.items;
-      const overEl = e.currentTarget; //underlying element //TODO: not working for touch
+      const overEl = e.currentTarget; //underlying element
       const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
       const indexFrom = Number(this.state.draggingIndex);
 
