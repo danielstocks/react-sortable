@@ -23,10 +23,13 @@ body {
   position: relative;
 }
 
+/*
+this block is for future touch event
+
 .SortableListItem-dragging {
   background: #eee;
 }
-
+*/
 
 
 /* grid demo */
@@ -51,6 +54,9 @@ body {
   text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
 }
 
+/*
+this block is for future touch event
+
 .SortableGridItem-dragging .grid-item {
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
@@ -58,5 +64,6 @@ body {
   box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
   z-index: 1;
 }
+*/
 
 pre { clear:both; display: block; padding: 20px 0;}
