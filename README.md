@@ -122,7 +122,7 @@ It expects the following properties to be defined on your Item components:
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - fewer lines of code = easier to implement and modify
 - can handle both horizontal and vertical dragging
-- code is well documented and covered with unit tests
+- code is documented and covered with unit tests
 
 If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
