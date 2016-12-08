@@ -106,7 +106,7 @@ export function SortableComposition(Component) {
           onDragOver={this.dragOver}
           onDragStart={this.sortStart}
           onDragEnd={this.sortEnd}
-          onDrop={function(e){e.preventDefault();}}
+          onDrop={this.sortEnd}
           onTouchStart={this.sortStart}
           onTouchMove={this.dragOver}
           onTouchEnd={this.sortEnd}
