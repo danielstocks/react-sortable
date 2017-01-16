@@ -25,6 +25,12 @@ export function SortableComposition(Component) {
       }
     },
 
+    getDefaultProps() {
+      return {
+        moveInMiddle: false
+      }
+    },
+
     componentWillReceiveProps(nextProps) {
       this.setState({
         draggingIndex: nextProps.draggingIndex
@@ -77,11 +83,11 @@ export function SortableComposition(Component) {
       topOffset = overEl.getBoundingClientRect().top;
 
       if (this.props.outline === "list") {
-        mouseBeyond = isMouseBeyond(positionY, topOffset, height)
+        mouseBeyond = isMouseBeyond(positionY, topOffset, height, this.props.moveInMiddle)
       }
 
       if (this.props.outline === "grid") {
-        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
+        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, this.props.moveInMiddle)
       }
 
       if (indexDragged !== indexFrom && mouseBeyond) {
