@@ -20,8 +20,13 @@ export function swapArrayElements(items, indexFrom, indexTo) {
  * @param {number} elementSize
  * @returns {boolean}
  */
-export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refactor for UP
-  var breakPoint = elementSize / 2; //break point is set to the middle line of element
+export function isMouseBeyond(mousePos, elementPos, elementSize, moveInMiddle) {
+  var breakPoint;
+  if(moveInMiddle){
+    breakPoint = elementSize / 2; //break point is set to the middle line of element
+  }else{
+    breakPoint = 0
+  }
   var mouseOverlap = mousePos - elementPos;
   return mouseOverlap > breakPoint;
 }
