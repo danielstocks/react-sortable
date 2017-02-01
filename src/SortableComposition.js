@@ -8,18 +8,10 @@ export function SortableComposition(Component) {
   var elementEdge = 0;
   var updateEdge = true;
 
-  return React.createClass({
+  //return React.createClass({
+return class Sortable extends React.Component {
 
-    proptypes: {
-      items: React.PropTypes.array.isRequired,
-      updateState: React.PropTypes.func.isRequired,
-      sortId: React.PropTypes.number,
-      outline: React.PropTypes.string.isRequired, // list | grid
-      draggingIndex: React.PropTypes.number,
-      childProps: React.PropTypes.object,
-    },
-
-    getInitialState() {
+    /*getInitialState() {
       return {
         draggingIndex: null
       }
@@ -27,22 +19,29 @@ export function SortableComposition(Component) {
 
     getDefaultProps() {
       return {
-        moveInMiddle: false
+
       }
-    },
+    },*/
+    /*constructor(props) {
+      super(props);
+      this.state = {
+         draggingIndex: null
+      };
+    }*/
+    state = { draggingIndex: null };
 
     componentWillReceiveProps(nextProps) {
       this.setState({
         draggingIndex: nextProps.draggingIndex
       });
-    },
+    }
 
     sortEnd(e) {
       e.preventDefault();
       this.props.updateState({
         draggingIndex: null
       });
-    },
+    }
 
     sortStart(e) {
       const draggingIndex = e.currentTarget.dataset.id;
@@ -50,6 +49,7 @@ export function SortableComposition(Component) {
       this.props.updateState({
         draggingIndex: draggingIndex
       });
+
       this.setState({
         draggingIndex: draggingIndex
       });
@@ -64,7 +64,7 @@ export function SortableComposition(Component) {
         }
       }
       updateEdge = true;
-    },
+    }
 
     dragOver(e) {
       e.preventDefault();
@@ -72,6 +72,7 @@ export function SortableComposition(Component) {
       var positionX, positionY;
       var height, topOffset;
       var items = this.props.items;
+      const {outline, moveInMiddle, sortId, draggingIndex} = this.props
       const overEl = e.currentTarget; //underlying element
       const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
       const indexFrom = Number(this.state.draggingIndex);
@@ -82,12 +83,12 @@ export function SortableComposition(Component) {
       positionY = e.clientY;
       topOffset = overEl.getBoundingClientRect().top;
 
-      if (this.props.outline === "list") {
-        mouseBeyond = isMouseBeyond(positionY, topOffset, height, this.props.moveInMiddle)
+      if (outline === "list") {
+        mouseBeyond = isMouseBeyond(positionY, topOffset, height, moveInMiddle)
       }
 
-      if (this.props.outline === "grid") {
-        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, this.props.moveInMiddle)
+      if (outline === "grid") {
+        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, moveInMiddle)
       }
 
       if (indexDragged !== indexFrom && mouseBeyond) {
@@ -97,11 +98,12 @@ export function SortableComposition(Component) {
         });
       }
 
-    },
+    }
 
     isDragging() {
-      return this.props.draggingIndex == this.props.sortId;
-    },
+      const { draggingIndex, sortId } = this.props
+      return draggingIndex == sortId;
+    }
 
     render() {
       var draggingClassName = Component.displayName + "-dragging"
@@ -123,5 +125,22 @@ export function SortableComposition(Component) {
       )
     }
 
-  })
+  }
+
+  Sortable.propTypes = {
+      items: React.PropTypes.array.isRequired,
+      updateState: React.PropTypes.func.isRequired,
+      sortId: React.PropTypes.number,
+      outline: React.PropTypes.string.isRequired, // list | grid
+      draggingIndex: React.PropTypes.number,
+      childProps: React.PropTypes.object,
+
+  };
+
+  Sortable.defaultProps = {
+      moveInMiddle: false
+  };
+
+  return Sortable
+
 }
