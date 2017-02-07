@@ -11,23 +11,6 @@ export function SortableComposition(Component) {
   //return React.createClass({
 return class Sortable extends React.Component {
 
-    /*getInitialState() {
-      return {
-        draggingIndex: null
-      }
-    },
-
-    getDefaultProps() {
-      return {
-
-      }
-    },*/
-    /*constructor(props) {
-      super(props);
-      this.state = {
-         draggingIndex: null
-      };
-    }*/
     state = { draggingIndex: null };
 
     componentWillReceiveProps(nextProps) {
@@ -36,16 +19,15 @@ return class Sortable extends React.Component {
       });
     }
 
-    sortEnd(e) {
+    sortEnd = (e) => {
       e.preventDefault();
       this.props.updateState({
         draggingIndex: null
       });
     }
 
-    sortStart(e) {
+    sortStart = (e) => {
       const draggingIndex = e.currentTarget.dataset.id;
-
       this.props.updateState({
         draggingIndex: draggingIndex
       });
@@ -66,7 +48,7 @@ return class Sortable extends React.Component {
       updateEdge = true;
     }
 
-    dragOver(e) {
+    dragOver = (e) => {
       e.preventDefault();
       var mouseBeyond;
       var positionX, positionY;
