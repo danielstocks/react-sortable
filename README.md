@@ -126,7 +126,8 @@ It expects the following properties to be defined on your Item components:
 
 If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
-##Touch support
+## Touch support
+
 Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
 Unfortunately at the moment there is almost no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers.
 I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
