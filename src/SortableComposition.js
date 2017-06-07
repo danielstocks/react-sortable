@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { swapArrayElements, isMouseBeyond } from './helpers.js';
 
 /*** Higher-order component - this component works like a factory for draggable items */
@@ -8,7 +9,6 @@ export function SortableComposition(Component) {
   var elementEdge = 0;
   var updateEdge = true;
 
-  //return React.createClass({
 return class Sortable extends React.Component {
 
     state = { draggingIndex: null };
@@ -110,12 +110,12 @@ return class Sortable extends React.Component {
   }
 
   Sortable.propTypes = {
-      items: React.PropTypes.array.isRequired,
-      updateState: React.PropTypes.func.isRequired,
-      sortId: React.PropTypes.number,
-      outline: React.PropTypes.string.isRequired, // list | grid
-      draggingIndex: React.PropTypes.number,
-      childProps: React.PropTypes.object,
+      items: PropTypes.array.isRequired,
+      updateState: PropTypes.func.isRequired,
+      sortId: PropTypes.number,
+      outline: PropTypes.string.isRequired, // list | grid
+      draggingIndex: PropTypes.number,
+      childProps: PropTypes.object,
 
   };
 
