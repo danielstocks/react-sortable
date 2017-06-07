@@ -30,6 +30,7 @@
   "author": "Daniel Stocks <daniel@webcloud.se>",
   "license": "MIT",
   "peerDependencies": {
+    "prop-types": "^15.5.10",
     "react": "15.x.x",
     "react-dom": "15.x.x"
   },
