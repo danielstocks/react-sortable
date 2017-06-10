@@ -1,6 +1,6 @@
 # React Sortable Demo
 
-##Run
+## Run
 
 Open index.html in your browser.
 
