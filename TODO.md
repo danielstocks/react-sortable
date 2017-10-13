@@ -9,5 +9,4 @@
 
 Future
 - nested functionality
-- migrate from webpack to rollup in examples (once it will support sourcemaps)
 - CI, Travis, Open Sauce

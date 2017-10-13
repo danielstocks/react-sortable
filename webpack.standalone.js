@@ -1,5 +1,6 @@
 var path = require('path');
-var webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+//var webpack = require('webpack');
 
 module.exports = [{
   entry: './src/index.js',
@@ -11,13 +12,18 @@ module.exports = [{
   },
 
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      include: [
-        path.join(__dirname, 'src')
-      ]
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+        }
+      }
+    ]
   },
 
   externals: {
@@ -33,13 +39,18 @@ module.exports = [{
   },
 
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel',
-      include: [
-        path.join(__dirname, 'src')
-      ]
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['env']
+          }
+        }
+      }
+    ]
   },
 
   externals: {
@@ -52,13 +63,6 @@ module.exports = [{
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false
-      },
-      compress: {
-        warnings: false
-      }
-    })
+    new UglifyJSPlugin()
   ]
 }];
