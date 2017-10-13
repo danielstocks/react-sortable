@@ -1,7 +1,7 @@
 import React from 'react';
 
-var StateView = React.createClass({
-  render: function() {
+export default class StateView extends React.Component {
+  render() {
     return (
         <div>
           <pre>{JSON.stringify(this.props.items, 0, 2)}</pre>
@@ -9,6 +9,4 @@ var StateView = React.createClass({
         </div>
     )
   }
-})
-
-export default StateView;
+}

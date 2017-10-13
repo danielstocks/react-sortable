@@ -1,22 +1,18 @@
 import React from 'react';
-//import { Sortable } from 'react-sortable';
-import { SortableComposition as Sortable } from '../src/SortableComposition'
 import SortableListItem from './SortableItem'
 
-export default SortableList = React.createClass({
+export default class SortableList extends React.Component {
 
-  getInitialState: function () {
-    return {
-      draggingIndex: null,
-      data: this.props.data
-    };
-  },
+  state = {
+    draggingIndex: null,
+    data: this.props.data
+  };
 
-  updateState: function (obj) {
+  updateState = (obj) => {
     this.setState(obj);
-  },
+  }
 
-  render: function () {
+  render() {
     var listItems = this.state.data.items.map(function (item, i) {
       return (
         <SortableListItem
@@ -35,4 +31,4 @@ export default SortableList = React.createClass({
       </table>
     )
   }
-});
+}

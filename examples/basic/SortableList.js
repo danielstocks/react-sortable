@@ -3,15 +3,12 @@ import SortableItem from './SortableItem'
 
 export default class SortableList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      draggingIndex: null,
-      data: this.props.data
-    };
-  }
+  state = {
+    draggingIndex: null,
+    data: this.props.data
+  };
 
-  updateState(obj) {
+  updateState = (obj) => {
     this.setState(obj);
   }
 
@@ -29,7 +26,7 @@ export default class SortableList extends React.Component {
     }, this);
 
     return (
-      <div className="list" > {listItems}</div>
+      <div className="list">{listItems}</div>
     )
   }
 }

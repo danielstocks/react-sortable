@@ -1,12 +1,19 @@
+import React from "react";
 import ReactDOM from 'react-dom';
-import SortableList from './basic/SortableList';
+
+import SortableList from './real-world/SortableList';
+
 var data = {
   items: [
     "Gold",
     "Crimson",
     "Hotpink",
     "Blueviolet",
-    "Cornflowerblue"
+    "Cornflowerblue",
+    "Skyblue",
+    "Lightblue",
+    "Aquamarine",
+    "Burlywood"
   ]
 };
 

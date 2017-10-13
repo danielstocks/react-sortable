@@ -4,49 +4,37 @@ import SortableListItem from './SortableListItem';
 import SortableGridItem from './SortableGridItem';
 import StateView from './StateView';
 
-var App = React.createClass({
+export default class SortableList extends React.Component {
 
-  getInitialState: function() {
-    return {
-      items: [
-        "Gold",
-        "Crimson",
-        "Hotpink",
-        "Blueviolet",
-        "Cornflowerblue",
-        "Skyblue",
-        "Lightblue",
-        "Aquamarine",
-        "Burlywood"
-      ],
-      draggingIndex: null
-    };
-  },
+  state = {
+    draggingIndex: null,
+    data: this.props.data
+  };
 
-  updateState: function(obj) {
+  updateState = (obj) => {
     this.setState(obj);
-  },
+  }
 
-  render: function() {
-
-    var listItems = this.state.items.map(function(item, i) {
+  render() {
+    const {draggingIndex, data:{items: items}} = this.state;
+    var listItems = items.map(function(item, i) {
       return (
           <SortableListItem
               key={i}
               updateState={this.updateState}
-              items={this.state.items}
-              draggingIndex={this.state.draggingIndex}
+              items={items}
+              draggingIndex={draggingIndex}
               sortId={i}
               outline="list">{item}</SortableListItem>
       );
     }, this);
 
-    var gridItems = this.state.items.map(function(item, i) {
+    var gridItems = items.map(function(item, i) {
       return (
           <SortableGridItem key={i}
                             updateState={this.updateState}
-                            items={this.state.items}
-                            draggingIndex={this.state.draggingIndex}
+                            items={items}
+                            draggingIndex={draggingIndex}
                             sortId={i}
                             outline="grid">{item}</SortableGridItem>
       );
@@ -60,10 +48,4 @@ var App = React.createClass({
         </div>
     )
   }
-});
-
-
-ReactDOM.render(
-    <App/>,
-    document.getElementById('app')
-);
+};
