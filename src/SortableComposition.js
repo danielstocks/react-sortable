@@ -74,7 +74,6 @@ return class Sortable extends React.Component {
       }
 
       if (indexDragged !== indexFrom && mouseBeyond) {
-        console.log('swapArrayElements(items, indexFrom, indexDragged);', items, indexFrom, indexDragged)
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
@@ -98,9 +97,6 @@ return class Sortable extends React.Component {
           onDragStart={this.sortStart}
           onDragEnd={this.sortEnd}
           onDrop={this.sortEnd}
-          onTouchStart={this.sortStart}
-          onTouchMove={this.dragOver}
-          onTouchEnd={this.sortEnd}
           children={this.props.children}
           data-id={this.props.sortId}
           {...(this.props.childProps || {}) }

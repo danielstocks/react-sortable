@@ -1,16 +1,16 @@
 {
   "name": "react-sortable",
-  "version": "1.2.1",
+  "version": "1.3.1",
   "description": "Make your React components sortable.",
   "main": "lib/index.js",
   "jsnext:main": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
-    "build:standalone": "webpack --config ./webpack.config.js",
+    "build:standalone": "webpack --config ./webpack.devConfig.js",
     "build:examples": "webpack --config ./example/webpack.config.js && webpack --config ./example-real-world/webpack.config.js && webpack --config ./example-table/webpack.config.js",
     "preversion": "npm run build",
     "start": "npm run build -- --watch",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --config ./webpack.devConfig.js",
     "test": "jest --verbose",
     "selenium": "./node_modules/.bin/wdio ./webdriver/wdio-local.conf.js",
     "serve": "./node_modules/.bin/http-server"

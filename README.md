@@ -129,10 +129,4 @@ If you want to have multiple different types of Drag & Drop interactions (not on
 ## Touch support
 
 Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
-Unfortunately at the moment there is almost no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers.
-I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
-
-## Development
-
-The examples (except for `example-from-npm`) are loading the library code from the `./src` folder.
-That means you can use them to see how a change in the source code affects the functionality of the component.
+Unfortunately at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. I started to work on CSS/JS fallback for mobile broser on 'touch' branch.

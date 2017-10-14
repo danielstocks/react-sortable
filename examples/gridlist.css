@@ -21,6 +21,7 @@ body {
   color: #666;
   line-height: 17px;
   position: relative;
+  -webkit-user-drag: element;
 }
 
 /*
@@ -41,6 +42,7 @@ this block is for future touch event
   float: left;
   color: #fff;
   position: relative;
+  -webkit-user-drag: element;
 }
 
 .grid-item span {
