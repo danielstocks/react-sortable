@@ -3,7 +3,6 @@
 
 [![David](https://david-dm.org/danielstocks/react-sortable.svg)](https://david-dm.org/danielstocks/react-sortable)
 [![npm](https://img.shields.io/npm/v/react-sortable.svg)](https://www.npmjs.com/package/react-sortable)
-[![GitHub commits](https://img.shields.io/github/commits-since/danielstocks/react-sortable/1.2.0.svg?maxAge=2592000)]()
 [![npm](https://img.shields.io/npm/dt/react-sortable.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sortable)
 
 
