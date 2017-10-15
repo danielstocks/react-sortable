@@ -33,51 +33,49 @@ Here's a sample implementation using the react-sortable higher order component:
 import React from 'react';
 import { sortable } from 'react-sortable';
 
-var ListItem = React.createClass({
-  displayName: 'SortableListItem',
-  render: function() {
+class Item extends React.Component {
+  render() {
     return (
       <div {...this.props} className="list-item">{this.props.children}</div>
     )
   }
-})
+}
 
-var SortableListItem = sortable(ListItem);
+var SortableItem = sortable(Item);
 
-var SortableList = React.createClass({
+class SortableList extends React.Component {
 
-  getInitialState: function() {
-    return {
-      draggingIndex: null,
-      data: this.props.data
-    };
-  },
+  state = {
+    draggingIndex: null,
+    data: this.props.data
+  };
 
-  updateState: function(obj) {
+  updateState = (obj) => {
     this.setState(obj);
-  },
+  }
 
-  render: function() {
+  render() {
+    const {draggingIndex, data:{items: items}} = this.state;
     var childProps = { className: 'myClass1' };
-    var listItems = this.state.data.items.map(function(item, i) {
-      return (
-        <SortableListItem
+    var listItems = items.map(function(item, i) {
+         return (
+        <SortableItem
           key={i}
           updateState={this.updateState}
-          items={this.state.data.items}
-          draggingIndex={this.state.draggingIndex}
+          items={items}
+          draggingIndex={draggingIndex}
           sortId={i}
           outline="list"
           childProps={childProps}
-          >{item}</SortableListItem>
+          >{item}</SortableItem>
       );
     }, this);
 
     return (
-          <div className="list">{listItems}</div>
+        <div className="list">{listItems}</div>
     )
   }
-});
+};
 
 ```
 
