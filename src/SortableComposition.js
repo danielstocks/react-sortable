@@ -82,7 +82,7 @@ return class Sortable extends React.Component {
 
     }
 
-    isDragging() {
+    isDragging = () => {
       const { draggingIndex, sortId } = this.props
       return draggingIndex == sortId;
     }
@@ -92,6 +92,7 @@ return class Sortable extends React.Component {
       return (
         <Component
           className={this.isDragging() ? draggingClassName : ""}
+          isDragging={this.isDragging}
           draggable={true}
           onDragOver={this.dragOver}
           onDragStart={this.sortStart}
