@@ -3,7 +3,6 @@
 
 [![David](https://david-dm.org/danielstocks/react-sortable.svg)](https://david-dm.org/danielstocks/react-sortable)
 [![npm](https://img.shields.io/npm/v/react-sortable.svg)](https://www.npmjs.com/package/react-sortable)
-[![GitHub commits](https://img.shields.io/github/commits-since/danielstocks/react-sortable/1.0.2.svg?maxAge=2592000)]()
 [![npm](https://img.shields.io/npm/dt/react-sortable.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sortable)
 
 
@@ -33,38 +32,36 @@ Here's a sample implementation using the react-sortable higher order component:
 import React from 'react';
 import { sortable } from 'react-sortable';
 
-var ListItem = React.createClass({
-  displayName: 'SortableListItem',
-  render: function() {
+class Item extends React.Component {
+  render() {
     return (
       <div {...this.props} className="list-item">{this.props.children}</div>
     )
   }
-})
+}
 
-var SortableListItem = sortable(ListItem);
+var SortableItem = sortable(Item);
 
-var SortableList = React.createClass({
+class SortableList extends React.Component {
 
-  getInitialState: function() {
-    return {
-      draggingIndex: null,
-      data: this.props.data
-    };
-  },
+  state = {
+    draggingIndex: null,
+    data: this.props.data
+  };
 
-  updateState: function(obj) {
+  updateState = (obj) => {
     this.setState(obj);
-  },
+  }
 
-  render: function() {
-    var listItems = this.state.data.items.map(function(item, i) {
-      return (
-        <SortableListItem
+  render() {
+    const {draggingIndex, data:{items: items}} = this.state;
+    var listItems = items.map(function(item, i) {
+         return (
+        <SortableItem
           key={i}
           updateState={this.updateState}
-          items={this.state.data.items}
-          draggingIndex={this.state.draggingIndex}
+          items={items}
+          draggingIndex={draggingIndex}
           sortId={i}
           outline="list"
           >{item}</SortableListItem>
@@ -72,10 +69,10 @@ var SortableList = React.createClass({
     }, this);
 
     return (
-          <div className="list">{listItems}</div>
+        <div className="list">{listItems}</div>
     )
   }
-});
+};
 
 ```
 
@@ -119,12 +116,11 @@ It expects the following properties to be defined on your Item components:
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
 - fewer lines of code = easier to implement and modify
 - can handle both horizontal and vertical dragging
-- there is a plan for touch support
-- code is well documented and covered with unit tests
+- code is documented and covered with unit tests
 
 If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
-## Development
+## Touch support
 
-Except for `example-from-npm`, all of the examples are loading the library code from the `./src` folder.
-That means you can use them to see how a change in the source code affects the functionality of the component.
+Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
+Unfortunately at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. I started to work on CSS/JS fallback for mobile broser on 'touch' branch.

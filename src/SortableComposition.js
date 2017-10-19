@@ -1,34 +1,6 @@
 import React from 'react';
-
-
-/*** Helper functions - they are decoupled from component itself for testability */
-
-
-/**
- * @param {array} items
- * @param {number} indexFrom
- * @param {number} indexTo
- * @returns {array}
- */
-export function swapArrayElements(items, indexFrom, indexTo) {
-  var item = items[indexTo];
-  items[indexTo] = items[indexFrom];
-  items[indexFrom] = item;
-  return items;
-}
-
-/**
- * @param {number} mousePos
- * @param {number} elementPos
- * @param {number} elementSize
- * @returns {boolean}
- */
-export function isMouseBeyond(mousePos, elementPos, elementSize) { //TODO refactor for UP
-  var breakPoint = elementSize / 2; //break point is set to the middle line of element
-  var mouseOverlap = mousePos - elementPos;
-  return mouseOverlap > breakPoint;
-}
-
+import PropTypes from 'prop-types';
+import { swapArrayElements, isMouseBeyond } from './helpers.js';
 
 /*** Higher-order component - this component works like a factory for draggable items */
 
@@ -37,121 +9,119 @@ export function SortableComposition(Component) {
   var elementEdge = 0;
   var updateEdge = true;
 
-  return React.createClass({
+  return class Sortable extends React.Component {
 
-    proptypes: {
-      items: React.PropTypes.array.isRequired,
-      updateState: React.PropTypes.func.isRequired,
-      sortId: React.PropTypes.number,
-      outline: React.PropTypes.string.isRequired, // row | column
-      draggingIndex: React.PropTypes.number
-    },
-
-    getInitialState() {
-        return{
-          draggingIndex : null
-        }
-    },
+    state = { draggingIndex: null };
 
     componentWillReceiveProps(nextProps) {
       this.setState({
         draggingIndex: nextProps.draggingIndex
       });
-    },
+    }
 
-    sortEnd() {
+    sortEnd = (e) => {
+      e.preventDefault();
       this.props.updateState({
         draggingIndex: null
       });
-    },
+    }
 
-    sortStart(e) {
+    sortStart = (e) => {
       const draggingIndex = e.currentTarget.dataset.id;
       this.props.updateState({
         draggingIndex: draggingIndex
       });
+
       this.setState({
         draggingIndex: draggingIndex
       });
-      if (e.dataTransfer !== undefined) {
-        e.dataTransfer.setData('text', e.target);
+
+      let dt = e.dataTransfer;
+      if (dt !== undefined) {
+        e.dataTransfer.setData('text', e.target.innerHTML);
+
+        //fix http://stackoverflow.com/questions/27656183/preserve-appearance-of-dragged-a-element-when-using-html5-draggable-attribute
+        if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
+          dt.setDragImage(e.target, 0, 0);
+        }
       }
       updateEdge = true;
-    },
+    }
 
-    dragOver(e) {
+    dragOver = (e) => {
       e.preventDefault();
       var mouseBeyond;
       var positionX, positionY;
       var height, topOffset;
       var items = this.props.items;
-      const overEl = e.currentTarget; //underlying element //TODO: not working for touch
-      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements 
+      const { outline, moveInMiddle, sortId, draggingIndex } = this.props
+      const overEl = e.currentTarget; //underlying element
+      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
       const indexFrom = Number(this.state.draggingIndex);
-      
+
       height = overEl.getBoundingClientRect().height;
 
-      if(e.type === "dragover"){
-        positionX = e.clientX;
-        positionY = e.clientY;
-        topOffset = overEl.getBoundingClientRect().top;
-      }
-    
-      if (e.type === "touchmove") { 
-        positionX = e.touches[0].pageX;
-        positionY = e.touches[0].pageY;
-        if(updateEdge){
-          elementEdge = e.currentTarget.getBoundingClientRect().top;
-          updateEdge = false;
-        }
-        //bad, I need to copy and then move
-        //e.currentTarget.style.top = (positionY - elementEdge) + "px";
-        topOffset = elementEdge;
-      }
-      
-      if (this.props.outline === "list") {
-         //console.log('isMouseBeyond(positionY, topOffset, height)', positionY, topOffset, height, isMouseBeyond(positionY, topOffset, height))
-          mouseBeyond = isMouseBeyond(positionY, topOffset, height)
+      positionX = e.clientX;
+      positionY = e.clientY;
+      topOffset = overEl.getBoundingClientRect().top;
+
+      if (outline === "list") {
+        mouseBeyond = isMouseBeyond(positionY, topOffset, height, moveInMiddle)
       }
 
-      if (this.props.outline === "column") {
-          mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width)
+      if (outline === "grid") {
+        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, moveInMiddle)
       }
 
-      //console.log('indexDragged, indexFrom, mouseBeyond', indexDragged, indexFrom, mouseBeyond)
-
-      if(indexDragged !== indexFrom && mouseBeyond){
+      if (indexDragged !== indexFrom && mouseBeyond) {
         items = swapArrayElements(items, indexFrom, indexDragged);
         this.props.updateState({
           items: items, draggingIndex: indexDragged
         });
       }
 
-    },
+    }
 
-    isDragging() {
-      return this.props.draggingIndex == this.props.sortId;
-    },
+    isDragging = () => {
+      const { draggingIndex, sortId } = this.props
+      return draggingIndex == sortId;
+    }
 
     render() {
-      const draggingClassName = Component.displayName + "-dragging"
-      const { sortId, ...props } = this.props
+      let newProps = Object.assign({}, this.props);
+      delete newProps.updateState;
+      delete newProps.draggingIndex;
+      const { sortId, ...props } = newProps
       return (
-            <Component
-                className={this.isDragging() ? draggingClassName : ""}
-                draggable={true}
-                onDragOver={this.dragOver}
-                onDragStart={this.sortStart}
-                onDragEnd={this.sortEnd}
-                onTouchStart={this.sortStart}
-                onTouchMove={this.dragOver}
-                onTouchEnd={this.sortEnd}
-                data-id={sortId}
-                {...props}
-            />
+        <Component
+          className={this.isDragging() ? draggingClassName : ""}
+          draggable={true}
+          onDragOver={this.dragOver}
+          onDragStart={this.sortStart}
+          onDragEnd={this.sortEnd}
+          onTouchStart={this.sortStart}
+          onTouchMove={this.dragOver}
+          onTouchEnd={this.sortEnd}
+          data-id={sortId}
+          {...props}
+        />
       )
     }
 
-  })
-}
+  }
 
+  Sortable.propTypes = {
+    items: PropTypes.array.isRequired,
+    updateState: PropTypes.func.isRequired,
+    sortId: PropTypes.number,
+    outline: PropTypes.string.isRequired, // list | grid
+    draggingIndex: PropTypes.number,
+  };
+
+  Sortable.defaultProps = {
+    moveInMiddle: false
+  };
+
+  return Sortable
+
+}
