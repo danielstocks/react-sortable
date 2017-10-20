@@ -94,7 +94,6 @@ export function SortableComposition(Component) {
       const { sortId, ...props } = newProps
       return (
         <Component
-          className={this.isDragging() ? draggingClassName : ""}
           draggable={true}
           onDragOver={this.dragOver}
           onDragStart={this.sortStart}
