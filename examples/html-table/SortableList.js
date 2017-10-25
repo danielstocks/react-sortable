@@ -13,17 +13,18 @@ export default class SortableList extends React.Component {
   }
 
   render() {
-    var listItems = this.state.data.items.map(function (item, i) {
+    const { draggingIndex, data: { items: items } } = this.state;
+    var listItems = items.map((item, i) => {
       return (
         <SortableListItem
           key={i}
           updateState={this.updateState}
-          items={this.state.data.items}
-          draggingIndex={this.state.draggingIndex}
+          items={items}
+          draggingIndex={draggingIndex}
           sortId={i}
           outline="list">{item}</SortableListItem>
       );
-    }, this);
+    });
 
     return (
       <table className="list">

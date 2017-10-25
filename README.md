@@ -20,28 +20,39 @@ To install a stable release use:
 
 `npm i react-sortable --save`
 
-If you want to install the most current master branch, open your package.json and change the line for react-sortable like this:
-
- `"react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"`
-
 ## Example
 
-Here's a sample implementation using the react-sortable higher order component:
+Here's a sample implementation using the react-sortable higher order component.
+First import the necessary dependencies.
 
 ```js
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { sortable } from 'react-sortable';
 
+```
+
+Then create a component for the single item of the list.
+For visual styling, you can add className of your choice.
+
+```js
 class Item extends React.Component {
   render() {
     return (
-      <div {...this.props} className="list-item">{this.props.children}</div>
+      <div 
+        {...this.props} 
+        className="list-item">{this.props.children}</div>
     )
   }
 }
 
 var SortableItem = sortable(Item);
 
+```
+
+And create component for the whole list, which will be our main component.
+
+```js
 class SortableList extends React.Component {
 
   state = {
@@ -55,7 +66,7 @@ class SortableList extends React.Component {
 
   render() {
     const {draggingIndex, data:{items: items}} = this.state;
-    var listItems = items.map(function(item, i) {
+    var listItems = items.map((item, i) => {
          return (
         <SortableItem
           key={i}
@@ -66,7 +77,7 @@ class SortableList extends React.Component {
           outline="list"
           >{item}</SortableListItem>
       );
-    }, this);
+    });
 
     return (
         <div className="list">{listItems}</div>
@@ -76,10 +87,10 @@ class SortableList extends React.Component {
 
 ```
 
-Here's some example data and a render call to the above component:
+Now you can pass a list of items to the main component and render the whole result.
 
 ```js
-import ReactDOM from 'react-dom';
+
 
 var data = {
   items: [
@@ -124,3 +135,8 @@ If you want to have multiple different types of Drag & Drop interactions (not on
 
 Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
 Unfortunately at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
+
+## Mainteners
+
+[github.com/danielstocks](https://github.com/danielstocks)
+[github.com/danielstocks](https://github.com/Dharmoslap)

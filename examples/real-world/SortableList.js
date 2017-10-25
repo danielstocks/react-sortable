@@ -16,36 +16,36 @@ export default class SortableList extends React.Component {
   }
 
   render() {
-    const {draggingIndex, data:{items: items}} = this.state;
-    var listItems = items.map(function(item, i) {
+    const { draggingIndex, data: { items: items } } = this.state;
+    var listItems = items.map((item, i) => {
       return (
-          <SortableListItem
-              key={i}
-              updateState={this.updateState}
-              items={items}
-              draggingIndex={draggingIndex}
-              sortId={i}
-              outline="list">{item}</SortableListItem>
+        <SortableListItem
+          key={i}
+          updateState={this.updateState}
+          items={items}
+          draggingIndex={draggingIndex}
+          sortId={i}
+          outline="list">{item}</SortableListItem>
       );
-    }, this);
+    });
 
-    var gridItems = items.map(function(item, i) {
+    var gridItems = items.map((item, i) => {
       return (
-          <SortableGridItem key={i}
-                            updateState={this.updateState}
-                            items={items}
-                            draggingIndex={draggingIndex}
-                            sortId={i}
-                            outline="grid">{item}</SortableGridItem>
+        <SortableGridItem key={i}
+          updateState={this.updateState}
+          items={items}
+          draggingIndex={draggingIndex}
+          sortId={i}
+          outline="grid">{item}</SortableGridItem>
       );
-    }, this);
+    });
 
     return (
-        <div id="app">
-          <div className="list">{listItems}</div>
-          <div className="grid">{gridItems}</div>
-          <StateView items={this.state.items} dragging={this.state.draggingIndex}/>
-        </div>
+      <div id="app">
+        <div className="list">{listItems}</div>
+        <div className="grid">{gridItems}</div>
+        <StateView items={this.state.items} dragging={this.state.draggingIndex} />
+      </div>
     )
   }
 };
