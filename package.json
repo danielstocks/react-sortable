@@ -11,8 +11,7 @@
     "start": "npm run build -- --watch",
     "dev": "webpack-dev-server --config ./webpack.devConfig.js",
     "test": "jest --verbose",
-    "selenium": "./node_modules/.bin/wdio ./webdriver/wdio-local.conf.js",
-    "serve": "./node_modules/.bin/http-server"
+    "selenium": "./node_modules/.bin/wdio ./webdriver/wdio-local.conf.js"
   },
   "repository": {
     "type": "git",
@@ -41,7 +40,6 @@
     "babel-preset-es2015": "6.24.x",
     "babel-preset-react": "6.24.x",
     "babel-preset-stage-0": "6.24.x",
-    "http-server": "0.10.x",
     "jest-cli": "21.x.x",
     "react": "16.x.x",
     "react-dom": "16.x.x",
