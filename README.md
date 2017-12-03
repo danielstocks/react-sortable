@@ -3,11 +3,10 @@
 
 [![David](https://david-dm.org/danielstocks/react-sortable.svg)](https://david-dm.org/danielstocks/react-sortable)
 [![npm](https://img.shields.io/npm/v/react-sortable.svg)](https://www.npmjs.com/package/react-sortable)
-[![GitHub commits](https://img.shields.io/github/commits-since/danielstocks/react-sortable/1.2.0.svg?maxAge=2592000)]()
 [![npm](https://img.shields.io/npm/dt/react-sortable.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sortable)
 
 
-A React higher-order component for creating sortable interfaces
+Higher-order component for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
 Mainly tested in latest stable Webkit, Firefox and IE releases.
@@ -21,85 +20,96 @@ To install a stable release use:
 
 `npm i react-sortable --save`
 
-If you want to install the most current master branch, open your package.json and change the line for react-sortable like this:
-
- `"react-sortable": "https://github.com/danielstocks/react-sortable/tarball/master"`
-
 ## Example
 
-Here's a sample implementation using the react-sortable higher order component:
+Here's a sample implementation using the react-sortable higher order component.
+First import the necessary dependencies.
 
 ```js
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { sortable } from 'react-sortable';
-
-var ListItem = React.createClass({
-  displayName: 'SortableListItem',
-  render: function() {
-    return (
-      <div {...this.props} className="list-item">{this.props.children}</div>
-    )
-  }
-})
-
-var SortableListItem = sortable(ListItem);
-
-var SortableList = React.createClass({
-
-  getInitialState: function() {
-    return {
-      draggingIndex: null,
-      data: this.props.data
-    };
-  },
-
-  updateState: function(obj) {
-    this.setState(obj);
-  },
-
-  render: function() {
-    var childProps = { className: 'myClass1' };
-    var listItems = this.state.data.items.map(function(item, i) {
-      return (
-        <SortableListItem
-          key={i}
-          updateState={this.updateState}
-          items={this.state.data.items}
-          draggingIndex={this.state.draggingIndex}
-          sortId={i}
-          outline="list"
-          childProps={childProps}
-          >{item}</SortableListItem>
-      );
-    }, this);
-
-    return (
-          <div className="list">{listItems}</div>
-    )
-  }
-});
 
 ```
 
-Here's some example data and a render call to the above component:
+Then create a component for the single item of the list.
+For visual styling, you can add className of your choice.
 
 ```js
-import ReactDOM from 'react-dom';
+class Item extends React.Component {
+  render() {
+    return (
+      <li {...this.props}>
+        {this.props.children}
+      </li>
+    )
+  }
+}
 
-var data = {
-  items: [
-    "Gold",
-    "Crimson",
-    "Hotpink",
-    "Blueviolet",
-    "Cornflowerblue"
-  ]
+
+var SortableItem = sortable(Item);
+
+```
+
+And create component for the whole list, which will be our main component.
+
+```js
+class SortableList extends React.Component {
+
+  state = {
+    items: this.props.items
+  };
+
+  onSortItems = (items) => {
+    this.setState({
+      items: items
+    });
+  }
+
+  render() {
+    const { items } = this.state;
+    var listItems = items.map((item, i) => {
+      return (
+        <SortableItem
+          key={i}
+          onSortItems={this.onSortItems}
+          items={items}
+          sortId={i}>{item}</SortableItem>
+      );
+    });
+
+    return (
+      <ul className='sortable-list'>
+        {listItems}
+      </ul>
+    )
+  }
 };
 
+```
+
+Now you can pass a list of items to the main component and render the whole result.
+
+```js
+
+
+var items = [
+  "Gold",
+  "Crimson",
+  "Hotpink",
+  "Blueviolet",
+  "Cornflowerblue",
+  "Skyblue",
+  "Lightblue",
+  "Aquamarine",
+  "Burlywood"
+]
+
 ReactDOM.render(
-    <SortableList data={data} />,
-    document.body
+  <SortableList items={items} />,
+  document.body
 );
+
 ```
 
 You can see this simple working demo in the `./example` folder.
@@ -111,12 +121,9 @@ The Sortable higher order component will automatically attach the necessary drag
 It expects the following properties to be defined on your Item components:
 
 - **key** (number index, common [recommendation](http://facebook.github.io/react/docs/reconciliation.html#keys))             
-- **updateState** (function called when an item is moved)
-- **draggingIndex** (number index of item being dragged)
+- **onSortItems** (function called when an item is moved)
 - **items** (array of data being sorted)
-- **outline** (string "list" or "grid")
 - **sortId** (number index of item)
-- **childProps** (props to transfer to child)
 
 
 ## Differences from [react-dnd](http://gaearon.github.io/react-dnd) [sortable](http://gaearon.github.io/react-dnd/examples-sortable-simple.html)
@@ -126,12 +133,12 @@ It expects the following properties to be defined on your Item components:
 
 If you want to have multiple different types of Drag & Drop interactions (not only sortable), you should definitely check out [react-dnd](http://gaearon.github.io/react-dnd)
 
-##Touch support
+## Touch support
+
 Internally the component is usign [DragEvent](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent) interface.
-Unfortunately at the moment there is almost no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers.
-I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
+Unfortunately at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. I started to work on CSS/JS fallback for mobile broser on 'touch' branch.
 
-## Development
+## Mainteners
 
-The examples (except for `example-from-npm`) are loading the library code from the `./src` folder.
-That means you can use them to see how a change in the source code affects the functionality of the component.
+* [github.com/danielstocks](https://github.com/danielstocks)
+* [github.com/Dharmoslap](https://github.com/Dharmoslap)

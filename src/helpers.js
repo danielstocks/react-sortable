@@ -8,10 +8,10 @@
  * @returns {array}
  */
 export function swapArrayElements(items, indexFrom, indexTo) {
-  var item = items[indexTo];
-  items[indexTo] = items[indexFrom];
-  items[indexFrom] = item;
-  return items;
+  var item = items[indexTo]
+  items[indexTo] = items[indexFrom]
+  items[indexFrom] = item
+  return items
 }
 
 /**
@@ -21,12 +21,12 @@ export function swapArrayElements(items, indexFrom, indexTo) {
  * @returns {boolean}
  */
 export function isMouseBeyond(mousePos, elementPos, elementSize, moveInMiddle) {
-  var breakPoint;
-  if(moveInMiddle){
-    breakPoint = elementSize / 2; //break point is set to the middle line of element
-  }else{
+  var breakPoint
+  if (moveInMiddle) {
+    breakPoint = elementSize / 2 //break point is set to the middle line of element
+  } else {
     breakPoint = 0
   }
-  var mouseOverlap = mousePos - elementPos;
-  return mouseOverlap > breakPoint;
+  var mouseOverlap = mousePos - elementPos
+  return mouseOverlap > breakPoint
 }
