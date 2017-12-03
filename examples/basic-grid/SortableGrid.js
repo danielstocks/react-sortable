@@ -30,7 +30,9 @@ export default class SortableGrid extends React.Component {
     });
 
     return (
-      <ul className='sortable-grid'>{gridItems}</ul>
+      <ul className='sortable-grid'>
+        {gridItems}
+      </ul>
     )
   }
 }

@@ -26,7 +26,7 @@ export default class SortableList extends React.Component {
     });
 
     return (
-      <table className="sortable-list">
+      <table className='sortable-list'>
         <tbody>{listItems}</tbody>
       </table>
     )

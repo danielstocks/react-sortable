@@ -12,7 +12,7 @@ module.exports = {
   },
   devServer: {
     contentBase: './examples',
-    host: '0.0.0.0'
+    contentBase: [path.join(__dirname, "examples"), path.join(__dirname, "css")]
   },
   devtool: 'source-map',
   module: {

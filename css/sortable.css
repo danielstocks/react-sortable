@@ -8,8 +8,7 @@ body {
 
 /* list demo */
 
-.sortable-list,
-.list {
+.sortable-list {
   list-style: none;
   margin:0;
   padding:0;
@@ -18,8 +17,7 @@ body {
   background:#ddd;
 }
 
-.sortable-list li,
-.list-item {
+.sortable-list li {
   padding: 10px;
   color: #666;
   line-height: 17px;
