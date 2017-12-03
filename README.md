@@ -136,7 +136,7 @@ Unfortunately at the moment there is no [support](https://developer.mozilla.org/
 
 ## Purpose of this repo
 
-This repository was published back in 2014 and was pretty much the very first implementation of drag and drop sortable list for React.js. Nowdays since there are another repositories which are well maintained ([react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd), [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc)), I can recommend to use some of them in your project. This reposotory is now rather a showcase of what can be done just with simple React.js component and bare HTML5 API, having as few lines of code as possible. It can serve as inspiration for somebody who would like to reimplement this functinality from scratch.
+This repository was published back in 2014 and was pretty much the very first implementation of drag and drop sortable list for React.js. Nowadays since there are other repositories which are well maintained ([react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd), [react-sortable-hoc](https://github.com/clauderic/react-sortable-hoc)), I can recommend to use some of them in your project. This repository is now rather a showcase of what can be done just with simple React.js component and bare HTML5 API, having as few lines of code as possible. It can serve as inspiration for somebody who would like to reimplement this functionality from scratch.
 
 ## Mainteners
 
