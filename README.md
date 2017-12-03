@@ -132,7 +132,7 @@ It expects the following properties to be defined:
 
 ## Touch support
 
-Unfortunately at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. 
+Unfortunately, at the moment there is no [support](https://developer.mozilla.org/en-US/docs/Web/API/DragEvent#Browser_compatibility) of this interface in mobile browsers. 
 
 ## Purpose of this repo
 
