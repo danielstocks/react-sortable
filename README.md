@@ -39,12 +39,13 @@ For visual styling, you can add className of your choice.
 class Item extends React.Component {
   render() {
     return (
-      <div 
-        {...this.props} 
-        className="list-item">{this.props.children}</div>
+      <li {...this.props}>
+        {this.props.children}
+      </li>
     )
   }
 }
+
 
 var SortableItem = sortable(Item);
 
@@ -78,7 +79,9 @@ class SortableList extends React.Component {
     });
 
     return (
-      <div className="list">{listItems}</div>
+      <ul className='sortable-list'>
+        {listItems}
+      </ul>
     )
   }
 };
@@ -104,7 +107,7 @@ var items = [
 
 ReactDOM.render(
   <SortableList items={items} />,
-    document.body
+  document.body
 );
 
 ```

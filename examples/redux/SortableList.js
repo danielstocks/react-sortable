@@ -18,7 +18,7 @@ export default class SortableList extends React.Component {
     });
 
     return (
-      <ul className="sortable-list">{listItems}</ul>
+      <ul className='sortable-list'>{listItems}</ul>
     )
   }
 }

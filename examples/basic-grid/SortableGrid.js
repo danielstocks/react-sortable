@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import SortableItem from './SortableItem'
 
-export default class SortableList extends React.Component {
+export default class SortableGrid extends React.Component {
 
   state = {
     items: this.props.items

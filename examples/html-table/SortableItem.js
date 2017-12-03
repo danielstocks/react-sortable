@@ -1,6 +1,5 @@
 import React from 'react'
-//import { Sortable } from 'react-sortable';
-import { SortableComposition as Sortable } from '../../src/SortableComposition'
+import { sortable } from '../../src'
 
 class Item extends React.Component {
   render() {
@@ -13,4 +12,4 @@ class Item extends React.Component {
   }
 }
 
-export default Sortable(Item)
+export default sortable(Item)
