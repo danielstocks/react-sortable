@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/dt/react-sortable.svg?maxAge=2592000)](https://www.npmjs.com/package/react-sortable)
 
 
-A React higher-order component for creating sortable interfaces
+Higher-order component for creating sortable interfaces
 utilizing the HTML5 drag & drop API.
 
 Mainly tested in latest stable Webkit, Firefox and IE releases.

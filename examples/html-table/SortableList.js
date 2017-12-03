@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import SortableListItem from './SortableItem'
 
 export default class SortableList extends React.Component {
@@ -26,7 +26,7 @@ export default class SortableList extends React.Component {
     });
 
     return (
-      <table className="list">
+      <table className="sortable-list">
         <tbody>{listItems}</tbody>
       </table>
     )

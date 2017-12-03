@@ -1,33 +1,36 @@
-import React from 'react';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import SortableItem from './SortableItem'
 
 export default class SortableList extends React.Component {
 
   state = {
     items: this.props.items
-  };
+  }
 
   onSortItems = (items) => {
     this.setState({
       items: items
-    });
+    })
   }
 
   render() {
-    const { items } = this.state;
-    var listItems = items.map((item, i) => {
+    const { items } = this.state
+
+    var gridItems = items.map((item, i) => {
       return (
         <SortableItem
           key={i}
           onSortItems={this.onSortItems}
           items={items}
-          sortId={i}>{item}</SortableItem>
+          sortId={i}>
+          {item}
+        </SortableItem>
       );
     });
 
     return (
-      <div className="list">{listItems}</div>
+      <ul className='sortable-grid'>{gridItems}</ul>
     )
   }
 }
-

@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { swapArrayElements, isMouseBeyond } from './helpers.js';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { swapArrayElements, isMouseBeyond } from './helpers.js'
 
 export const VERTICAL = 'VERTICAL'
 export const HORIZONTAL = 'HORIZONTAL'
@@ -10,54 +10,56 @@ export const HORIZONTAL = 'HORIZONTAL'
 
 let draggingIndex = null
 
-export function SortableComposition(Component, flow = VERTICAL) {
+export function SortableComposition(Component, flowDirection = VERTICAL) {
 
   return class Sortable extends React.Component {
 
     sortEnd = (e) => {
-      e.preventDefault();
+      e.preventDefault()
       draggingIndex = null
     }
 
     sortStart = (e) => {
-      draggingIndex = e.currentTarget.dataset.id;
-      let dt = e.dataTransfer;
+      draggingIndex = e.currentTarget.dataset.id
+      let dt = e.dataTransfer
       if (dt !== undefined) {
-        e.dataTransfer.setData('text', e.target.innerHTML);
+        e.dataTransfer.setData('text', e.target.innerHTML)
 
         //fix http://stackoverflow.com/questions/27656183/preserve-appearance-of-dragged-a-element-when-using-html5-draggable-attribute
         if (dt.setDragImage && e.currentTarget.tagName.toLowerCase() === 'a') {
-          dt.setDragImage(e.target, 0, 0);
+          dt.setDragImage(e.target, 0, 0)
         }
       }
     }
 
     dragOver = (e) => {
       e.preventDefault();
-      var mouseBeyond;
-      var positionX, positionY;
-      var height, topOffset;
-      var items = this.props.items;
       const { moveInMiddle, sortId } = this.props
-      const overEl = e.currentTarget; //underlying element
-      const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
-      const indexFrom = Number(draggingIndex);
+      const overEl = e.currentTarget //underlying element
+      const indexDragged = Number(overEl.dataset.id) //index of underlying element in the set DOM elements
+      const indexFrom = Number(draggingIndex)
+      const height = overEl.getBoundingClientRect().height
+      const width = overEl.getBoundingClientRect().width
+      const positionX = e.clientX
+      const positionY = e.clientY
+      const topOffset = overEl.getBoundingClientRect().top
+      const leftOffset = overEl.getBoundingClientRect().left
+      let mouseBeyond
+      let { items } = this.props
 
-      height = overEl.getBoundingClientRect().height;
 
-      positionX = e.clientX;
-      positionY = e.clientY;
-      topOffset = overEl.getBoundingClientRect().top;
-      if (flow === VERTICAL) {
+      if (flowDirection === VERTICAL) {
         mouseBeyond = isMouseBeyond(positionY, topOffset, height, moveInMiddle)
       }
 
-      if (flow === HORIZONTAL) {
-        mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, moveInMiddle)
+      if (flowDirection === HORIZONTAL) {
+        mouseBeyond = isMouseBeyond(positionX, leftOffset, width, moveInMiddle)
       }
 
+      let shouldSwapItems = isMouseBeyond && indexDragged !== indexFrom
+
       if (indexDragged !== indexFrom && mouseBeyond) {
-        items = swapArrayElements(items, indexFrom, indexDragged);
+        items = swapArrayElements(items, indexFrom, indexDragged)
         draggingIndex = indexDragged
         this.props.onSortItems(items)
       }
@@ -65,8 +67,8 @@ export function SortableComposition(Component, flow = VERTICAL) {
     }
 
     render() {
-      let newProps = Object.assign({}, this.props);
-      delete newProps.onSortItems;
+      let newProps = Object.assign({}, this.props)
+      delete newProps.onSortItems
       const { sortId, ...props } = newProps
       return (
         <Component

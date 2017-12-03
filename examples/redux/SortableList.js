@@ -11,13 +11,14 @@ export default class SortableList extends React.Component {
           key={i}
           onSortItems={onSortItems}
           items={items}
-          sortId={i}
-          flow="list">{item}</SortableItem>
+          sortId={i}>
+          {item}
+        </SortableItem>
       );
     });
 
     return (
-      <div className="list">{listItems}</div>
+      <ul className="sortable-list">{listItems}</ul>
     )
   }
 }

@@ -1,7 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SortableItem from './SortableItem';
-import StateView from './StateView';
+import React from 'react'
+import SortableItem from './SortableItem'
 
 export default class SortableList extends React.Component {
 
@@ -17,22 +15,23 @@ export default class SortableList extends React.Component {
 
   render() {
     const { items } = this.state;
-
     var listItems = items.map((item, i) => {
       return (
         <SortableItem
           key={i}
           onSortItems={this.onSortItems}
           items={items}
-          sortId={i}>{item}</SortableItem>
-      );
-    });
+          sortId={i}>
+          {item}
+        </SortableItem>
+      )
+    })
 
     return (
-      <div id="app">
-        <div className="list">{listItems}</div>
-        <StateView items={this.state.items} />
-      </div>
+      <ul className='sortable-list'>
+        {listItems}
+      </ul>
     )
   }
-};
+}
+

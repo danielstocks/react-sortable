@@ -2,10 +2,9 @@ var path = require("path");
 var webpack = require("webpack");
 
 module.exports = {
-  //entry: "./examples/basic/index.js",
+  //entry: "./examples/basic-list/index.js",
+  //entry: "./examples/basic-grid/index.js",
   //entry: "./examples/html-table/index.js",
-  //entry: "./examples/real-world-grid/index.js",
-  //entry: "./examples/real-world-list/index.js",
   entry: "./examples/redux/index.js",
   output: {
     path: __dirname,

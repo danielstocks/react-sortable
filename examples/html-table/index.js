@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import SortableList from './SortableList';
+import SortableList from './SortableList'
 
 var items = [
   "Gold",
@@ -18,4 +18,4 @@ var items = [
 ReactDOM.render(
   <SortableList items={items} />,
   document.getElementById('app')
-);
+)
