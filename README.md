@@ -137,5 +137,5 @@ Unfortunately at the moment there is no [support](https://developer.mozilla.org/
 
 ## Mainteners
 
-[github.com/danielstocks](https://github.com/danielstocks)
-[github.com/danielstocks](https://github.com/Dharmoslap)
+* [github.com/danielstocks](https://github.com/danielstocks)
+* [github.com/Dharmoslap](https://github.com/Dharmoslap)
