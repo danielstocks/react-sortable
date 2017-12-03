@@ -7,7 +7,6 @@
   "scripts": {
     "build": "babel src --out-dir lib",
     "build:standalone": "webpack --config ./webpack.standalone.js",
-    "build:examples": "webpack --config ./example/webpack.config.js && webpack --config ./example-real-world/webpack.config.js && webpack --config ./example-table/webpack.config.js",
     "preversion": "npm run build",
     "start": "npm run build -- --watch",
     "dev": "webpack-dev-server --config ./webpack.devConfig.js",
