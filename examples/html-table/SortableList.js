@@ -4,25 +4,24 @@ import SortableListItem from './SortableItem'
 export default class SortableList extends React.Component {
 
   state = {
-    draggingIndex: null,
-    data: this.props.data
+    items: this.props.items
   };
 
-  updateState = (obj) => {
-    this.setState(obj);
+  onSortItems = (items) => {
+    this.setState({
+      items: items
+    });
   }
 
   render() {
-    const { draggingIndex, data: { items: items } } = this.state;
+    const { items } = this.state;
     var listItems = items.map((item, i) => {
       return (
         <SortableListItem
           key={i}
-          updateState={this.updateState}
+          onSortItems={this.onSortItems}
           items={items}
-          draggingIndex={draggingIndex}
-          sortId={i}
-          outline="list">{item}</SortableListItem>
+          sortId={i}>{item}</SortableListItem>
       );
     });
 

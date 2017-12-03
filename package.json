@@ -46,9 +46,11 @@
     "jest-cli": "21.x.x",
     "react": "16.x.x",
     "react-dom": "16.x.x",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2",
     "wdio-jasmine-framework": "0.3.x",
-    "webdriverio": "4.8.x",
-    "webpack": "3.6.x",
+    "webdriverio": "4.9.x",
+    "webpack": "3.9.x",
     "webpack-dev-server": "2.9.x"
   }
 }

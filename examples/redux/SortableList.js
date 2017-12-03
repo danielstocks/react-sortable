@@ -3,25 +3,16 @@ import SortableItem from './SortableItem'
 
 export default class SortableList extends React.Component {
 
-  state = {
-    items: this.props.items
-  };
-
-  onSortItems = (items) => {
-    this.setState({
-      items: items
-    });
-  }
-
   render() {
-    const { items } = this.state;
+    const { items, onSortItems } = this.props;
     var listItems = items.map((item, i) => {
       return (
         <SortableItem
           key={i}
-          onSortItems={this.onSortItems}
+          onSortItems={onSortItems}
           items={items}
-          sortId={i}>{item}</SortableItem>
+          sortId={i}
+          flow="list">{item}</SortableItem>
       );
     });
 

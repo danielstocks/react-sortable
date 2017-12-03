@@ -1,5 +1,7 @@
 import React from 'react';
-import SortableItem from './SortableItem'
+import ReactDOM from 'react-dom';
+import SortableItem from './SortableItem';
+import StateView from './StateView';
 
 export default class SortableList extends React.Component {
 
@@ -15,6 +17,7 @@ export default class SortableList extends React.Component {
 
   render() {
     const { items } = this.state;
+
     var listItems = items.map((item, i) => {
       return (
         <SortableItem
@@ -26,8 +29,10 @@ export default class SortableList extends React.Component {
     });
 
     return (
-      <div className="list">{listItems}</div>
+      <div id="app">
+        <div className="list">{listItems}</div>
+        <StateView items={this.state.items} />
+      </div>
     )
   }
-}
-
+};

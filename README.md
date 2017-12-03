@@ -56,31 +56,29 @@ And create component for the whole list, which will be our main component.
 class SortableList extends React.Component {
 
   state = {
-    draggingIndex: null,
-    data: this.props.data
+    items: this.props.items
   };
 
-  updateState = (obj) => {
-    this.setState(obj);
+  onSortItems = (items) => {
+    this.setState({
+      items: items
+    });
   }
 
   render() {
-    const {draggingIndex, data:{items: items}} = this.state;
+    const { items } = this.state;
     var listItems = items.map((item, i) => {
-         return (
+      return (
         <SortableItem
           key={i}
-          updateState={this.updateState}
+          onSortItems={this.onSortItems}
           items={items}
-          draggingIndex={draggingIndex}
-          sortId={i}
-          outline="list"
-          >{item}</SortableListItem>
+          sortId={i}>{item}</SortableItem>
       );
     });
 
     return (
-        <div className="list">{listItems}</div>
+      <div className="list">{listItems}</div>
     )
   }
 };
@@ -92,20 +90,23 @@ Now you can pass a list of items to the main component and render the whole resu
 ```js
 
 
-var data = {
-  items: [
-    "Gold",
-    "Crimson",
-    "Hotpink",
-    "Blueviolet",
-    "Cornflowerblue"
-  ]
-};
+var items = [
+  "Gold",
+  "Crimson",
+  "Hotpink",
+  "Blueviolet",
+  "Cornflowerblue",
+  "Skyblue",
+  "Lightblue",
+  "Aquamarine",
+  "Burlywood"
+]
 
 ReactDOM.render(
-    <SortableList data={data} />,
+  <SortableList items={items} />,
     document.body
 );
+
 ```
 
 You can see this simple working demo in the `./example` folder.
@@ -117,10 +118,8 @@ The Sortable higher order component will automatically attach the necessary drag
 It expects the following properties to be defined on your Item components:
 
 - **key** (number index, common [recommendation](http://facebook.github.io/react/docs/reconciliation.html#keys))             
-- **updateState** (function called when an item is moved)
-- **draggingIndex** (number index of item being dragged)
+- **onSortItems** (function called when an item is moved)
 - **items** (array of data being sorted)
-- **outline** (string "list" or "grid")
 - **sortId** (number index of item)
 
 

@@ -22,9 +22,9 @@ export function swapArrayElements(items, indexFrom, indexTo) {
  */
 export function isMouseBeyond(mousePos, elementPos, elementSize, moveInMiddle) {
   var breakPoint;
-  if(moveInMiddle){
+  if (moveInMiddle) {
     breakPoint = elementSize / 2; //break point is set to the middle line of element
-  }else{
+  } else {
     breakPoint = 0
   }
   var mouseOverlap = mousePos - elementPos;

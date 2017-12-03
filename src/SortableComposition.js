@@ -2,40 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { swapArrayElements, isMouseBeyond } from './helpers.js';
 
+export const VERTICAL = 'VERTICAL'
+export const HORIZONTAL = 'HORIZONTAL'
+
+
 /*** Higher-order component - this component works like a factory for draggable items */
 
-export function SortableComposition(Component) {
+let draggingIndex = null
 
-  var elementEdge = 0;
-  var updateEdge = true;
+export function SortableComposition(Component, flow = VERTICAL) {
 
   return class Sortable extends React.Component {
 
-    state = { draggingIndex: null };
-
-    componentWillReceiveProps(nextProps) {
-      this.setState({
-        draggingIndex: nextProps.draggingIndex
-      });
-    }
-
     sortEnd = (e) => {
       e.preventDefault();
-      this.props.updateState({
-        draggingIndex: null
-      });
+      draggingIndex = null
     }
 
     sortStart = (e) => {
-      const draggingIndex = e.currentTarget.dataset.id;
-      this.props.updateState({
-        draggingIndex: draggingIndex
-      });
-
-      this.setState({
-        draggingIndex: draggingIndex
-      });
-
+      draggingIndex = e.currentTarget.dataset.id;
       let dt = e.dataTransfer;
       if (dt !== undefined) {
         e.dataTransfer.setData('text', e.target.innerHTML);
@@ -45,7 +30,6 @@ export function SortableComposition(Component) {
           dt.setDragImage(e.target, 0, 0);
         }
       }
-      updateEdge = true;
     }
 
     dragOver = (e) => {
@@ -54,43 +38,35 @@ export function SortableComposition(Component) {
       var positionX, positionY;
       var height, topOffset;
       var items = this.props.items;
-      const { outline, moveInMiddle, sortId, draggingIndex } = this.props
+      const { moveInMiddle, sortId } = this.props
       const overEl = e.currentTarget; //underlying element
       const indexDragged = Number(overEl.dataset.id); //index of underlying element in the set DOM elements
-      const indexFrom = Number(this.state.draggingIndex);
+      const indexFrom = Number(draggingIndex);
 
       height = overEl.getBoundingClientRect().height;
 
       positionX = e.clientX;
       positionY = e.clientY;
       topOffset = overEl.getBoundingClientRect().top;
-
-      if (outline === "list") {
+      if (flow === VERTICAL) {
         mouseBeyond = isMouseBeyond(positionY, topOffset, height, moveInMiddle)
       }
 
-      if (outline === "grid") {
+      if (flow === HORIZONTAL) {
         mouseBeyond = isMouseBeyond(positionX, overEl.getBoundingClientRect().left, overEl.getBoundingClientRect().width, moveInMiddle)
       }
 
       if (indexDragged !== indexFrom && mouseBeyond) {
         items = swapArrayElements(items, indexFrom, indexDragged);
-        this.props.updateState({
-          items: items, draggingIndex: indexDragged
-        });
+        draggingIndex = indexDragged
+        this.props.onSortItems(items)
       }
 
     }
 
-    isDragging = () => {
-      const { draggingIndex, sortId } = this.props
-      return draggingIndex == sortId;
-    }
-
     render() {
       let newProps = Object.assign({}, this.props);
-      delete newProps.updateState;
-      delete newProps.draggingIndex;
+      delete newProps.onSortItems;
       const { sortId, ...props } = newProps
       return (
         <Component
@@ -111,10 +87,8 @@ export function SortableComposition(Component) {
 
   Sortable.propTypes = {
     items: PropTypes.array.isRequired,
-    updateState: PropTypes.func.isRequired,
+    onSortItems: PropTypes.func.isRequired,
     sortId: PropTypes.number,
-    outline: PropTypes.string.isRequired, // list | grid
-    draggingIndex: PropTypes.number,
   };
 
   Sortable.defaultProps = {
